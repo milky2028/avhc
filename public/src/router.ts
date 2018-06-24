@@ -1,11 +1,12 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-const Home = () => import('./views/Home.vue');
+const Enter = () => import('./views/Enter.vue');
 const Orders = () => import('./views/Orders.vue');
 const Checkout = () => import('./views/Checkout.vue');
-const Item = () => import('./views/Item.vue');
+const Shop = () => import('./views/Shop.vue');
 const ThankYou = () => import('./views/ThankYou.vue');
 const About = () => import('./views/About.vue');
+const TestResults = () => import('./views/TestResults.vue')
 
 
 Vue.use(Router);
@@ -14,8 +15,8 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'home',
-      component: Home,
+      name: 'enter',
+      component: Enter,
     },
     {
       path: '/about',
@@ -38,9 +39,14 @@ export default new Router({
       component: Orders,
     },
     {
-      path: '/shop-prerolls',
-      name: 'shop-prerolls',
-      component: Item,
+      path: '/shop',
+      name: 'shop',
+      component: Shop,
     },
-  ],
+    {
+      path: '/test-results',
+      name: 'test-results',
+      component: TestResults,
+    }
+  ]
 });
