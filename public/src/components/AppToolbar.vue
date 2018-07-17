@@ -13,6 +13,8 @@
     #root {
         background-color: white;
         height: 80px;
+        position: relative;
+        box-shadow: $standard-shadow;
     }
 
     .container {
@@ -20,9 +22,6 @@
         flex-direction: row;
         justify-content: flex-start;
         align-items: center;
-        z-index: 9999;
-        position: relative;
-        box-shadow: $standard-shadow;
     }
 
     h1 {
