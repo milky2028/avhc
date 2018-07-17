@@ -6,8 +6,7 @@ const Checkout = () => import('./views/Checkout.vue');
 const Shop = () => import('./views/Shop.vue');
 const ThankYou = () => import('./views/ThankYou.vue');
 const About = () => import('./views/About.vue');
-const TestResults = () => import('./views/TestResults.vue')
-
+const TestResults = () => import('./views/TestResults.vue');
 
 Vue.use(Router);
 
