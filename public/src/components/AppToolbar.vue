@@ -1,13 +1,10 @@
 <template>
     <div id="root">
-        <div class="container">
-            <h1><router-link to="/">AVP</router-link></h1>
-        </div>
+        <h1><router-link to="/">AVP</router-link></h1>
     </div>
 </template>
 
 <style lang="scss" scoped>
-    @import 'src/styles/container.scss';
     @import 'src/styles/theme.scss';
 
     #root {
@@ -15,13 +12,9 @@
         height: 80px;
         position: relative;
         box-shadow: $standard-shadow;
-    }
-
-    .container {
         display: flex;
         flex-direction: row;
-        justify-content: flex-start;
-        align-items: center;
+        align-items: center
     }
 
     h1 {
