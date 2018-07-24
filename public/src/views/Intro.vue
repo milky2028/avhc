@@ -1,5 +1,7 @@
 <template>
-  <div id="root"></div>
+  <div id="root">
+    <div id="message"></div>
+  </div>
 </template>
 
 <style lang="scss" scoped>
@@ -8,6 +10,15 @@
     background-position: 10% 50%;
     background-size: cover;
     height: calc(100vh - 80px);
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+  }
+
+  #message {
+    height: 280px;
+    width: 100%;
+    background-color: white;
   }
 </style>
 
