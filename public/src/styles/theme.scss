@@ -4,6 +4,28 @@ $primary: #004D40;
 $primary-light: #39796b;
 $edge-padding: 0px 35px;
 $h1: 32px;
+$primary-font: 'Elianto', Arial;
+$secondary-font: 'Mukta Malar', sans-serif;
+$mat-icons: 'Material Icons';
+
+@import url('https://fonts.googleapis.com/css?family=Mukta+Malar:400,600,800');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+
+@font-face {
+    font-family: 'Elianto';
+    src: local('./elianto.otf') format('opentype');
+}
+
+html, body {
+    font-size: 16px;
+    font-family: $secondary-font;
+}
+
+p {
+    font-size: 16px;
+    font-family: $secondary-font;
+    line-height: 130%;
+}
 
 a {
     text-decoration: none;
