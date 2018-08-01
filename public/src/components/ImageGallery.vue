@@ -1,6 +1,41 @@
 <template>
-    <p>This is the image gallery!</p>
+    <div id="root">
+        <div @click="previousImage" class="mat-icon">keyboard_arrow_left</div>
+        <div @click="nextImage"  class="mat-icon">keyboard_arrow_right</div>
+    </div>
 </template>
 
 <style scoped lang="scss">
+  @import '../styles/theme.scss';
+
+  #root {
+    background-image: url('../assets/intro.svg');
+    background-position: 10% 50%;
+    background-size: cover;
+    height: 38vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .mat-icon {
+    font-family: 'Material Icons';
+    font-size: 55px;
+  }
 </style>
+
+<script lang="ts">
+  import { Vue } from 'vue-property-decorator';
+
+  export default class ImageGallery extends Vue {
+      private nextImage() {
+        // console.log('next');
+      }
+
+      private previousImage() {
+        // console.log('previous');
+      }
+   }
+
+   // :style="{ backgroundImage: `url('${imageURL}')` }"
+</script>

@@ -1,9 +1,11 @@
 <template>
   <div>
-    <h1>This is an Item page</h1>
     <image-gallery></image-gallery>
   </div>
 </template>
+
+<style scoped lang="scss">
+</style>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
