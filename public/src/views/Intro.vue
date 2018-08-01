@@ -45,8 +45,8 @@
   #message {
     margin-right: 10vh;
     margin-bottom: 10vh;
-    height: 270px;
-    width: 550px;
+    height: 230px;
+    width: 500px;
     background-color: white;
     padding: 0 55px;
     align-self: flex-end;
