@@ -18,6 +18,7 @@
     }
 
     h1 {
+        margin-top: 4px;
         color: $primary;
         font-family: Elianto;
         font-size: $h1;
