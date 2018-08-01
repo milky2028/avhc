@@ -3,10 +3,8 @@ import App from './App.vue';
 import router from './router';
 import store from './store';
 import './registerServiceWorker';
-import AppToolbar from '@/components/AppToolbar.vue';
 
-Vue.config.productionTip = false;
-Vue.component('app-toolbar', AppToolbar);
+Vue.config.productionTip = true;
 
 new Vue({
   router,

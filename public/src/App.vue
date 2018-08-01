@@ -13,3 +13,16 @@
     -moz-osx-font-smoothing: grayscale;
   }
 </style>
+
+<script lang="ts">
+import { Component, Vue } from 'vue-property-decorator';
+import AppToolbar from '@/components/AppToolbar.vue';
+
+@Component({
+  components: {
+    AppToolbar
+  }
+})
+
+export default class App extends Vue { }
+</script>
