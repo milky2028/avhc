@@ -1,6 +1,7 @@
 <template>
   <div>
-    <image-gallery></image-gallery>
+    <ImageGallery />
+    <ShopButtons />
   </div>
 </template>
 
@@ -10,12 +11,14 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import ImageGallery from '@/components/ImageGallery.vue';
+import ShopButtons from '@/components/ShopButtons.vue';
 
 @Component({
   components: {
-    ImageGallery
+    ImageGallery,
+    ShopButtons
   }
 })
 
-export default class Shop extends Vue {}
+export default class Shop extends Vue { }
 </script>

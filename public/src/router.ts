@@ -1,17 +1,18 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-const Intro = () => import('./views/Intro.vue');
-const Orders = () => import('./views/Orders.vue');
-const Checkout = () => import('./views/Checkout.vue');
-const Shop = () => import('./views/Shop.vue');
-const ThankYou = () => import('./views/ThankYou.vue');
-const About = () => import('./views/About.vue');
-const TestResults = () => import('./views/TestResults.vue');
+const Intro = () => import(/* webpackChunkName: "intro" */'./views/Intro.vue');
+const Orders = () => import(/* webpackChunkName: "orders" */'./views/Orders.vue');
+const Checkout = () => import(/* webpackChunkName: "checkout" */'./views/Checkout.vue');
+const Shop = () => import(/* webpackChunkName: "shop" */'./views/Shop.vue');
+const ThankYou = () => import(/* webpackChunkName: "thankYou" */'./views/ThankYou.vue');
+const About = () => import(/* webpackChunkName: "about" */'./views/About.vue');
+const TestResults = () => import(/* webpackChunkName: "testResults" */'./views/TestResults.vue');
 
 Vue.use(Router);
 
 export default new Router({
   mode: 'history',
+  base: process.env.BASE_URL,
   routes: [
     {
       path: '/',
@@ -50,3 +51,4 @@ export default new Router({
     }
   ]
 });
+

@@ -1,8 +1,8 @@
 <template>
-<div>
-  <app-toolbar></app-toolbar>
-  <router-view></router-view>
-</div>
+  <div>
+    <AppToolbar/>
+    <router-view></router-view>
+  </div>
 </template>
 
 <style lang="scss">

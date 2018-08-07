@@ -9,7 +9,7 @@
   @import '../styles/theme.scss';
 
   #root {
-    background-image: url('../assets/intro.svg');
+    background-color: orange;
     background-position: 10% 50%;
     background-size: cover;
     height: 38vh;
@@ -25,8 +25,10 @@
 </style>
 
 <script lang="ts">
-  import { Vue } from 'vue-property-decorator';
+  import { Vue, Component } from 'vue-property-decorator';
 
+
+  @Component
   export default class ImageGallery extends Vue {
       private nextImage() {
         // console.log('next');
