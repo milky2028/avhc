@@ -43,10 +43,6 @@ export default class ProductDescriptions extends Vue {
         <li>Another Bullet about the prodouct.</li>
         <li>Perhaps a third.</li>
     </ul>`;
-
-    private someMethod() {
-        const pizza = 'pizza';
-    }
 }
 </script>
 
