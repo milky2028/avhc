@@ -31,11 +31,11 @@
   @Component
   export default class ImageGallery extends Vue {
       private nextImage() {
-        // console.log('next');
+       // console.log('next');
       }
 
       private previousImage() {
-        // console.log('previous');
+       // console.log('previous');
       }
    }
 
