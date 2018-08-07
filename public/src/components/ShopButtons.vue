@@ -7,15 +7,22 @@
 
 <style lang="scss" scoped>
 #root {
+    grid-area: shop-buttons;
+    align-self: end;
     width: 100vw;
+    display: flex;
+    justify-content: center;
 }
 
 button {
+    font-family: 'Elianto';
+    text-transform: uppercase;
+    background-color: white;
     border-style: solid;
     border-color: black;
     font-size: 28px;
-    padding: 25px;
-    width: 50vw
+    padding: 24.5px;
+    width: 50vw;
 }
 
 #add {

@@ -9,6 +9,7 @@
   @import '../styles/theme.scss';
 
   #root {
+    grid-area: image-gallery;
     background-color: orange;
     background-position: 10% 50%;
     background-size: cover;
@@ -16,11 +17,6 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-  }
-
-  .mat-icon {
-    font-family: 'Material Icons';
-    font-size: 55px;
   }
 </style>
 
