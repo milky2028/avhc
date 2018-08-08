@@ -13,7 +13,8 @@ $mat-icons: 'Material Icons';
 
 @font-face {
     font-family: 'Elianto';
-    src: local('./elianto.otf') format('opentype');
+    src: url('/assets/elianto.otf') format('opentype'),
+         url('/assets/elianto.ttf') format('truetype');
 }
 
 html, body {

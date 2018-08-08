@@ -8,7 +8,7 @@ module.exports = {
 
   baseUrl: undefined,
   outputDir: undefined,
-  assetsDir: undefined,
+  assetsDir: 'assets',
   runtimeCompiler: undefined,
   productionSourceMap: false,
   parallel: undefined,
