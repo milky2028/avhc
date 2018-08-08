@@ -13,9 +13,15 @@ $mat-icons: 'Material Icons';
 
 @font-face {
     font-family: 'Elianto';
-    src: url('/assets/elianto.otf') format('opentype'),
-         url('/assets/elianto.ttf') format('truetype');
-}
+    src: url('/src/assets/fonts/Elianto-Regular.eot');
+    src: url('/src/assets/fonts/Elianto-Regular.woff2') format('woff2'),
+         url('/src/assets/fonts/Elianto-Regular.woff') format('woff'),
+         url('/src/assets/fonts/Elianto-Regular.ttf') format('truetype'),
+         url('/src/assets/fonts/Elianto-Regular.svg#Elianto-Regular') format('svg'),
+         url('/src/assets/fonts/Elianto-Regular.eot?#iefix') format('embedded-opentype');
+    font-weight: normal;
+    font-style: normal;
+  }
 
 html, body {
     font-size: 16px;
