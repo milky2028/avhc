@@ -24,9 +24,9 @@
     }
 
     h1 {
-        margin-top: 4px;
+        margin-bottom: 4px;
         color: $primary;
-        font-family: Elianto;
+        font-family: 'Elianto';
         font-size: $h1;
         text-transform: uppercase;
     }
@@ -37,7 +37,7 @@
     }
 
     #faq-icon {
-        padding-top: 5px;
+        margin-bottom: 8px;
         margin-right: 6px;
         font-family: $primary-font;
         font-size: 28px;
