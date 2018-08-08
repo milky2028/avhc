@@ -12,16 +12,17 @@ $mat-icons: 'Material Icons';
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 
 @font-face {
-    font-family: 'Elianto';
-    src: url('/src/assets/fonts/Elianto-Regular.eot');
-    src: url('/src/assets/fonts/Elianto-Regular.woff2') format('woff2'),
-         url('/src/assets/fonts/Elianto-Regular.woff') format('woff'),
-         url('/src/assets/fonts/Elianto-Regular.ttf') format('truetype'),
-         url('/src/assets/fonts/Elianto-Regular.svg#Elianto-Regular') format('svg'),
-         url('/src/assets/fonts/Elianto-Regular.eot?#iefix') format('embedded-opentype');
-    font-weight: normal;
-    font-style: normal;
-  }
+  font-family: 'Elianto';
+  src: url('../assets/fonts/elianto.eot');
+  src: url('../assets/fonts/elianto.woff2') format('woff2'),
+       url('../assets/fonts/elianto.woff') format('woff'),
+       url('../assets/fonts/elianto.ttf') format('truetype'),
+       url('../assets/fonts/elianto.svg#Elianto-Regular') format('svg'),
+       url('../assets/fonts/elianto.eot?#iefix') format('embedded-opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 
 html, body {
     font-size: 16px;

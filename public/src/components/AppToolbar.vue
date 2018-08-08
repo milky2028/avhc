@@ -19,12 +19,12 @@
         display: flex;
         justify-content: space-between;
         flex-direction: row;
-        align-items: center;
-        padding: 22px;
+        align-items: stretch;
+        padding: 26px;
     }
 
     h1 {
-        margin-bottom: 4px;
+        margin-bottom: -5px;
         color: $primary;
         font-family: 'Elianto';
         font-size: $h1;
@@ -37,7 +37,7 @@
     }
 
     #faq-icon {
-        margin-bottom: 8px;
+        margin-bottom: -4px;
         margin-right: 6px;
         font-family: $primary-font;
         font-size: 28px;

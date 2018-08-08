@@ -1,6 +1,6 @@
 <template>
     <div id="root">
-        <p id="label">Select Product</p>
+        <p :class="removeClassIos">Select Product</p>
         <div id="select-container">
             <select>
                 <option><h2>Unfiltered CBD Prerolls</h2></option>
@@ -23,7 +23,7 @@
     font-family: $secondary-font;
 }
 
-#label {
+.label {
     margin-left: 5px;
     margin-bottom: -10px;
 }
@@ -51,5 +51,13 @@ select {
 import { Vue, Component } from 'vue-property-decorator';
 
 @Component
-export default class ProductSelector extends Vue { }
+export default class ProductSelector extends Vue {
+    public get removeClassIos(): null | string {
+        const ua = window.navigator.userAgent;
+        const iOS = !!ua.match(/iPad/i) || !!ua.match(/iPhone/i);
+        const webkit = !!ua.match(/WebKit/i);
+        const iOSSafari = iOS && webkit && !ua.match(/CriOS/i);
+        return iOSSafari ? null : 'label';
+    }
+ }
 </script>
