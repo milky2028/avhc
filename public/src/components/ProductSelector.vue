@@ -29,6 +29,7 @@
 }
 
 select {
+    -webkit-appearance: none;
     color:  $primary;
     background-color: transparent;
     outline: transparent;
@@ -53,11 +54,8 @@ import { Vue, Component } from 'vue-property-decorator';
 @Component
 export default class ProductSelector extends Vue {
     public get removeClassIos(): null | string {
-        const ua = window.navigator.userAgent;
-        const iOS = !!ua.match(/iPad/i) || !!ua.match(/iPhone/i);
-        const webkit = !!ua.match(/WebKit/i);
-        const iOSSafari = iOS && webkit && !ua.match(/CriOS/i);
-        return iOSSafari ? null : 'label';
+        const isSafari = /constructor/i.test(window.HTMLElement) || (function (p) { return p.toString() === "[object SafariRemoteNotification]"; })(!window['safari'] || (typeof safari !== 'undefined' && safari.pushNotification));
+        return isSafari ? null : 'label';
     }
  }
 </script>
