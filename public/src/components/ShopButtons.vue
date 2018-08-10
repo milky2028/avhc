@@ -29,6 +29,7 @@ button {
     width: 50vw;
     display: flex;
     align-items: center;
+    justify-content: center;
 }
 
 #add {
