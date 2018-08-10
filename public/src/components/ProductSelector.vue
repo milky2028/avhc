@@ -51,13 +51,18 @@ select {
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator';
 
+declare var safari: any;
+declare var window: any;
+
 @Component
 export default class ProductSelector extends Vue {
     private selectedProductName: string = 'Unfiltered CBD Prerolls';
 
+    /* tslint:disable */
     public get removeClassIos(): null | string {
         const isSafari = /constructor/i.test(window.HTMLElement) || (function (p) { return p.toString() === "[object SafariRemoteNotification]"; })(!window['safari'] || (typeof safari !== 'undefined' && safari.pushNotification));
         return isSafari ? 'label' : null;
     }
+    /* tslint:enable */
  }
 </script>

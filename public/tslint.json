@@ -15,7 +15,6 @@
     "ordered-imports": false,
     "object-literal-sort-keys": false,
     "no-consecutive-blank-lines": false,
-    "trailing-comma": false,
-    "no-unused-variable": true
-  }
+    "trailing-comma": false
+    }
 }
