@@ -44,11 +44,6 @@ button {
     text-transform: lowercase;
     font-family: 'Material Icons';
     font-size: 28px;
-    // padding: 0 32px;
-}
-
-.displayButtonState {
-    display: none;
 }
 </style>
 
