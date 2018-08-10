@@ -1,6 +1,10 @@
 <template>
     <div id="root">
-        <button id="add">Add</button>
+        <button id="add" :style="displayAddAndRemove ? { justifyContent: 'space-between' } : { justifyContent: 'center' }">
+            <div @click="itemQuantity--" :style="displayAddAndRemove ? { display: 'block' } : { display: 'none' }" class="mat-icon">remove_circle_outline</div>
+            <span @click="itemQuantity++">{{ addButtonField }}</span>
+            <div @click="itemQuantity++" :style="displayAddAndRemove ? { display: 'block' } : { display: 'none' }" class="mat-icon">add_circle</div>
+        </button>
         <button id="buy">Buy</button>
     </div>
 </template>
@@ -23,6 +27,8 @@ button {
     font-size: 28px;
     padding: 24.5px;
     width: 50vw;
+    display: flex;
+    align-items: center;
 }
 
 #add {
@@ -31,6 +37,18 @@ button {
 
 #buy {
     border-width: 3px 0 0 1.5px;
+    justify-self: center;
+}
+
+.mat-icon {
+    text-transform: lowercase;
+    font-family: 'Material Icons';
+    font-size: 28px;
+    // padding: 0 32px;
+}
+
+.displayButtonState {
+    display: none;
 }
 </style>
 
@@ -38,6 +56,21 @@ button {
 import { Vue, Component } from 'vue-property-decorator';
 
 @Component
-export default class ShopButtons extends Vue { }
+export default class ShopButtons extends Vue {
+    public itemQuantity: number = 0;
+
+    private get addButtonField(): string | number {
+        if (this.itemQuantity < 1) {
+          this.itemQuantity = 0;
+          return 'Add';
+        } else {
+            return this.itemQuantity;
+        }
+    }
+
+    private get displayAddAndRemove(): boolean {
+        return this.itemQuantity < 1 ? false : true;
+    }
+}
 </script>
 

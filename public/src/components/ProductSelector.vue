@@ -2,7 +2,7 @@
     <div id="root">
         <p :class="removeClassIos">Select Product</p>
         <div id="select-container">
-            <select>
+            <select v-model="selectedProductName">
                 <option><h2>Unfiltered CBD Prerolls</h2></option>
                 <option><h2>Filtered CBD Prerolls</h2></option>
                 <option><h2>CBD Flower #1</h2></option>
@@ -53,9 +53,11 @@ import { Vue, Component } from 'vue-property-decorator';
 
 @Component
 export default class ProductSelector extends Vue {
+    private selectedProductName: string = 'Unfiltered CBD Prerolls';
+
     public get removeClassIos(): null | string {
         const isSafari = /constructor/i.test(window.HTMLElement) || (function (p) { return p.toString() === "[object SafariRemoteNotification]"; })(!window['safari'] || (typeof safari !== 'undefined' && safari.pushNotification));
-        return isSafari ? null : 'label';
+        return isSafari ? 'label' : null;
     }
  }
 </script>
