@@ -38,7 +38,6 @@ button {
 
 #buy {
     border-width: 3px 0 0 1.5px;
-    justify-self: center;
 }
 
 .mat-icon {
