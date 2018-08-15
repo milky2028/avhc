@@ -11,7 +11,7 @@ export default class ProductsMixin extends Vue {
             const snapshot = await db.collection('products').get();
             snapshot.forEach((doc: any) => this.products.push(doc.data()));
         } catch (e) {
-            console.error(e);
+            // console.error(e);
         }
     }
 }

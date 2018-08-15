@@ -58,7 +58,7 @@ declare var window: any;
 export default class ProductSelector extends Mixins(ProductsMixin) {
     public selectedProduct: any = '';
 
-    created() {
+    private created() {
         this.getProducts();
     }
 
