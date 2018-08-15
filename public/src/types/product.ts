@@ -6,4 +6,5 @@ export interface Product {
     smallImage: string;
     largeImage: string;
     description: string;
+    galleryImages: string[];
   }
