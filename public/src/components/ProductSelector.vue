@@ -2,11 +2,9 @@
     <div id="root">
         <p :class="removeClassIos">Select Product</p>
         <div id="select-container">
-            <select v-model="selectedProductName">
-                <option><h2>Unfiltered CBD Prerolls</h2></option>
-                <option><h2>Filtered CBD Prerolls</h2></option>
-                <option><h2>CBD Flower #1</h2></option>
-                <option><h2>CBD Flower #2</h2></option>
+            <select v-model="selectedProduct" @input="selectedProduct = $event.target.value">
+                <option value="" disabled selected>Select a Product</option>
+                <option v-for="product in products" :key="product.name" :value="product">{{ product.title }}</option>
             </select>
             <div class="mat-icon small-icon">keyboard_arrow_right</div>
         </div>
@@ -49,14 +47,20 @@ select {
 </style>
 
 <script lang="ts">
-import { Vue, Component } from 'vue-property-decorator';
+import { Vue, Component, Mixins } from 'vue-property-decorator';
+import ProductsMixin from '@/exports/products.mixin';
+import Product from '@/types/product';
 
 declare var safari: any;
 declare var window: any;
 
 @Component
-export default class ProductSelector extends Vue {
-    private selectedProductName: string = 'Unfiltered CBD Prerolls';
+export default class ProductSelector extends Mixins(ProductsMixin) {
+    public selectedProduct: any = '';
+
+    created() {
+        this.getProducts();
+    }
 
     /* tslint:disable */
     public get removeClassIos(): null | string {

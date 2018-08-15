@@ -23,16 +23,15 @@
 <script lang="ts">
   import { Vue, Component } from 'vue-property-decorator';
 
-
   @Component
   export default class ImageGallery extends Vue {
-      private nextImage() {
-       // console.log('next');
-      }
+    private nextImage() {
+      // console.log('next');
+    }
 
-      private previousImage() {
-       // console.log('previous');
-      }
+    private previousImage() {
+      // console.log('previous');
+    }
    }
 
    // :style="{ backgroundImage: `url('${imageURL}')` }"
