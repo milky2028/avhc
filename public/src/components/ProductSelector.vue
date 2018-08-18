@@ -1,12 +1,13 @@
 <template>
     <div id="root">
-        <p :class="removeClassIos">Select Product</p>
+        <p :class="removeClassIos">Product</p>
         <div id="select-container">
-            <select v-model="selectedProduct" @input="selectedProduct = $event.target.value">
+            <select v-model="selectedProduct" @input="setProduct($event)">
                 <option value="" disabled selected>Select a Product</option>
                 <option v-for="product in products" :key="product.name" :value="product">{{ product.title }}</option>
             </select>
             <div class="mat-icon small-icon">keyboard_arrow_right</div>
+            <h1 v-if="activeProduct">{{ activeProduct.name }}</h1>
         </div>
     </div>
 </template>
@@ -60,6 +61,12 @@ export default class ProductSelector extends Mixins(ProductsMixin) {
 
     private created() {
         this.getProducts();
+    }
+
+    private setProduct(event: any) {
+        const clickValue = event.target.value;
+        this.activeProduct = clickValue;
+        return this.selectedProduct = clickValue;
     }
 
     /* tslint:disable */
