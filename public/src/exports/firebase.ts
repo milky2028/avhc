@@ -15,4 +15,3 @@ const firestore = firebase.firestore();
 firestore.settings(settings);
 
 export { firestore };
-// export default firestore;
