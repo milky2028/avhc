@@ -1,6 +1,6 @@
 <template>
   <div>
-    <AppToolbar/>
+    <app-toolbar id="toolbar"></app-toolbar>
     <router-view></router-view>
   </div>
 </template>
@@ -11,6 +11,19 @@
   #app {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+  }
+
+  #toolbar {
+    position: sticky;
+    position: -webkit-sticky;
+    top: 0;
+    background-color: white;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: stretch;
+    padding: 26px;
   }
 </style>
 

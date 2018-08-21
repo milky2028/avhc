@@ -1,5 +1,5 @@
 <template>
-    <div id="root">
+    <div>
         <h1><router-link to="/">AVP</router-link></h1>
         <div id="button-container">
             <a id="faq-icon" class="small-icon">?</a>
@@ -11,17 +11,6 @@
 
 <style lang="scss" scoped>
     @import '../styles/theme.scss';
-
-    #root {
-        background-color: white;
-        position: relative;
-        box-shadow: $standard-shadow;
-        display: flex;
-        justify-content: space-between;
-        flex-direction: row;
-        align-items: stretch;
-        padding: 26px;
-    }
 
     h1 {
         margin-bottom: -5px;
