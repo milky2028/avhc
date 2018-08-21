@@ -2,12 +2,11 @@
     <div id="root">
         <p :class="removeClassIos">Product</p>
         <div id="select-container">
-            <select v-model="selectedProduct" @input="setProduct($event)">
+            <select v-model="selectedProductName" @input="setProduct($event)">
                 <option value="" disabled selected>Select a Product</option>
-                <option v-for="product in products" :key="product.name" :value="product">{{ product.title }}</option>
+                <option v-for="product in products.state.products" :key="product.name" :value="product.name">{{ product.title }}</option>
             </select>
             <div class="mat-icon small-icon">keyboard_arrow_right</div>
-            <h1 v-if="activeProduct">{{ activeProduct.name }}</h1>
         </div>
     </div>
 </template>
@@ -49,26 +48,46 @@ select {
 </style>
 
 <script lang="ts">
-import { Vue, Component, Mixins } from 'vue-property-decorator';
-import ProductsMixin from '@/exports/products.mixin';
+import { Vue, Component } from 'vue-property-decorator';
+import ProductsExport from '@/exports/products.export';
 import Product from '@/types/product';
 
 declare var safari: any;
 declare var window: any;
 
 @Component
-export default class ProductSelector extends Mixins(ProductsMixin) {
-    public selectedProduct: any = '';
+export default class ProductSelector extends Vue {
+    public selectedProductName: Product | string = '';
+    private products = ProductsExport;
+    // private activeProduct = this.products.activeProduct;
 
     private created() {
-        this.getProducts();
+        this.products.clearProducts();
+        this.products.getProducts();
     }
 
     private setProduct(event: any) {
         const clickValue = event.target.value;
-        this.activeProduct = clickValue;
-        return this.selectedProduct = clickValue;
+        this.setActiveProduct(clickValue);
+        this.selectedProductName = clickValue;
+        return this.selectedProductName;
     }
+
+    private setActiveProduct(productName: any) {
+        this.products.setActiveProduct(productName);
+    }
+
+    // private getProducts() {
+    //     this.products.getProducts();
+    // }
+
+    // private clearProducts() {
+    //     this.products.clearProducts();
+    // }
+
+    // private get activeProduct() {
+    //     return this.productsState.state.products.find((product) => product.name === this.selectedProductName);
+    // }
 
     /* tslint:disable */
     public get removeClassIos(): null | string {

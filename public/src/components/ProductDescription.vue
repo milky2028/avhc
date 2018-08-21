@@ -1,5 +1,5 @@
 <template>
-    <div v-if="activeProduct" id="descriptions-root" v-html="mockHTML"></div>
+    <div id="descriptions-root" v-html="products.state.activeProduct.description"></div>
 </template>
 
 <style lang="scss">
@@ -31,11 +31,12 @@
 </style>
 
 <script lang="ts">
-import { Vue, Component, Mixins } from 'vue-property-decorator';
-import ProductsMixin from '@/exports/products.mixin';
+import { Vue, Component } from 'vue-property-decorator';
+import ProductsExport from '@/exports/products.export';
 
 @Component
-export default class ProductDescriptions extends Mixins(ProductsMixin) {
+export default class ProductDescriptions extends Vue {
+    private products = ProductsExport;
     /* tslint:disable */
     private mockHTML = `<h2 class="product-header">Product Info Header</h2>
     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ac leo mi. Maecenas ornare mauris quis neque bibendum, molestie iaculis enim varius. Ut quis rutrum lorem. Ut venenatis, metus sed congue rhoncus.</p>
