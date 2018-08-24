@@ -14,7 +14,7 @@
         <div id="left-select" class="select-wrapper half-width">
             <p :class="removeClassIos">Size</p>
             <div class="select-container">
-                <select class="lower-selector" v-model="selectedProductName" @input="setProduct($event)">
+                <select class="lower-selector" v-model="selectedProductSize" @input="setProduct($event)">
                 <option value="" disabled selected>Select Size</option>
                 <option v-for="product in products.state.products" :key="product.name" :value="product.name">{{ product.title }}</option>
             </select>
@@ -24,7 +24,7 @@
         <div class="select-wrapper half-width">
             <p :class="removeClassIos">Strain</p>
             <div class="select-container">
-                <select class="lower-selector" v-model="selectedProductName" @input="setProduct($event)">
+                <select class="lower-selector" v-model="selectedProductStrain" @input="setProduct($event)">
                 <option value="" disabled selected>Select Size</option>
                 <option v-for="product in products.state.products" :key="product.name" :value="product.name">{{ product.title }}</option>
             </select>
@@ -107,6 +107,8 @@ declare var window: any;
 @Component
 export default class ProductSelector extends Vue {
     public selectedProductName: Product | string = '';
+    public selectedProductSize: string = '';
+    public selectedProductStrain: string = '';
     private products = ProductsExport;
     // private activeProduct = this.products.activeProduct;
 
@@ -118,7 +120,6 @@ export default class ProductSelector extends Vue {
     private setProduct(event: any) {
         const clickValue = event.target.value;
         this.setActiveProduct(clickValue);
-        this.selectedProductName = clickValue;
         return this.selectedProductName;
     }
 
