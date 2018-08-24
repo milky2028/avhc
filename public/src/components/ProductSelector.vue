@@ -1,12 +1,36 @@
 <template>
     <div id="root">
-        <p :class="removeClassIos">Product</p>
-        <div id="select-container">
-            <select v-model="selectedProductName" @input="setProduct($event)">
+        <div class="select-wrapper">
+            <p :class="removeClassIos">Product</p>
+            <div class="select-container">
+                <select v-model="selectedProductName" @input="setProduct($event)">
                 <option value="" disabled selected>Select a Product</option>
                 <option v-for="product in products.state.products" :key="product.name" :value="product.name">{{ product.title }}</option>
             </select>
             <div class="mat-icon small-icon">keyboard_arrow_right</div>
+            </div>
+        </div>
+        <div id="lower-select-container">
+        <div id="left-select" class="select-wrapper half-width">
+            <p :class="removeClassIos">Size</p>
+            <div class="select-container">
+                <select class="lower-selector" v-model="selectedProductName" @input="setProduct($event)">
+                <option value="" disabled selected>Select Size</option>
+                <option v-for="product in products.state.products" :key="product.name" :value="product.name">{{ product.title }}</option>
+            </select>
+            <div class="mat-icon small-icon">keyboard_arrow_right</div>
+            </div>
+        </div>
+        <div class="select-wrapper half-width">
+            <p :class="removeClassIos">Strain</p>
+            <div class="select-container">
+                <select class="lower-selector" v-model="selectedProductName" @input="setProduct($event)">
+                <option value="" disabled selected>Select Size</option>
+                <option v-for="product in products.state.products" :key="product.name" :value="product.name">{{ product.title }}</option>
+            </select>
+            <div class="mat-icon small-icon">keyboard_arrow_right</div>
+            </div>
+        </div>
         </div>
     </div>
 </template>
@@ -15,9 +39,7 @@
 @import '../styles/theme.scss';
 
 #root {
-    padding: 16px 22px;
     grid-area: product-selector;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     font-family: $secondary-font;
 }
 
@@ -34,10 +56,37 @@ select {
     font-size: 28px;
 }
 
-#select-container {
+.select-wrapper {
+    padding: 12px 22px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.select-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.half-width {
+    width: calc(50% - 44px);
+}
+
+#left-select {
+    border-right: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+#lower-select-container {
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+
+.lower-selector {
+    width: 80%;
 }
 
 @media (max-width: 340px) {

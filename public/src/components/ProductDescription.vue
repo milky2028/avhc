@@ -9,7 +9,7 @@
     grid-area: product-description;
     font-size: 14px;
     font-family: $secondary-font;
-    padding: 22px;
+    padding: 12px 22px;
     line-height: 130%;
 }
 

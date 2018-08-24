@@ -11,7 +11,7 @@
 #shop-root {
   height: calc(100vh - 80px);
   display: grid;
-  grid-template-rows: 38vh 80px 1fr 80px;
+  grid-template-rows: 33vh 150px 1fr 80px;
   grid-template-areas: 
     "image-gallery"
     "product-selector"

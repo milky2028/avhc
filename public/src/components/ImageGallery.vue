@@ -13,7 +13,7 @@
     background-color: orange;
     background-position: 10% 50%;
     background-size: cover;
-    height: 38vh;
+    height: 33vh;
     display: flex;
     align-items: center;
     justify-content: space-between;

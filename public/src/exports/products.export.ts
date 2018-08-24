@@ -29,7 +29,7 @@ const ProductsExport: any = {
         }
     },
     setActiveProduct(activeProductName: any) {
-        const activeProduct = this.state.products.find((product: any) => product.name === activeProductName)
+        const activeProduct = this.state.products.find((product: any) => product.name === activeProductName);
         for (const key in activeProduct) {
             if (activeProduct) {
                 Vue.set(this.state.activeProduct, key, activeProduct[key]);

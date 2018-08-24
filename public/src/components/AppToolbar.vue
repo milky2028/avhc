@@ -4,7 +4,7 @@
         <div id="button-container">
             <a id="faq-icon" class="small-icon">?</a>
             <a><div class="mat-icon small-icon">shopping_cart</div></a>
-            <a><div class="mat-icon small-icon">person</div></a>
+            <a><div id="account" class="mat-icon small-icon">person</div></a>
         </div>
     </div>
 </template>
@@ -34,6 +34,10 @@
 
     .small-icon {
         padding: 0 8px;
+    }
+
+    #account {
+        padding-right: 0px;
     }
 </style>
 
