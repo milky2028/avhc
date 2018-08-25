@@ -5,7 +5,7 @@
             <div class="select-container">
                 <select v-model="selectedProductName" @input="setProduct($event)">
                 <option value="" disabled selected>Select a Product</option>
-                <option v-for="product in products.state.products" :key="product.name" :value="product.name">{{ product.title }}</option>
+                <option v-for="product of products.state.products" :key="product.name" :value="product.name">{{ product.title }}</option>
             </select>
             <div class="mat-icon small-icon">keyboard_arrow_right</div>
             </div>
@@ -15,8 +15,8 @@
             <p :class="removeClassIos">Size</p>
             <div class="select-container">
                 <select class="lower-selector" v-model="selectedProductSize" @input="setProduct($event)">
-                <option value="" disabled selected>Select Size</option>
-                <option v-for="product in products.state.products" :key="product.name" :value="product.name">{{ product.title }}</option>
+                <option value="" disabled selected>Size</option>
+                <option v-for="size of products.activeProduct.sizes" :key="size.value" :value="size.value">{{ size.value }}{{ size.measurement }}</option>
             </select>
             <div class="mat-icon small-icon">keyboard_arrow_right</div>
             </div>
@@ -25,8 +25,8 @@
             <p :class="removeClassIos">Strain</p>
             <div class="select-container">
                 <select class="lower-selector" v-model="selectedProductStrain" @input="setProduct($event)">
-                <option value="" disabled selected>Select Size</option>
-                <option v-for="product in products.state.products" :key="product.name" :value="product.name">{{ product.title }}</option>
+                <option value="" disabled selected>Strain</option>
+                <option v-for="product of products.state.products" :key="product.name" :value="product.name">{{ product.title }}</option>
             </select>
             <div class="mat-icon small-icon">keyboard_arrow_right</div>
             </div>
