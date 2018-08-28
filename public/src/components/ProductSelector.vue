@@ -14,9 +14,9 @@
         <div id="left-select" class="select-wrapper half-width">
             <p :class="removeClassIos">Size</p>
             <div class="select-container">
-                <select class="lower-selector" v-model="selectedProductSize" @input="setProduct($event)">
+                <select class="lower-selector" v-model="selectedProductSize">
                 <option value="" disabled selected>Size</option>
-                <option v-for="size of products.activeProduct.sizes" :key="size.value" :value="size.value">{{ size.value }}{{ size.measurement }}</option>
+                <option v-for="size of sizes" :key="size.index" :value="size.value">{{ size.value }}{{ size.measurement }}</option>
             </select>
             <div class="mat-icon small-icon">keyboard_arrow_right</div>
             </div>
@@ -24,9 +24,9 @@
         <div class="select-wrapper half-width">
             <p :class="removeClassIos">Strain</p>
             <div class="select-container">
-                <select class="lower-selector" v-model="selectedProductStrain" @input="setProduct($event)">
+                <select class="lower-selector" v-model="selectedProductStrain">
                 <option value="" disabled selected>Strain</option>
-                <option v-for="product of products.state.products" :key="product.name" :value="product.name">{{ product.title }}</option>
+                <option v-for="strain of strains" :key="strain.name" :value="strain.name">{{ strain.title }}</option>
             </select>
             <div class="mat-icon small-icon">keyboard_arrow_right</div>
             </div>
@@ -97,7 +97,7 @@ select {
 </style>
 
 <script lang="ts">
-import { Vue, Component } from 'vue-property-decorator';
+import { Vue, Component, Watch } from 'vue-property-decorator';
 import ProductsExport from '@/exports/products.export';
 import Product from '@/types/product';
 
@@ -106,11 +106,15 @@ declare var window: any;
 
 @Component
 export default class ProductSelector extends Vue {
+    // @Watch('activeProduct', { immediate: true, deep: true })
+    // onProductChange(val: any, oldVal: any) {
+    //     console.log(val);
+    //     console.log(oldVal);
+    // }
     public selectedProductName: Product | string = '';
     public selectedProductSize: string = '';
     public selectedProductStrain: string = '';
     private products = ProductsExport;
-    // private activeProduct = this.products.activeProduct;
 
     private created() {
         this.products.clearProducts();
@@ -119,25 +123,23 @@ export default class ProductSelector extends Vue {
 
     private setProduct(event: any) {
         const clickValue = event.target.value;
-        this.setActiveProduct(clickValue);
+        this.products.setActiveProduct(clickValue);
+        this.selectedProductSize = '';
+        this.selectedProductStrain = '';
         return this.selectedProductName;
     }
 
-    private setActiveProduct(productName: any) {
-        this.products.setActiveProduct(productName);
+    private get activeProduct() {
+        return this.products.state.activeProduct;
     }
 
-    // private getProducts() {
-    //     this.products.getProducts();
-    // }
+    get strains() {
+        return this.activeProduct.strains;
+    }
 
-    // private clearProducts() {
-    //     this.products.clearProducts();
-    // }
-
-    // private get activeProduct() {
-    //     return this.productsState.state.products.find((product) => product.name === this.selectedProductName);
-    // }
+    get sizes() {
+        return this.activeProduct.sizes;
+    }
 
     /* tslint:disable */
     public get removeClassIos(): null | string {
