@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import { firestore } from '@/exports/firebase';
+import { firestore } from '@/exports/firebase.export';
 import Product from '@/types/product';
 
 interface ProductsExport {
@@ -9,7 +9,7 @@ interface ProductsExport {
         activeProduct?: any;
     };
     getProducts: () => Promise<void>;
-    setActiveProduct: (product: Product) => void;
+    setActiveProduct: (productName: string) => void;
     clearProducts: () => void;
 }
 
@@ -28,7 +28,7 @@ const ProductsExport: any = {
             // console.error(e);
         }
     },
-    setActiveProduct(activeProductName: any) {
+    setActiveProduct(activeProductName: string): void {
         const activeProduct = this.state.products.find((product: any) => product.name === activeProductName);
         for (const key in activeProduct) {
             if (activeProduct) {

@@ -97,6 +97,8 @@ select {
 import { Vue, Component, Watch } from 'vue-property-decorator';
 import ProductsExport from '@/exports/products.export';
 import Product from '@/types/product';
+import EventBus from '@/exports/eventBus.export';
+import Cart from '@/exports/cart.export';
 
 declare var safari: any;
 declare var window: any;
@@ -112,8 +114,19 @@ export default class ProductSelector extends Vue {
     public selectedProductSize: string = '';
     public selectedProductStrain: string = '';
     private products = ProductsExport;
+    private cart = Cart;
 
     private created() {
+        let i = 0;
+        EventBus.$on('buyFlow', () => {
+            this.cart.addItemToCart(
+                i++,
+                this.selectedProductName,
+                this.selectedProductStrain,
+                this.selectedProductSize
+            );
+        });
+
         this.products.clearProducts();
         this.products.getProducts();
     }
@@ -130,11 +143,11 @@ export default class ProductSelector extends Vue {
         return this.products.state.activeProduct;
     }
 
-    get strains() {
+    private get strains() {
         return this.activeProduct.strains;
     }
 
-    get sizes() {
+    private get sizes() {
         return this.activeProduct.sizes;
     }
 

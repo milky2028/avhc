@@ -5,7 +5,7 @@
             <span @click="itemQuantity++">{{ addButtonField }}</span>
             <button @click="itemQuantity++" :style="hideIfItemQuantityZero" class="mat-icon small-icon">add_circle</button>
         </button>
-        <button id="buy" class="bottom-button">
+        <button id="buy" class="bottom-button" @click="buyOrAddToCart()">
             <span><span :style="hideIfItemQuantityZero" class="mat-icon small-icon arrow-icon">keyboard_arrow_up</span></span>
             <span>{{ buyButtonField }}</span>
         </button>
@@ -54,10 +54,20 @@
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator';
+import EventBus from '@/exports/eventBus.export';
+import Cart from '@/exports/cart.export';
 
 @Component
 export default class ShopButtons extends Vue {
     public itemQuantity: number = 0;
+    private cart = Cart;
+
+    private created(): void {
+        let i = 0;
+        EventBus.$on('buyFlow', () => {
+            this.cart.addQuantityToCart(i++, this.itemQuantity);
+        })
+    }
 
     private get addButtonField(): string | number {
         if (this.itemQuantity < 1) {
@@ -72,8 +82,12 @@ export default class ShopButtons extends Vue {
         return this.itemQuantity ? 'Cart' : 'Buy';
     }
 
-    private get hideIfItemQuantityZero() {
+    private get hideIfItemQuantityZero(): { display: string } {
         return this.itemQuantity ? { display: 'block' } : { display: 'none' };
+    }
+
+    private buyOrAddToCart(): void {
+        this.buyButtonField === 'Buy' ? EventBus.$emit('buyFlow') : EventBus.$emit('addToCart');
     }
 }
 </script>
