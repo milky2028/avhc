@@ -7,7 +7,7 @@
                 <option value="" disabled selected>Select a Product</option>
                 <option v-for="product of products.state.products" :key="product.name" :value="product.name">{{ product.title }}</option>
             </select>
-            <div class="mat-icon small-icon">keyboard_arrow_right</div>
+            <div class="mat-icon small-icon arrow-icon">keyboard_arrow_right</div>
             </div>
         </div>
         <div id="lower-select-container">
@@ -18,7 +18,7 @@
                 <option value="" disabled selected>Size</option>
                 <option v-for="size of sizes" :key="size.index" :value="size.value">{{ size.value }}{{ size.measurement }}</option>
             </select>
-            <div class="mat-icon small-icon">keyboard_arrow_right</div>
+            <div class="mat-icon small-icon arrow-icon">keyboard_arrow_right</div>
             </div>
         </div>
         <div class="select-wrapper half-width">
@@ -28,9 +28,9 @@
                 <option value="" disabled selected>Strain</option>
                 <option v-for="strain of strains" :key="strain.name" :value="strain.name">{{ strain.title }}</option>
             </select>
-            <div class="mat-icon small-icon">keyboard_arrow_right</div>
+            <div class="mat-icon small-icon arrow-icon">keyboard_arrow_right</div>
             </div>
-        </div>
+          </div>
         </div>
     </div>
 </template>
@@ -49,11 +49,14 @@
 }
 
 select {
+    grid-area: main;
+    width: 100%;
     -webkit-appearance: none;
     color:  $primary;
     background-color: transparent;
     outline: transparent;
     font-size: 28px;
+    z-index: 10;
 }
 
 .select-wrapper {
@@ -66,9 +69,8 @@ select {
 
 .select-container {
     width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    display: grid;
+    grid-template-areas: 'main'
 }
 
 .half-width {
@@ -85,8 +87,9 @@ select {
     justify-content: space-between;
 }
 
-.lower-selector {
-    width: 80%;
+.arrow-icon {
+    grid-area: main;
+    justify-self: end;
 }
 
 @media (max-width: 340px) {

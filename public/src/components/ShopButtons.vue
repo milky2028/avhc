@@ -1,15 +1,20 @@
 <template>
     <div id="root">
-        <button id="add" :style="displayAddAndRemove ? { justifyContent: 'space-between' } : { justifyContent: 'center' }">
-            <div @click="itemQuantity--" :style="displayAddAndRemove ? { display: 'block' } : { display: 'none' }" class="mat-icon">remove_circle_outline</div>
+        <button id="add" class="bottom-button" :style="itemQuantity ? { justifyContent: 'space-between' } : { justifyContent: 'center' }">
+            <button @click="itemQuantity--" :style="hideIfItemQuantityZero" class="mat-icon small-icon">remove_circle_outline</button>
             <span @click="itemQuantity++">{{ addButtonField }}</span>
-            <div @click="itemQuantity++" :style="displayAddAndRemove ? { display: 'block' } : { display: 'none' }" class="mat-icon">add_circle</div>
+            <button @click="itemQuantity++" :style="hideIfItemQuantityZero" class="mat-icon small-icon">add_circle</button>
         </button>
-        <button id="buy">Buy</button>
+        <button id="buy" class="bottom-button">
+            <span><span :style="hideIfItemQuantityZero" class="mat-icon small-icon arrow-icon">keyboard_arrow_up</span></span>
+            <span>{{ buyButtonField }}</span>
+        </button>
     </div>
 </template>
 
 <style lang="scss" scoped>
+@import '../styles/theme.scss';
+
 #root {
     grid-area: shop-buttons;
     align-self: end;
@@ -18,7 +23,7 @@
     justify-content: center;
 }
 
-button {
+.bottom-button {
     font-family: 'Elianto';
     text-transform: uppercase;
     background-color: white;
@@ -40,10 +45,10 @@ button {
     border-width: 3px 0 0 1.5px;
 }
 
-.mat-icon {
-    text-transform: lowercase;
-    font-family: 'Material Icons';
-    font-size: 28px;
+.arrow-icon {
+    justify-self: flex-start;
+    padding-right: 10px;
+    margin-top: -15px;
 }
 </style>
 
@@ -63,8 +68,12 @@ export default class ShopButtons extends Vue {
         }
     }
 
-    private get displayAddAndRemove(): boolean {
-        return this.itemQuantity < 1 ? false : true;
+    private get buyButtonField(): string  {
+        return this.itemQuantity ? 'Cart' : 'Buy';
+    }
+
+    private get hideIfItemQuantityZero() {
+        return this.itemQuantity ? { display: 'block' } : { display: 'none' };
     }
 }
 </script>

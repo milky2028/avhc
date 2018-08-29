@@ -7,7 +7,7 @@
 
 #descriptions-root {
     grid-area: product-description;
-    font-size: 14px;
+    font-size: 16px;
     font-family: $secondary-font;
     padding: 12px 22px;
     line-height: 130%;
