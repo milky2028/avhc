@@ -9,7 +9,7 @@
 
 <style lang="scss" scoped>
 #shop-root {
-  height: calc(100vh - 80px);
+  // height: calc(100vh - 80px); // Do I want to the waterfalling sticky header? This could bring it back.
   display: grid;
   grid-template-rows: 42vh 150px 1fr 80px;
   grid-template-areas: 
