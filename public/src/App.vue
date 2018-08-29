@@ -24,6 +24,7 @@
     flex-direction: row;
     align-items: stretch;
     padding: 26px;
+    z-index: 100;
   }
 </style>
 
