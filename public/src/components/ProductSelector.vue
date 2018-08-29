@@ -91,12 +91,6 @@ select {
     grid-area: main;
     justify-self: end;
 }
-
-@media (max-width: 340px) {
-    select {
-        width: 240px;
-    }
-}
 </style>
 
 <script lang="ts">
