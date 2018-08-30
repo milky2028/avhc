@@ -1,10 +1,13 @@
-// interface Cart Item {
+import Router from '../router';
+import CartItem from '@/types/cartItem';
+import { firestore } from './firebase.export';
 
-// }
+declare var window: any;
 
 const Cart: any = {
     state: {
-        cart: []
+        cart: [],
+        shippingOptions: []
     },
     addItemToCart(cartId: number, product: string, strain: string, size: string): void {
         const item = {
@@ -15,9 +18,100 @@ const Cart: any = {
         };
         this.state.cart.push(item);
     },
-    addQuantityToCart(cartId: number, quantity: number) {
-        const cartItem = this.state.cart.find((item: any) => item.cartId === cartId);
+    addQuantityToCart(cartId: number, quantity: number): void {
+        const cartItem = this.state.cart.find((item: CartItem) => item.cartId === cartId);
         cartItem.quantity = quantity;
+    },
+    get total(): number {
+        let total: number = 0;
+        this.state.cart.forEach((item: CartItem) => {
+            total = 35; // total + (item.quantity * item.price);
+        });
+        return total;
+    },
+    async getShippingOptions(): Promise<PaymentShippingOption[]> {
+        try {
+            const snapshot = await firestore.collection('shipping-options').get();
+            snapshot.forEach((doc: any) => this.state.shippingOptions.push(doc.data()));
+        } catch (e) {
+            console.error(e);
+        }
+        return this.state.shippingOptions;
+    },
+    async submitPayment(): Promise<void> {
+        if (window.PaymentRequest) {
+            const options: PaymentOptions = {
+                requestPayerName: true,
+                requestPayerEmail: true,
+                requestShipping: true
+              };
+            const creditCard: PaymentMethodData = { supportedMethods: 'basic-card' };
+            const supportedPaymentMethods: PaymentMethodData[] = [creditCard];
+            const paymentDetails = {
+                    total: {
+                        label: 'Total',
+                        amount: {
+                            currency: 'USD',
+                            value: this.total
+                        }
+                    },
+                    shippingOptions: await this.getShippingOptions()
+                };
+            const request: PaymentRequest = new PaymentRequest(supportedPaymentMethods, paymentDetails, options);
+
+            request.addEventListener('shippingaddresschange', (event: any) => {
+                event.updateWith(paymentDetails);
+            });
+
+            request.addEventListener('shippingoptionchange', (event: any) => {
+                const paymentRequestInstance = event.target;
+                const selectedShippingOption = paymentRequestInstance.shippingOption;
+                this.state.shippingOptions.forEach((option: PaymentShippingOption) => {
+                    option.selected = option.id === selectedShippingOption;
+                });
+                event.updateWith(paymentDetails);
+              });
+
+            try {
+                const paymentResponse: PaymentResponse = await request.show();
+                await paymentResponse.complete('success');
+                console.log(paymentResponse);
+                const order = {
+                    requestId: paymentResponse.requestId,
+                    methodName: paymentResponse.methodName,
+                    payerEmail: paymentResponse.payerEmail,
+                    payerName: paymentResponse.payerName,
+                    shippingOption: paymentResponse.shippingOption,
+                    shippingAddress: {
+                        addressLine: paymentResponse.shippingAddress.addressLine,
+                        city: paymentResponse.shippingAddress.city,
+                        country: paymentResponse.shippingAddress.country,
+                        dependentLocality: paymentResponse.shippingAddress.dependentLocality,
+                        languageCode: paymentResponse.shippingAddress.languageCode,
+                        organization: paymentResponse.shippingAddress.organization,
+                        phone: paymentResponse.shippingAddress.phone,
+                        postalCode: paymentResponse.shippingAddress.postalCode,
+                        recepient: paymentResponse.shippingAddress.recipient,
+                        region: paymentResponse.shippingAddress.region,
+                        sortingCode: paymentResponse.shippingAddress.sortingCode
+                    },
+                    billingInformation: {
+                        billingAddress: paymentResponse.details.billingAddress,
+                        cardNumber: 'encrypt this somehow', // paymentResponse.details.cardNumber,
+                        cardSecurityCode: 'encrypt this somehow', // paymentResponse.details.cardSecurityCode,
+                        cardholderName: paymentResponse.details.cardholderName,
+                        expiryMonth: paymentResponse.details.expiryMonth,
+                        expiryYear: paymentResponse.details.expiryYear
+                    }
+                };
+                await firestore.collection('orders').add(order);
+                Router.push('/thank-you');
+            } catch (e) {
+                console.error(e);
+            }
+        } else {
+            Router.push('/checkout');
+        }
     }
 };
 

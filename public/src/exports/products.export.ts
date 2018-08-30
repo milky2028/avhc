@@ -2,17 +2,6 @@ import Vue from 'vue';
 import { firestore } from '@/exports/firebase.export';
 import Product from '@/types/product';
 
-interface ProductsExport {
-    debug: boolean;
-    state: {
-        products: Product[];
-        activeProduct?: any;
-    };
-    getProducts: () => Promise<void>;
-    setActiveProduct: (productName: string) => void;
-    clearProducts: () => void;
-}
-
 const ProductsExport: any = {
     debug: true,
     state: {

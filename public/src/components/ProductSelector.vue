@@ -1,7 +1,7 @@
 <template>
     <div id="root">
         <div class="select-wrapper">
-            <p :class="removeClassIos">Product</p>
+            <p>Product</p>
             <div class="select-container">
                 <select v-model="selectedProductName" @input="setProduct($event)">
                 <option value="" disabled selected>Select a Product</option>
@@ -12,7 +12,7 @@
         </div>
         <div id="lower-select-container">
         <div id="left-select" class="select-wrapper half-width">
-            <p :class="removeClassIos">Size</p>
+            <p>Size</p>
             <div class="select-container">
                 <select class="lower-selector" v-model="selectedProductSize">
                 <option value="" disabled selected>Size</option>
@@ -22,7 +22,7 @@
             </div>
         </div>
         <div class="select-wrapper half-width">
-            <p :class="removeClassIos">Strain</p>
+            <p>Strain</p>
             <div class="select-container">
                 <select class="lower-selector" v-model="selectedProductStrain">
                 <option value="" disabled selected>Strain</option>
@@ -105,11 +105,6 @@ declare var window: any;
 
 @Component
 export default class ProductSelector extends Vue {
-    // @Watch('activeProduct', { immediate: true, deep: true })
-    // onProductChange(val: any, oldVal: any) {
-    //     console.log(val);
-    //     console.log(oldVal);
-    // }
     public selectedProductName: Product | string = '';
     public selectedProductSize: string = '';
     public selectedProductStrain: string = '';
@@ -150,12 +145,5 @@ export default class ProductSelector extends Vue {
     private get sizes() {
         return this.activeProduct.sizes;
     }
-
-    /* tslint:disable */
-    public get removeClassIos(): null | string {
-        const isSafari = /constructor/i.test(window.HTMLElement) || (function (p) { return p.toString() === "[object SafariRemoteNotification]"; })(!window['safari'] || (typeof safari !== 'undefined' && safari.pushNotification));
-        return isSafari ? 'label' : null;
-    }
-    /* tslint:enable */
  }
 </script>

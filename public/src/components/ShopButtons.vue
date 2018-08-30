@@ -66,7 +66,8 @@ export default class ShopButtons extends Vue {
         let i = 0;
         EventBus.$on('buyFlow', () => {
             this.cart.addQuantityToCart(i++, this.itemQuantity);
-        })
+            this.cart.submitPayment();
+        });
     }
 
     private get addButtonField(): string | number {
