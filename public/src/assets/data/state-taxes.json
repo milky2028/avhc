@@ -1,0 +1,210 @@
+[
+ {
+   "state": "Alabama",
+   "tax-rate": 4.00
+ },
+ {
+   "state": "Alaska",
+   "tax-rate": 0.00
+ },
+ {
+   "state": "Arizona",
+   "tax-rate": 5.60
+ },
+ {
+   "state": "Arkansas",
+   "tax-rate": 6.50
+ },
+ {
+   "state": "California",
+   "tax-rate": 7.25
+ },
+ {
+   "state": "Colorado",
+   "tax-rate": 2.90
+ },
+ {
+   "state": "Connecticut",
+   "tax-rate": 6.35
+ },
+ {
+   "state": "Delaware",
+   "tax-rate": 0.00
+ },
+ {
+   "state": "Florida",
+   "tax-rate": 6.00
+ },
+ {
+   "state": "Georgia",
+   "tax-rate": 4.00
+ },
+ {
+   "state": "Hawaii",
+   "tax-rate": 4.00
+ },
+ {
+   "state": "Idaho",
+   "tax-rate": 6.00
+ },
+ {
+   "state": "Illinois",
+   "tax-rate": 6.25
+ },
+ {
+   "state": "Indiana",
+   "tax-rate": 7.00
+ },
+ {
+   "state": "Iowa",
+   "tax-rate": 6.00
+ },
+ {
+   "state": "Kansas",
+   "tax-rate": 6.50
+ },
+ {
+   "state": "Kentucky",
+   "tax-rate": 6.00
+ },
+ {
+   "state": "Louisiana",
+   "tax-rate": 5.00
+ },
+ {
+   "state": "Maine",
+   "tax-rate": 5.50
+ },
+ {
+   "state": "Maryland",
+   "tax-rate": 6.00
+ },
+ {
+   "state": "Massachusetts",
+   "tax-rate": 6.25
+ },
+ {
+   "state": "Michigan",
+   "tax-rate": 6.00
+ },
+ {
+   "state": "Minnesota",
+   "tax-rate": 6.88
+ },
+ {
+   "state": "Mississippi",
+   "tax-rate": 7.00
+ },
+ {
+   "state": "Missouri",
+   "tax-rate": 4.23
+ },
+ {
+   "state": "Montana",
+   "tax-rate": 0.00
+ },
+ {
+   "state": "Nebraska",
+   "tax-rate": 5.50
+ },
+ {
+   "state": "Nevada",
+   "tax-rate": 6.85
+ },
+ {
+   "state": "New Hampshire",
+   "tax-rate": 0.00
+ },
+ {
+   "state": "New Jersey",
+   "tax-rate": 6.63
+ },
+ {
+   "state": "New Mexico",
+   "tax-rate": 5.13
+ },
+ {
+   "state": "New York",
+   "tax-rate": 4.00
+ },
+ {
+   "state": "North Carolina",
+   "tax-rate": 4.75
+ },
+ {
+   "state": "North Dakota",
+   "tax-rate": 5.00
+ },
+ {
+   "state": "Ohio",
+   "tax-rate": 5.75
+ },
+ {
+   "state": "Oklahoma",
+   "tax-rate": 4.50
+ },
+ {
+   "state": "Oregon",
+   "tax-rate": 0.00
+ },
+ {
+   "state": "Pennsylvania",
+   "tax-rate": 6.00
+ },
+ {
+   "state": "Rhode Island",
+   "tax-rate": 7.00
+ },
+ {
+   "state": "South Carolina",
+   "tax-rate": 6.00
+ },
+ {
+   "state": "South Dakota",
+   "tax-rate": 4.50
+ },
+ {
+   "state": "Tennessee",
+   "tax-rate": 7.00
+ },
+ {
+   "state": "Texas",
+   "tax-rate": 6.25
+ },
+ {
+   "state": "Utah",
+   "tax-rate": 5.95
+ },
+ {
+   "state": "Vermont",
+   "tax-rate": 6.00
+ },
+ {
+   "state": "Virginia",
+   "tax-rate": 5.30
+ },
+ {
+   "state": "Washington",
+   "tax-rate": 6.50
+ },
+ {
+   "state": "West Virginia",
+   "tax-rate": 6.00
+ },
+ {
+   "state": "Wisconsin",
+   "tax-rate": 5.00
+ },
+ {
+   "state": "Wyoming",
+   "tax-rate": 4.00
+ },
+ {
+   "state": "D.C.",
+   "tax-rate": 5.75
+ },
+ {
+   "state": "Not Found",
+   "rate": 5.11
+ }
+]
