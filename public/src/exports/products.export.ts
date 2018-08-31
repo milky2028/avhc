@@ -1,4 +1,4 @@
-import Vue from 'vue';
+import { Vue } from 'vue-property-decorator';
 import { firestore } from '@/exports/firebase.export';
 import Product from '@/types/product';
 
