@@ -1,7 +1,8 @@
 <template>
     <div id="root">
-        <div @click="previousImage" class="mat-icon">keyboard_arrow_left</div>
-        <div @click="nextImage"  class="mat-icon">keyboard_arrow_right</div>
+        <div id="left-arrow" @click="previousImage" class="mat-icon">keyboard_arrow_left</div>
+        <div id="right-arrow" @click="nextImage"  class="mat-icon">keyboard_arrow_right</div>
+        <price-display id="price-display"></price-display>
     </div>
 </template>
 
@@ -14,16 +15,36 @@
     background-position: 10% 50%;
     background-size: cover;
     height: 42vh;
-    display: flex;
+    display: grid;
+    grid-template-columns: 55px 1fr 55px;
     align-items: center;
-    justify-content: space-between;
+    grid-template-areas:
+      "left-arrow main right-arrow"
+  }
+
+  #left-arrow {
+    grid-area: left-arrow;
+  }
+
+  #right-arrow {
+    grid-area: right-arrow;
+  }
+
+  #price-display {
+    grid-area: right-arrow;
+    align-self: end;
   }
 </style>
 
 <script lang="ts">
   import { Vue, Component } from 'vue-property-decorator';
+  import PriceDisplay from '@/components/PriceDisplay.vue';
 
-  @Component
+  @Component({
+    components: {
+      PriceDisplay
+    }
+  })
   export default class ImageGallery extends Vue {
     private nextImage() {
       // console.log('next');
