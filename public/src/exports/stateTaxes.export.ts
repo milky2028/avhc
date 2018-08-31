@@ -207,4 +207,4 @@ export default [
    state: 'Not Found',
    taxRate: 5.11
  }
-]
+];

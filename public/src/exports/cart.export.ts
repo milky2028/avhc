@@ -1,3 +1,4 @@
+import Raven from 'raven-js';
 import Router from '../router';
 import CartItem from '@/types/cartItem';
 import { firestore } from './firebase.export';
@@ -34,7 +35,7 @@ const Cart: any = {
             const snapshot = await firestore.collection('shipping-options').get();
             snapshot.forEach((doc: any) => this.state.shippingOptions.push(doc.data()));
         } catch (e) {
-            console.error(e);
+            Raven.captureException(e);
         }
         return this.state.shippingOptions;
     },
@@ -107,7 +108,7 @@ const Cart: any = {
                 await firestore.collection('orders').add(order);
                 Router.push('/thank-you');
             } catch (e) {
-                console.error(e);
+                Raven.captureException(e);
             }
         } else {
             Router.push('/checkout');

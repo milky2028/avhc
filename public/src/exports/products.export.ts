@@ -1,6 +1,7 @@
 import { Vue } from 'vue-property-decorator';
 import { firestore } from '@/exports/firebase.export';
 import Product from '@/types/product';
+import Raven from 'raven-js';
 
 const ProductsExport: any = {
     debug: true,
@@ -13,8 +14,7 @@ const ProductsExport: any = {
             const snapshot = await firestore.collection('products').get();
             snapshot.forEach((doc: any) => this.state.products.push(doc.data()));
         } catch (e) {
-            // TODO add helper that logs errors to cloud firestore
-            // console.error(e);
+            Raven.captureException(e);
         }
     },
     setActiveProduct(activeProductName: string): void {
