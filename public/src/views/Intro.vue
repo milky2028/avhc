@@ -78,17 +78,17 @@
 
     #message {
       margin: 0;
-      height: 310px;
+      height: 260px;
       width: 100%;
       padding: 0;
     }
 
     h3, p {
-      padding: 0 12vw;
+      padding: 0 10vw;
     }
 
     #enter {
-      padding: 36px 12vw 0 32px;
+      padding: 36px 10vw 0 32px;
     }
   }
 </style>

@@ -1,7 +1,8 @@
 <template>
-    <div id="root">
-        <div id="left-arrow" @click="previousImage" class="mat-icon">keyboard_arrow_left</div>
-        <div id="right-arrow" @click="nextImage"  class="mat-icon">keyboard_arrow_right</div>
+      <div id="root" :style="backgroundStyles" :title="image.alt">
+        <img id="hidden-image" :src="image.src" :alt="image.alt">
+        <div id="left-arrow" v-if="this.products.state.activeProduct.images && this.products.state.activeProduct.images.length > 1" @click="previousImage" class="mat-icon">keyboard_arrow_left</div>
+        <div id="right-arrow" v-if="this.products.state.activeProduct.images && this.products.state.activeProduct.images.length > 1" @click="nextImage"  class="mat-icon">keyboard_arrow_right</div>
         <price-display id="price-display"></price-display>
     </div>
 </template>
@@ -11,8 +12,7 @@
 
   #root {
     grid-area: image-gallery;
-    background-color: orange;
-    background-position: 10% 50%;
+    background-position: 50% 50%;
     background-size: cover;
     height: 42vh;
     display: grid;
@@ -20,6 +20,11 @@
     align-items: center;
     grid-template-areas:
       "left-arrow main right-arrow"
+  }
+
+  #hidden-image {
+    max-width: 60vw;
+    opacity: 0;
   }
 
   #left-arrow {
@@ -39,6 +44,7 @@
 <script lang="ts">
   import { Vue, Component } from 'vue-property-decorator';
   import PriceDisplay from '@/components/PriceDisplay.vue';
+  import ProductsExport from '@/exports/products.export';
 
   @Component({
     components: {
@@ -46,6 +52,27 @@
     }
   })
   export default class ImageGallery extends Vue {
+    private products = ProductsExport;
+
+    get backgroundStyles() {
+      return {
+        backgroundImage: `url('${this.image.src}')`
+      };
+    }
+
+    get image() {
+      return (this.products.state.activeProduct.images) ?
+       {
+        src: require(`../assets/product-images/${this.products.state.activeProduct.images[0].src}.jpg`),
+        alt: this.products.state.activeProduct.images[0].alt
+      } :
+      {
+        src: require(`../assets/product-images/all-products.jpg`),
+        alt: `The entire Aspen Valley Prerolls products suite,
+              including CBD Hemp Flower, Filtered CBD Hemp Cigarrettes, and Unfiltered CBD Joints`
+      };
+    }
+
     private nextImage() {
       // console.log('next');
     }
