@@ -2,8 +2,8 @@ import Vue from 'vue';
 import App from './App.vue';
 import router from '@/router';
 import store from '@/store';
-import * as Raven from 'raven-js';
-import * as RavenVue from 'raven-js/plugins/vue';
+import Raven from 'raven-js';
+import RavenVue from 'raven-js/plugins/vue';
 import '@/registerServiceWorker';
 
 Vue.config.productionTip = true;

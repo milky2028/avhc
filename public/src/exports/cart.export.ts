@@ -76,7 +76,6 @@ const Cart: any = {
             try {
                 const paymentResponse: PaymentResponse = await request.show();
                 await paymentResponse.complete('success');
-                console.log(paymentResponse);
                 const order = {
                     requestId: paymentResponse.requestId,
                     methodName: paymentResponse.methodName,
@@ -84,17 +83,17 @@ const Cart: any = {
                     payerName: paymentResponse.payerName,
                     shippingOption: paymentResponse.shippingOption,
                     shippingAddress: {
-                        addressLine: paymentResponse.shippingAddress.addressLine,
-                        city: paymentResponse.shippingAddress.city,
-                        country: paymentResponse.shippingAddress.country,
-                        dependentLocality: paymentResponse.shippingAddress.dependentLocality,
-                        languageCode: paymentResponse.shippingAddress.languageCode,
-                        organization: paymentResponse.shippingAddress.organization,
-                        phone: paymentResponse.shippingAddress.phone,
-                        postalCode: paymentResponse.shippingAddress.postalCode,
-                        recepient: paymentResponse.shippingAddress.recipient,
-                        region: paymentResponse.shippingAddress.region,
-                        sortingCode: paymentResponse.shippingAddress.sortingCode
+                        addressLine: paymentResponse.shippingAddress ? paymentResponse.shippingAddress.addressLine : '',
+                        city: paymentResponse.shippingAddress ? paymentResponse.shippingAddress.city : '',
+                        country: paymentResponse.shippingAddress ? paymentResponse.shippingAddress.country : '',
+                        dependentLocality: paymentResponse.shippingAddress ? paymentResponse.shippingAddress.dependentLocality : '',
+                        languageCode: paymentResponse.shippingAddress ? paymentResponse.shippingAddress.languageCode : 0 ,
+                        organization: paymentResponse.shippingAddress ? paymentResponse.shippingAddress.organization : '',
+                        phone: paymentResponse.shippingAddress ? paymentResponse.shippingAddress.phone : 0,
+                        postalCode: paymentResponse.shippingAddress ? paymentResponse.shippingAddress.postalCode : 0,
+                        recepient: paymentResponse.shippingAddress ? paymentResponse.shippingAddress.recipient : '',
+                        region: paymentResponse.shippingAddress ? paymentResponse.shippingAddress.region : '',
+                        sortingCode: paymentResponse.shippingAddress ? paymentResponse.shippingAddress.sortingCode : 0
                     },
                     billingInformation: {
                         billingAddress: paymentResponse.details.billingAddress,

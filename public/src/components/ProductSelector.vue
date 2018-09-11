@@ -3,7 +3,7 @@
         <div class="select-wrapper">
             <p>Product</p>
             <div class="select-container">
-                <select v-model="selectedProductName" @input="setProduct($event)">
+                <select v-model="selectedProductName" @input="setProduct($event.target)">
                 <option value="" disabled selected>Select a Product</option>
                 <option v-for="product of products.state.products" :key="product.name" :value="product.name">{{ product.title }}</option>
             </select>
@@ -103,6 +103,10 @@ import Cart from '@/exports/cart.export';
 declare var safari: any;
 declare var window: any;
 
+interface InputEventTarget extends EventTarget {
+    value: string;
+}
+
 @Component
 export default class ProductSelector extends Vue {
     public selectedProductName: Product | string = '';
@@ -126,8 +130,8 @@ export default class ProductSelector extends Vue {
         this.products.getProducts();
     }
 
-    private setProduct(event: any) {
-        const clickValue = event.target.value;
+    private setProduct(event: InputEventTarget) {
+        const clickValue: string = event.value;
         this.products.setActiveProduct(clickValue);
         this.selectedProductSize = '';
         this.selectedProductStrain = '';

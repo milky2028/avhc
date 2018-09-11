@@ -11,7 +11,7 @@
     "@vue/cli": "^3.0.0-rc.11",
     "ajv": "^6.5.2",
     "firebase": "^5.3.1",
-    "raven-js": "^3.26.4",
+    "raven-js": "^3.27.0",
     "register-service-worker": "^1.0.0",
     "vue": "^2.5.16",
     "vue-class-component": "^6.0.0",
