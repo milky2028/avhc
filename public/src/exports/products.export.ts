@@ -1,5 +1,5 @@
 import { Vue } from 'vue-property-decorator';
-import { firestore } from '@/exports/firebase.export';
+import { db } from '@/exports/firebase.export';
 import Product from '@/types/product';
 import Raven from 'raven-js';
 
@@ -11,7 +11,7 @@ const ProductsExport: any = {
     },
     async getProducts(): Promise<void> {
         try {
-            const snapshot = await firestore.collection('products').get();
+            const snapshot = await db.collection('products').get();
             snapshot.forEach((doc: any) => this.state.products.push(doc.data()));
         } catch (e) {
             Raven.captureException(e);

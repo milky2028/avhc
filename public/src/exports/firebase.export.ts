@@ -1,5 +1,6 @@
 import firebase from 'firebase/app';
 import 'firebase/firestore';
+import Raven from 'raven-js';
 
 const config = {
   apiKey: 'AIzaSyBjIrG0X4W4plSyvUlv80BlRrFcrupNh5s',
@@ -9,9 +10,16 @@ const config = {
   storageBucket: 'aspe-f5783.appspot.com',
   messagingSenderId: '214653775149'
 };
-const settings = { timestampsInSnapshots: true };
 const firebaseApp = firebase.initializeApp(config);
-const firestore = firebase.firestore();
-firestore.settings(settings);
+const db = firebaseApp.firestore();
+const settings = { timestampsInSnapshots: true };
+db.settings(settings);
+db.enablePersistence().catch((e) => {
+  if (e.code === 'failed-precondition') {
+    Raven.captureException(e);
+  } else if (e.code === 'unimplemented') {
+    Raven.captureException(e);
+  }
+});
 
-export { firestore };
+export { db };
