@@ -54,19 +54,19 @@
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator';
-import EventBus from '@/exports/eventBus.export';
-import Cart from '@/exports/cart.export';
+import EventBus from '@/exports/eventBus';
+// import Cart from '@/exports/cart.export';
 
 @Component
 export default class ShopButtons extends Vue {
     public itemQuantity: number = 0;
-    private cart = Cart;
+    // private cart = Cart;
 
     private created(): void {
         let i = 0;
         EventBus.$on('buyFlow', () => {
-            this.cart.addQuantityToCart(i++, this.itemQuantity);
-            this.cart.submitPayment();
+            // this.cart.addQuantityToCart(i++, this.itemQuantity);
+            // this.cart.submitPayment();
         });
     }
 

@@ -1,9 +1,9 @@
 <template>
-      <div id="root" :style="backgroundStyles" :title="image.alt">
+    <div id="root" :style="backgroundStyles" :title="image.alt">
         <img id="hidden-image" :src="image.src" :alt="image.alt">
-        <div id="left-arrow" v-if="this.products.state.activeProduct.images && this.products.state.activeProduct.images.length > 1" @click="previousImage" class="mat-icon">keyboard_arrow_left</div>
-        <div id="right-arrow" v-if="this.products.state.activeProduct.images && this.products.state.activeProduct.images.length > 1" @click="nextImage"  class="mat-icon">keyboard_arrow_right</div>
-        <price-display  v-if="this.products.state.activeProduct.images" id="price-display"></price-display>
+        <div id="left-arrow" v-if="this.activeProduct.images && this.activeProduct.images.length > 1" @click="previousImage" class="mat-icon">keyboard_arrow_left</div>
+        <div id="right-arrow" v-if="this.activeProduct.images && this.activeProduct.images.length > 1" @click="nextImage"  class="mat-icon">keyboard_arrow_right</div>
+        <price-display  v-if="this.activeProduct.images" id="price-display"></price-display>
     </div>
 </template>
 
@@ -44,7 +44,6 @@
 <script lang="ts">
   import { Vue, Component } from 'vue-property-decorator';
   import PriceDisplay from '@/components/PriceDisplay.vue';
-  import ProductsExport from '@/exports/products.export';
 
   @Component({
     components: {
@@ -52,7 +51,9 @@
     }
   })
   export default class ImageGallery extends Vue {
-    private products = ProductsExport;
+    private get activeProduct() {
+      return this.$store.state.products.activeProduct;
+    }
 
     get backgroundStyles() {
       return {
@@ -61,10 +62,10 @@
     }
 
     get image() {
-      return (this.products.state.activeProduct.images) ?
+      return (this.activeProduct.images) ?
        {
-        src: require(`../assets/product-images/${this.products.state.activeProduct.images[0].src}.jpg`),
-        alt: this.products.state.activeProduct.images[0].alt
+        src: require(`../assets/product-images/${this.activeProduct.images[0].src}.jpg`),
+        alt: this.activeProduct.images[0].alt
       } :
       {
         src: require(`../assets/product-images/all-products.jpg`),
@@ -81,6 +82,4 @@
       // console.log('previous');
     }
    }
-
-   // :style="{ backgroundImage: `url('${imageURL}')` }"
 </script>

@@ -1,6 +1,6 @@
 <template>
   <div id="shop-root">
-    <image-gallery></image-gallery>
+    <!-- <image-gallery></image-gallery> -->
     <product-selector></product-selector>
     <product-description></product-description>
     <shop-buttons></shop-buttons>

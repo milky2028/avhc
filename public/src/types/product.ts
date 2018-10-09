@@ -7,4 +7,6 @@ export default interface Product {
     largeImage: string;
     description: string;
     galleryImages: string[];
+    [key: string]: string | number | string[] | undefined;
+    [index: number]: any;
   }

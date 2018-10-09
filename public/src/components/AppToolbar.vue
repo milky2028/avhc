@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1><router-link to="/">AVP</router-link></h1>
+        <h1><router-link to="/">AVHC</router-link></h1>
         <div id="button-container">
             <a id="faq-icon" class="small-icon">?</a>
             <a><div class="mat-icon small-icon">shopping_cart</div></a>

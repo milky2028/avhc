@@ -2,7 +2,7 @@
   <div id="root">
     <div id="title-container">
       <h1>Aspen Valley</h1>
-      <h2>CBD Prerolls</h2>
+      <h2>Hemp Company</h2>
     </div>
     <div id="message">
       <h3>Disclaimer:</h3>

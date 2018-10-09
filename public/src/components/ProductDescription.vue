@@ -33,11 +33,9 @@
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator';
-import ProductsExport from '@/exports/products.export';
 
 @Component
 export default class ProductDescriptions extends Vue {
-    private products = ProductsExport;
     /* tslint:disable */
     private mockHTML = `<h2 class="product-header">Product Info Header</h2>
     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi eget pulvinar urna, in mattis nulla. Curabitur bibendum purus sit amet ullamcorper cursus. Proin lacus ipsum, commodo in elit sit amet, viverra euismod ante. Ut tincidunt elit vel nulla mollis dignissim. Duis a justo at eros auctor gravida at sed augue. Nam dui ligula, dapibus at elit ut, placerat elementum ipsum. Praesent vitae consectetur enim.</p>

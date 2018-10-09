@@ -1,11 +1,12 @@
 import Raven from 'raven-js';
-import Router from '../router';
+import Router from '@/router';
 import CartItem from '@/types/cartItem';
-import { db } from './firebase.export';
+import { db } from '@/exports/firebase';
 
 declare var window: any;
 
-const Cart: any = {
+const CartModule: any = {
+    debug: true,
     state: {
         cart: [],
         shippingOptions: []
@@ -39,7 +40,7 @@ const Cart: any = {
         }
         return this.state.shippingOptions;
     },
-    async submitPayment(): Promise<void> {
+    async submitPayment() {
         if (window.PaymentRequest) {
             const options: PaymentOptions = {
                 requestPayerName: true,
@@ -115,4 +116,4 @@ const Cart: any = {
     }
 };
 
-export default Cart;
+export default CartModule;
