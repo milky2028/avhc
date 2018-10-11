@@ -52,7 +52,7 @@
   })
   export default class ImageGallery extends Vue {
     private get activeProduct() {
-      return this.$store.state.products.activeProduct;
+      return this.$store.getters['products/activeProduct'];
     }
 
     get backgroundStyles() {
