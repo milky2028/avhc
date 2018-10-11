@@ -15,9 +15,8 @@ const ProductsModule = {
   },
   getters: {
     activeProduct: (state: LocalState) => {
-      return (state.products) ?
-        state.products.find((product: Product) => product.name === state.activeProductName) :
-        state.products[0];
+      return (state.products && state.activeProductName) ?
+        state.products.find((product: Product) => product.name === state.activeProductName) : {};
     }
   },
   mutations: {

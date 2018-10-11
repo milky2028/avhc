@@ -10,7 +10,7 @@
             <div class='mat-icon small-icon arrow-icon'>keyboard_arrow_right</div>
             </div>
         </div>
-        <!-- <div id='lower-select-container'>
+        <div id='lower-select-container'>
         <div id='left-select' class='select-wrapper half-width'>
             <p>Size</p>
             <div class='select-container'>
@@ -31,7 +31,7 @@
             <div class='mat-icon small-icon arrow-icon'>keyboard_arrow_right</div>
             </div>
           </div>
-        </div> -->
+        </div>
     </div>
 </template>
 
@@ -115,14 +115,14 @@ export default class ProductSelector extends Vue {
     this.$store.commit('products/setProducts', await Products());
 
     let i = 0;
-    EventBus.$on('buyFlow', () => {
-      this.cart.addItemToCart(
-        i++,
-        this.selectedProductName,
-        this.selectedProductStrain,
-        this.selectedProductSize
-      );
-    });
+    // EventBus.$on('buyFlow', () => {
+    //   this.cart.addItemToCart(
+    //     i++,
+    //     this.selectedProductName,
+    //     this.selectedProductStrain,
+    //     this.selectedProductSize
+    //   );
+    // });
   }
 
   private setProduct(event: InputEventTarget) {
@@ -134,19 +134,19 @@ export default class ProductSelector extends Vue {
   }
 
   private get activeProduct() {
-    return this.$store.state['products/activeProduct'];
+    return this.$store.getters['products/activeProduct'];
   }
 
   private get products() {
     return this.$store.state.products.products;
   }
 
-  // private get strains() {
-  //     return this.activeProduct.strains;
-  // }
+  private get strains() {
+    return this.activeProduct.strains;
+  }
 
-  // private get sizes() {
-  //     return this.activeProduct.sizes;
-  // }
+  private get sizes() {
+    return this.activeProduct.sizes;
+  }
 }
 </script>
