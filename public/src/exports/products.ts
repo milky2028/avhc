@@ -8,7 +8,7 @@ const Products = async (): Promise<Product[]> => {
     return snapshot.docs.map((doc: any) => doc.data());
   } catch (e) {
     Raven.captureException(e);
-    return [];
+    throw e;
   }
 };
 

@@ -1,10 +1,8 @@
 import Product from '@/types/product';
-import Products from '@/exports/products';
 
-interface LocalState {
+interface ProductState {
   activeProductName: string;
   products: Product[];
-  activeProduct: Product;
 }
 
 const ProductsModule = {
@@ -14,16 +12,16 @@ const ProductsModule = {
     activeProductName: ''
   },
   getters: {
-    activeProduct: (state: LocalState) => {
+    activeProduct: (state: ProductState): Product  => {
       return (state.products && state.activeProductName) ?
-        state.products.find((product: Product) => product.name === state.activeProductName) : {};
+        state.products.find((product: Product) => product.name === state.activeProductName)! : state.products[0];
     }
   },
   mutations: {
-    setProducts: (state: LocalState, payload: Product[]) => {
+    setProducts: (state: ProductState, payload: Product[]) => {
       state.products = payload;
     },
-    setActiveProductName: (state: LocalState, payload: string) => {
+    setActiveProductName: (state: ProductState, payload: string) => {
       state.activeProductName = payload;
     }
   }

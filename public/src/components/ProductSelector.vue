@@ -99,6 +99,7 @@ import { mapState } from 'vuex';
 import Product from '@/types/product';
 import EventBus from '@/exports/eventBus';
 import Products from '@/exports/products';
+import CartItem from '@/types/cartItem';
 
 interface InputEventTarget extends EventTarget {
   value: string;
@@ -109,20 +110,21 @@ export default class ProductSelector extends Vue {
   public selectedProductName = '';
   public selectedProductSize = '';
   public selectedProductStrain = '';
-  // private cart = Cart;
 
   private async beforeCreate() {
     this.$store.commit('products/setProducts', await Products());
 
-    let i = 0;
-    // EventBus.$on('buyFlow', () => {
-    //   this.cart.addItemToCart(
-    //     i++,
-    //     this.selectedProductName,
-    //     this.selectedProductStrain,
-    //     this.selectedProductSize
-    //   );
-    // });
+    EventBus.$on('buyFlow', () => {
+      const item: CartItem = {
+        price: this.activeProduct.price,
+        quantity: this.$store.state.cart.quantity,
+        product: this.activeProduct.name,
+        size: Number(this.selectedProductSize),
+        strain: this.selectedProductStrain,
+      };
+      this.$store.commit('cart/addItemToCart', item);
+      this.$store.commit('cart/clearQuantity');
+    });
   }
 
   private setProduct(event: InputEventTarget) {
@@ -131,6 +133,11 @@ export default class ProductSelector extends Vue {
     this.selectedProductSize = '';
     this.selectedProductStrain = '';
     return this.selectedProductName;
+  }
+
+  private shortenForDisplay(event: InputEventTarget) {
+    this.selectedProductStrain = 'pizza' // (event.value.length > 9) ? `${event.value.slice(0, event.value.length - 9)}...` : event.value;
+    return this.selectedProductStrain;
   }
 
   private get activeProduct() {

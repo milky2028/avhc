@@ -1,9 +1,9 @@
 <template>
     <div id="root">
         <button id="add" class="bottom-button" :style="itemQuantity ? { justifyContent: 'space-between' } : { justifyContent: 'center' }">
-            <button @click="itemQuantity--" :style="hideIfItemQuantityZero" class="mat-icon small-icon">remove_circle_outline</button>
-            <span @click="itemQuantity++">{{ addButtonField }}</span>
-            <button @click="itemQuantity++" :style="hideIfItemQuantityZero" class="mat-icon small-icon">add_circle</button>
+            <button @click="decrease()" :style="hideIfItemQuantityZero" class="mat-icon small-icon">remove_circle_outline</button>
+            <span @click="increase()">{{ addButtonField }}</span>
+            <button @click="increase()" :style="hideIfItemQuantityZero" class="mat-icon small-icon">add_circle</button>
         </button>
         <button id="buy" class="bottom-button" @click="buyOrAddToCart()">
             <span><span :style="hideIfItemQuantityZero" class="mat-icon small-icon arrow-icon">keyboard_arrow_up</span></span>
@@ -55,24 +55,31 @@
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator';
 import EventBus from '@/exports/eventBus';
-// import Cart from '@/exports/cart.export';
+import SubmitPayment from '@/exports/submitPayment';
 
 @Component
 export default class ShopButtons extends Vue {
-    public itemQuantity: number = 0;
-    // private cart = Cart;
+    private get itemQuantity() {
+        return this.$store.state.cart.quantity;
+    }
+
+    public increase() {
+        this.$store.commit('cart/increaseQuantity');
+    }
+
+    public decrease() {
+        this.$store.commit('cart/decreaseQuantity');
+    }
 
     private created(): void {
-        let i = 0;
         EventBus.$on('buyFlow', () => {
-            // this.cart.addQuantityToCart(i++, this.itemQuantity);
-            // this.cart.submitPayment();
+            SubmitPayment();
         });
     }
 
     private get addButtonField(): string | number {
         if (this.itemQuantity < 1) {
-          this.itemQuantity = 0;
+          this.$store.commit('cart/clearQuantity');
           return 'Add';
         } else {
             return this.itemQuantity;
