@@ -136,7 +136,6 @@ export default class ProductSelector extends Vue {
   }
 
   private shortenForDisplay(event: InputEventTarget) {
-    this.selectedProductStrain = 'pizza' // (event.value.length > 9) ? `${event.value.slice(0, event.value.length - 9)}...` : event.value;
     return this.selectedProductStrain;
   }
 

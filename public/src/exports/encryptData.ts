@@ -1,5 +1,6 @@
 import Raven from 'raven-js';
 
+// TODO: Get this key from the server, save the key as an evironment variable in an http cloud function
 const jwk: JsonWebKey = {
     alg: 'A256CTR',
     ext: true,
