@@ -30,7 +30,7 @@ const SubmitPayment = async () => {
           };
         const creditCard: PaymentMethodData = { supportedMethods: 'basic-card' };
         const supportedPaymentMethods: PaymentMethodData[] = [creditCard];
-        store.commit('cart/setShippingOptions', await ShippingOptions);
+        store.commit('cart/setShippingOptions', await ShippingOptions());
         const paymentDetails = {
                 total: {
                     label: 'Total',

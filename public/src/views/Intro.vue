@@ -19,7 +19,7 @@
     background-image: url('../assets/intro.svg');
     background-position: 10% 50%;
     background-size: cover;
-    height: calc(100vh - 80px);
+    height: $full-window;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -27,13 +27,12 @@
   }
 
   #title-container {
-    text-align: center;
-    font-size: 38px;
     margin-top: 14vh;
     margin-bottom: 3vh;
-    align-self: center;
-    font-family: $primary-font;
-    text-transform: uppercase;
+  }
+
+  h1 {
+    padding-bottom: 5px;
   }
 
   #message {

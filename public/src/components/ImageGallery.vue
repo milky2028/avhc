@@ -1,6 +1,6 @@
 <template>
     <div id="root" :style="backgroundStyles" :title="image.alt">
-        <img id="hidden-image" :src="image.src" :alt="image.alt">
+        <img class="hidden-image" :src="image.src" :alt="image.alt">
         <div id="left-arrow" v-if="this.activeProduct.images && this.activeProduct.images.length > 1" @click="previousImage" class="mat-icon">keyboard_arrow_left</div>
         <div id="right-arrow" v-if="this.activeProduct.images && this.activeProduct.images.length > 1" @click="nextImage"  class="mat-icon">keyboard_arrow_right</div>
         <price-display  v-if="this.activeProduct.images" id="price-display"></price-display>
@@ -20,11 +20,6 @@
     align-items: center;
     grid-template-areas:
       "left-arrow main right-arrow"
-  }
-
-  #hidden-image {
-    max-width: 60vw;
-    opacity: 0;
   }
 
   #left-arrow {

@@ -7,8 +7,9 @@ $h1: 32px;
 $primary-font: 'Elianto', Arial;
 $secondary-font: 'Mukta Malar', sans-serif;
 $mat-icons: 'Material Icons';
+$full-window: calc(100vh - 80px);
 
-@import url('https://fonts.googleapis.com/css?family=Mukta+Malar:400,600,800');
+@import url('https://fonts.googleapis.com/css?family=Mukta+Malar:400,500,600,800');
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 
 @font-face {
@@ -37,12 +38,19 @@ h1 {
     text-transform: uppercase;
   }
 
-  h2 {
+h2 {
     font-size: 22px;
     letter-spacing: 4px;
     font-family: $secondary-font;
     text-align: center;
-  }
+    text-transform: uppercase;
+    font-weight: 500;
+}
+
+.hidden-image {
+    max-width: 60vw;
+    opacity: 0;
+}
 
 p {
     font-size: 16px;

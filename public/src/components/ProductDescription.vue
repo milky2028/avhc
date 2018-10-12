@@ -29,6 +29,12 @@
     font-size: 16px;
     line-height: 130%;
 }
+
+h2 {
+    text-align: left;
+    text-transform: none;
+    letter-spacing: normal;
+}
 </style>
 
 <script lang="ts">
