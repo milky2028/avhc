@@ -7,7 +7,7 @@
     <div id="message">
       <h3>Disclaimer:</h3>
       <p>Products distributed by Aspen Valley Group, LLC are not intended to diagnose, treat, cure, or prevent any disease. Smoking can have inherent health risks. Not intended for use by any person under 18 years of age.</p>
-      <router-link id="enter" to="shop">Enter</router-link>
+      <router-link id="enter" to="flower">Enter</router-link>
     </div>
   </div>
 </template>
@@ -34,12 +34,6 @@
     align-self: center;
     font-family: $primary-font;
     text-transform: uppercase;
-  }
-
-  h2 {
-    font-size: 22px;
-    letter-spacing: 4px;
-    font-family: $secondary-font;
   }
 
   #message {
@@ -95,7 +89,8 @@
 
 
 <script lang="ts">
-import { Vue } from 'vue-property-decorator';
+import { Vue, Component } from 'vue-property-decorator';
 
+@Component
 export default class Home extends Vue { }
 </script>

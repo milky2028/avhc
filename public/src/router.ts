@@ -7,6 +7,7 @@ const Shop = () => import(/* webpackChunkName: "shop" */'./views/Shop.vue');
 const ThankYou = () => import(/* webpackChunkName: "thankYou" */'./views/ThankYou.vue');
 const About = () => import(/* webpackChunkName: "about" */'./views/About.vue');
 const TestResults = () => import(/* webpackChunkName: "testResults" */'./views/TestResults.vue');
+const Flower = () => import(/* webpackChunkName: "flower" */'./views/Flower.vue');
 
 Vue.use(Router);
 
@@ -38,6 +39,11 @@ export default new Router({
       path: '/orders',
       name: 'orders',
       component: Orders,
+    },
+    {
+      path: '/flower',
+      name: 'flower',
+      component: Flower
     },
     {
       path: '/shop',
