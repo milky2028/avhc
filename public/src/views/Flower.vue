@@ -1,5 +1,6 @@
 <template>
     <div id="flower-root">
+        <div id="first-section">
         <div id="header-container">
             <h1>Aspen Valley</h1>
             <h2>The Best CBD Flower on Planet Earth.</h2>
@@ -8,13 +9,17 @@
         <div id="actual-image" :style="backgroundStyles" :title="image.alt">
             <img class="hidden-image" :src="image.src" :title="image.alt">
         </div>
+        </div>
+        <div id="second-section">
+
+        </div>
     </div>
 </template>
 
 <style lang="scss" scoped>
 @import '../styles/theme.scss';
 
-#flower-root {
+#first-section {
     height: $full-window;
     display: grid;
     grid-template-rows: 1fr 50vh;
@@ -27,6 +32,7 @@
     padding: 0 24px;
     justify-self: center;
     align-self: center;
+    grid-area: top;
 }
 
 #actual-image {
@@ -34,6 +40,7 @@
     height: 100%;
     background-position: 50% 50%;
     background-size: cover;
+    grid-area: bottom;
 }
 
 h1 {
@@ -47,6 +54,11 @@ h2 {
 
 #buy {
     color: $primary;
+}
+
+#second-section {
+    background-color: $primary;
+    height: $full-window;
 }
 </style>
 
