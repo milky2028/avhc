@@ -2,7 +2,7 @@
     <div id="flower-root">
         <div id="header-container">
             <h1>Aspen Valley</h1>
-            <h2>The Greatest CBD Flower on Earth.</h2>
+            <h2>The Best CBD Flower on Planet Earth.</h2>
             <router-link id="buy" to="shop"><h2>Buy ></h2></router-link>
         </div>
         <div id="actual-image" :style="backgroundStyles" :title="image.alt">

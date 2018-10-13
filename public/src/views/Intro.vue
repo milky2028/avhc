@@ -6,7 +6,7 @@
     </div>
     <div id="message">
       <h3>Disclaimer:</h3>
-      <p>Products distributed by Aspen Valley Group, LLC are not intended to diagnose, treat, cure, or prevent any disease. Smoking can have inherent health risks. Not intended for use by any person under 18 years of age.</p>
+      <p>Statements on this website have not been evaluated by the FDA. Products distributed by Aspen Valley Group, LLC are not intended to diagnose, treat, cure, or prevent any disease. Consult your physician before using any hemp supplement. Not intended for use by any person under 18 years of age.</p>
       <router-link id="enter" to="flower">Enter</router-link>
     </div>
   </div>
@@ -71,7 +71,7 @@
 
     #message {
       margin: 0;
-      height: 260px;
+      height: 320px;
       width: 100%;
       padding: 0;
     }
