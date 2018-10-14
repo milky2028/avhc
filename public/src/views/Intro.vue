@@ -38,7 +38,7 @@
   #message {
     margin-right: 10vh;
     margin-bottom: 10vh;
-    height: 230px;
+    height: 280px;
     width: 500px;
     background-color: white;
     padding: 0 55px;
