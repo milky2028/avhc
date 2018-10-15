@@ -1,6 +1,6 @@
 import Store from '@/store';
 import ShippingOptions from './shippingOptions';
-import Raven from 'raven-js';
+import * as Sentry from '@sentry/browser';
 import { db } from './firebase';
 import router from '@/router';
 import EncryptData from './encryptData';
@@ -92,7 +92,7 @@ const SubmitPayment = async () => {
             await db.collection('orders').add(order);
             router.push('/thank-you');
         } catch (e) {
-            Raven.captureException(e);
+            Sentry.captureException(e);
             throw e;
         }
     } else {

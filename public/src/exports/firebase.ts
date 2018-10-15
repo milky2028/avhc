@@ -1,6 +1,6 @@
 import firebase from 'firebase/app';
 import 'firebase/firestore';
-import Raven from 'raven-js';
+import * as Sentry from '@sentry/browser';
 
 const config = {
   apiKey: 'AIzaSyBjIrG0X4W4plSyvUlv80BlRrFcrupNh5s',
@@ -16,9 +16,9 @@ const settings = { timestampsInSnapshots: true };
 db.settings(settings);
 db.enablePersistence().catch((e) => {
   if (e.code === 'failed-precondition') {
-    Raven.captureException(e);
+    Sentry.captureException(e);
   } else if (e.code === 'unimplemented') {
-    Raven.captureException(e);
+    Sentry.captureException(e);
   }
 });
 

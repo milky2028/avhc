@@ -1,13 +1,13 @@
 import Product from '@/types/product';
 import { db } from '@/exports/firebase';
-import Raven from 'raven-js';
+import * as Sentry from '@sentry/browser';
 
 const Products = async (): Promise<Product[]> => {
   try {
     const snapshot = await db.collection('products').get();
     return snapshot.docs.map((doc: any) => doc.data());
   } catch (e) {
-    Raven.captureException(e);
+    Sentry.captureException(e);
     throw e;
   }
 };

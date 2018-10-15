@@ -1,12 +1,12 @@
 import { db } from './firebase';
-import Raven from 'raven-js';
+import * as Sentry from '@sentry/browser';
 
 const ShippingOptions = async () => {
     try {
         const snapshot = await db.collection('shipping-options').get();
         return snapshot.docs.map((doc: any) => doc.data());
     } catch (e) {
-        Raven.captureException(e);
+        Sentry.captureException(e);
         return [];
     }
 };

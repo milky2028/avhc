@@ -1,4 +1,4 @@
-import Raven from 'raven-js';
+import * as Sentry from '@sentry/browser';
 
 // TODO: Get this key from the server, save the key as an evironment variable in an http cloud function
 const jwk: JsonWebKey = {
@@ -23,7 +23,7 @@ const importKey = async (key: JsonWebKey): Promise<CryptoKey> => {
       const encrpytionMethods: string[] =  ['encrypt', 'decrypt'];
       return await crypto.subtle.importKey('jwk', key, 'AES-CTR', false, encrpytionMethods);
     } catch (e) {
-      Raven.captureException(e);
+      Sentry.captureException(e);
       throw e;
     }
   };
@@ -36,7 +36,7 @@ const EncryptData = async (data: string): Promise<string> => {
       const encryptedData: ArrayBuffer = await crypto.subtle.encrypt(alg, key, encodedData);
       return arrayBufferToBase64(encryptedData);
     } catch (e) {
-        Raven.captureException(e);
+        Sentry.captureException(e);
         throw e;
     }
   };
