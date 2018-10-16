@@ -50,7 +50,6 @@ h2 {
 }
 </style>
 
-
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator';
 
@@ -69,8 +68,8 @@ export default class ProductExpose extends Vue {
   private get actualImageStyle() {
       return {
         backgroundImage: `url('${this.imageSrc}')`,
-        backgroundPosition: `${(this.horizontalPosition) ?
-            this.horizontalPosition : 50}% ${(this.verticalPosition) ? this.verticalPosition : 50}%`
+        backgroundPosition: `${(this.horizontalPosition !== undefined) ?
+            this.horizontalPosition : 50}% ${(this.verticalPosition !== undefined) ? this.verticalPosition : 50}%`
       };
   }
 }
