@@ -4,7 +4,9 @@
             <h1>Aspen Valley</h1>
             <h2>The Best CBD Flower on Planet Earth.</h2>
         </product-expose>
-        <div id="second-section" class="section"></div>
+        <div id="second-section" class="section">
+            <expose-text></expose-text>
+        </div>
         <product-expose url="/shop" src="cig.jpg" alt="CBD-Rich Hemp Flower in Isolation" :verticalPosition="0">
             <h2>One of a Kind CBD Cigarettes</h2>
         </product-expose>
