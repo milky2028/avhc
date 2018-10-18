@@ -1,8 +1,8 @@
 <template>
     <div>
-        <h2>This Is the Header<h2>
+        <h2>This Is the Header</h2>
         <div id="divider"></div>
-        <p>This is the main text<p>
+        <p>This is the main text</p>
     </div>   
 </template>
 

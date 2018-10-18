@@ -52,10 +52,12 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import ProductExpose from '@/components/ProductExpose.vue';
+import ExposeText from '@/components/ExposeText.vue';
 
 @Component({
     components: {
-        ProductExpose
+        ProductExpose,
+        ExposeText
     }
 })
 export default class Flower extends Vue {}
