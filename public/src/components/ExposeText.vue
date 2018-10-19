@@ -1,13 +1,40 @@
 <template>
-    <div>
-        <h2>This Is the Header</h2>
+    <div id="expose-text-root">
+        <h2 class="header">
+            <slot name="header"></slot>
+        </h2>
         <div id="divider"></div>
-        <p>This is the main text</p>
+        <p class="main-text">
+            <slot name="main-text"></slot>
+        </p>
     </div>   
 </template>
 
 <style lang="scss" scoped>
+#expose-text-root {
+    color: white;
+    font-family: 'Mukta Malar', sans-serif;
+}
 
+.header {
+    font-size: 28px;
+    letter-spacing: 1px;
+    padding-right: 24px;
+}
+
+#divider {
+    margin: 10px 0;
+    background-color: white;
+    height: 1px;
+}
+
+.main-text {
+    padding-right: 24px;
+    font-size: 22px;
+    font-weight: 300;
+    line-height: 36px;
+    margin-bottom: 10px;
+}
 </style>
 
 <script lang="ts">
