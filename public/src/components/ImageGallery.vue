@@ -57,7 +57,7 @@
     }
 
     get image() {
-      return (this.activeProduct.images) ?
+      return (this.activeProduct && this.activeProduct.images) ?
        {
         src: require(`../assets/product-images/${this.activeProduct.images[0].src}.jpg`),
         alt: this.activeProduct.images[0].alt
