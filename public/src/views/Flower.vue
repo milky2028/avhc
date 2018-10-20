@@ -27,12 +27,12 @@
             </div>
             <div id="black-section">
                 <expose-text>
-                    <template slot="header">Grown in the USA</template>
-                    <template slot="main-text">Grown, harvested, packaged and sold all here in the United States. Aspen Valley is the best in American Hemp.</template>
+                    <template slot="header">Designed to Burn Smoothly</template>
+                    <template slot="main-text">Specially harvested to burn just right, a CBD Cigarrette is just the break you need.</template>
                 </expose-text>
                 <expose-text>
-                    <template slot="header">Non-Psychoactive</template>
-                    <template slot="main-text">Embrace your world without stepping out of it. CBD is relaxtion without dissociation.</template>
+                    <template slot="header">Sustainably Green</template>
+                    <template slot="main-text">Aspen Valley Hemp is grown and harvested with sustainable, green energy practices in mind.</template>
                 </expose-text>
             </div>
         </div>

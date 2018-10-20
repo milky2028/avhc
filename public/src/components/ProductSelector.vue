@@ -114,7 +114,8 @@ export default class ProductSelector extends Vue {
     return (this.$route.params) ? this.$route.params.productName : '';
   }
 
-  private async beforeCreate() {
+  private async beforeMount() {
+    this.$store.commit('products/setActiveProductName', this.selectedProductName);
     this.$store.commit('products/setProducts', await Products());
 
     EventBus.$on('buyFlow', () => {
