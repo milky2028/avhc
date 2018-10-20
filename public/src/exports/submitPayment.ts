@@ -1,9 +1,9 @@
 import Store from '@/store';
-import ShippingOptions from './shippingOptions';
+import ShippingOptions from './ShippingOptions';
 import * as Sentry from '@sentry/browser';
-import { db } from './firebase';
+import { db } from './Firebase';
 import router from '@/router';
-import EncryptData from './encryptData';
+import EncryptData from './EncryptData';
 
 const store: any = Store;
 

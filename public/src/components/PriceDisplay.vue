@@ -10,7 +10,7 @@
 import { Vue, Component } from 'vue-property-decorator';
 
 @Component
-export default class ImageGallery extends Vue { }
+export default class PriceDisplay extends Vue { }
 </script>
 
 

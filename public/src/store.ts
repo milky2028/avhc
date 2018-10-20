@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import ProductsModule from '@/modules/products.module';
-import CartModule from '@/modules/cart.module';
+import ProductsModule from '@/modules/ProductsModule';
+import CartModule from '@/modules/CartModule';
 
 Vue.use(Vuex);
 

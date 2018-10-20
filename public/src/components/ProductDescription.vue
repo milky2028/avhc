@@ -41,7 +41,7 @@ h2 {
 import { Vue, Component } from 'vue-property-decorator';
 
 @Component
-export default class ProductDescriptions extends Vue {
+export default class ProductDescription extends Vue {
     /* tslint:disable */
     private mockHTML = `<h2 class="product-header">Product Info Header</h2>
     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi eget pulvinar urna, in mattis nulla. Curabitur bibendum purus sit amet ullamcorper cursus. Proin lacus ipsum, commodo in elit sit amet, viverra euismod ante. Ut tincidunt elit vel nulla mollis dignissim. Duis a justo at eros auctor gravida at sed augue. Nam dui ligula, dapibus at elit ut, placerat elementum ipsum. Praesent vitae consectetur enim.</p>

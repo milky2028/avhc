@@ -31,6 +31,7 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import AppToolbar from '@/components/AppToolbar.vue';
+import Products from './exports/products';
 
 @Component({
   components: {
@@ -38,5 +39,9 @@ import AppToolbar from '@/components/AppToolbar.vue';
   }
 })
 
-export default class App extends Vue { }
+export default class App extends Vue {
+  private async beforeMount() {
+    this.$store.commit('products/setProducts', await Products());
+  }
+}
 </script>
