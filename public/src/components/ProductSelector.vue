@@ -112,7 +112,7 @@ export default class ProductSelector extends Vue {
 
   public get selectedProductName() {
     return (this.$route.params) ? this.$route.params.productName : '';
-  };
+  }
 
   private async beforeCreate() {
     this.$store.commit('products/setProducts', await Products());
