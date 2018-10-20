@@ -95,8 +95,9 @@ select {
 
 <script lang='ts'>
 import { Vue, Component } from 'vue-property-decorator';
-import EventBus from '@/exports/eventBus';
-import CartItem from '@/types/cartItem';
+import EventBus from '@/exports/EventBus';
+import CartItem from '@/types/CartItem';
+import Products from '@/exports/Products';
 
 interface InputEventTarget extends EventTarget {
   value: string;
@@ -113,6 +114,7 @@ export default class ProductSelector extends Vue {
 
   private async beforeMount() {
     this.$store.commit('products/setActiveProductName', this.selectedProductName);
+    this.$store.commit('products/setProducts', await Products());
 
     EventBus.$on('buyFlow', () => {
       const item: CartItem = {

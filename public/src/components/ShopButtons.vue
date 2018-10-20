@@ -54,8 +54,8 @@
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator';
-import EventBus from '@/exports/eventBus';
-import SubmitPayment from '@/exports/submitPayment';
+import EventBus from '@/exports/EventBus';
+import SubmitPayment from '@/exports/SubmitPayment';
 
 @Component
 export default class ShopButtons extends Vue {
