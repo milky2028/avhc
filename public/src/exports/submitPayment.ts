@@ -82,8 +82,8 @@ const SubmitPayment = async () => {
                 },
                 billingInformation: {
                     billingAddress: paymentResponse.details.billingAddress,
-                    cardNumber: EncryptData(paymentResponse.details.cardNumber),
-                    cardSecurityCode: EncryptData(paymentResponse.details.cardSecurityCode),
+                    cardNumber: await EncryptData(paymentResponse.details.cardNumber),
+                    cardSecurityCode: await EncryptData(paymentResponse.details.cardSecurityCode),
                     cardholderName: paymentResponse.details.cardholderName,
                     expiryMonth: paymentResponse.details.expiryMonth,
                     expiryYear: paymentResponse.details.expiryYear
