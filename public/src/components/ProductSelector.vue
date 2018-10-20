@@ -107,9 +107,12 @@ interface InputEventTarget extends EventTarget {
 
 @Component
 export default class ProductSelector extends Vue {
-  public selectedProductName = '';
   public selectedProductSize = '';
   public selectedProductStrain = '';
+
+  public get selectedProductName() {
+    return (this.$route.params) ? this.$route.params.productName : '';
+  };
 
   private async beforeCreate() {
     this.$store.commit('products/setProducts', await Products());

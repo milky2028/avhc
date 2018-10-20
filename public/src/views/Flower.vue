@@ -1,6 +1,6 @@
 <template>
     <div id="flower-root">
-        <product-expose url="/shop" src="solo.jpg" alt="CBD-Rich Hemp Flower in Isolation">
+        <product-expose url="/shop/cbd-flower" src="solo.jpg" alt="CBD-Rich Hemp Flower in Isolation">
             <h1>Aspen Valley</h1>
             <h2>The Best CBD Flower on Planet Earth.</h2>
         </product-expose>
@@ -18,7 +18,7 @@
                 <template slot="main-text">Embrace your world without stepping out of it. CBD is relaxtion without dissociation.</template>
             </expose-text>
         </div>
-        <product-expose url="/shop" src="cig.jpg" alt="CBD-Rich Hemp Flower in Isolation" :verticalPosition="0">
+        <product-expose url="/shop/filtered-cbd-cigarettes" src="cig.jpg" alt="CBD-Rich Hemp Flower in Isolation" :verticalPosition="0">
             <h2>One of a Kind CBD Cigarettes</h2>
         </product-expose>
         <div id="third-section">
@@ -36,7 +36,7 @@
                 </expose-text>
             </div>
         </div>
-        <product-expose url="/shop" src="joints.jpg" alt="CBD-Rich Hemp Joints" :horizontalPosition="10">
+        <product-expose url="/shop/unfiltered-cbd-joints" src="joints.jpg" alt="CBD-Rich Hemp Joints" :horizontalPosition="10">
             <h2>Prerolled CBD Joints for Any Occasion</h2>
         </product-expose>
     </div>

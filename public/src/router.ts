@@ -46,7 +46,7 @@ export default new Router({
       component: Flower
     },
     {
-      path: '/shop',
+      path: '/shop/:productName',
       name: 'shop',
       component: Shop,
     },
