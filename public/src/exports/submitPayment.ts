@@ -5,8 +5,6 @@ import { db } from './Firebase';
 import router from '@/router';
 import EncryptData from './EncryptData';
 
-const store: any = Store;
-
 const convertDate = (date: Date) => {
     const year = date.getFullYear();
     const month = (String(date.getMonth() + 1).length < 2 ) ? `0${date.getMonth() + 1}` : date.getMonth() + 1;
@@ -30,16 +28,16 @@ const SubmitPayment = async () => {
           };
         const creditCard: PaymentMethodData = { supportedMethods: 'basic-card' };
         const supportedPaymentMethods: PaymentMethodData[] = [creditCard];
-        store.commit('cart/setShippingOptions', await ShippingOptions());
+        Store.commit('cart/setShippingOptions', await ShippingOptions());
         const paymentDetails = {
                 total: {
                     label: 'Total',
                     amount: {
                         currency: 'USD',
-                        value: store.getters['cart/total']
+                        value: Store.getters['cart/total']
                     }
                 },
-                shippingOptions: store.state.cart.shippingOptions
+                shippingOptions: Store.state.cart.shippingOptions
             };
         const request: PaymentRequest = new PaymentRequest(supportedPaymentMethods, paymentDetails, options);
 
@@ -50,7 +48,7 @@ const SubmitPayment = async () => {
         request.addEventListener('shippingoptionchange', (event: any) => {
             const paymentRequestInstance = event.target;
             const selectedShippingOption = paymentRequestInstance.shippingOption;
-            store.state.cart.state.shippingOptions.forEach((option: PaymentShippingOption) => {
+            Store.state.cart.shippingOptions.forEach((option: PaymentShippingOption) => {
                 option.selected = option.id === selectedShippingOption;
             });
             event.updateWith(paymentDetails);
