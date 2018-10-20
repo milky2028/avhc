@@ -14,7 +14,7 @@ const firebaseApp = firebase.initializeApp(config);
 const db = firebaseApp.firestore();
 const settings = { timestampsInSnapshots: true };
 db.settings(settings);
-db.enablePersistence().catch((e) => {
+db.enablePersistence({ experimentalTabSynchronization: true }).catch((e) => {
   if (e.code === 'failed-precondition') {
     Sentry.captureException(e);
   } else if (e.code === 'unimplemented') {
