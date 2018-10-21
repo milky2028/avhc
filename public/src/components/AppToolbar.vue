@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div id="toolbar">
         <h1><router-link to="/flower">AVHC</router-link></h1>
         <div id="button-container">
             <a id="faq-icon" class="small-icon">?</a>
@@ -11,6 +11,20 @@
 
 <style lang="scss" scoped>
     @import '../styles/theme.scss';
+
+    #toolbar {
+        position: sticky;
+        position: -webkit-sticky;
+        top: 0;
+        background-color: white;
+        box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+        display: flex;
+        justify-content: space-between;
+        flex-direction: row;
+        align-items: stretch;
+        padding: 18px 26px;
+        z-index: 100;
+    }
 
     h1 {
         margin-bottom: -5px;
@@ -29,7 +43,7 @@
         margin-bottom: -4px;
         margin-right: 6px;
         font-family: $primary-font;
-        font-size: 28px;
+        font-size: 24px;
     }
 
     .small-icon {
