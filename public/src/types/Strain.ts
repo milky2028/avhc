@@ -1,5 +1,5 @@
 export default interface Strain {
-    description: string; 
+    description: string;
     name: string;
     title: string;
 }
