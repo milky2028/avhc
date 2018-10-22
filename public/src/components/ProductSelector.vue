@@ -11,7 +11,7 @@
             </div>
         </div>
         <div id='lower-select-container'>
-        <div id='left-select' class='select-wrapper half-width'>
+        <div id='left-select' class='select-wrapper half-width' :style="sizeDynamicStyle">
             <p>Size</p>
             <div class='select-container'>
                 <select class='lower-selector' v-model='selectedProductSize'>
@@ -21,7 +21,7 @@
             <div class='mat-icon small-icon arrow-icon'>keyboard_arrow_right</div>
             </div>
         </div>
-        <div class='select-wrapper half-width'>
+        <div v-if="strains.length > 0" class='select-wrapper half-width'>
             <p>Strain</p>
             <div class='select-container'>
                 <select class='lower-selector' v-model='selectedProductStrain'>
@@ -137,8 +137,8 @@ export default class ProductSelector extends Vue {
     return this.selectedProductName;
   }
 
-  private shortenForDisplay(event: InputEventTarget) {
-    return this.selectedProductStrain;
+  private get sizeDynamicStyle() {
+    return (this.strains.length > 0) ? {} : { width: '100%' };
   }
 
   private get activeProduct() {

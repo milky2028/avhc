@@ -90,6 +90,7 @@
 import { Component, Vue } from 'vue-property-decorator';
 import ProductExpose from '@/components/ProductExpose.vue';
 import ExposeText from '@/components/ExposeText.vue';
+import Products from '@/exports/Products';
 
 @Component({
     components: {
@@ -97,7 +98,11 @@ import ExposeText from '@/components/ExposeText.vue';
         ExposeText
     }
 })
-export default class Flower extends Vue {}
+export default class Flower extends Vue {
+    private async beforeMount() {
+        this.$store.commit('products/setProducts', await Products());
+    }
+}
 </script>
 
 
