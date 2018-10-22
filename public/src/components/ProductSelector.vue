@@ -16,7 +16,7 @@
             <div class='select-container'>
                 <select class='lower-selector' v-model='selectedProductSize'>
                 <option value='' disabled selected>Size</option>
-                <option v-for='size of sizes' :key='size.index' :value='size.value'>{{ size.value }}{{ size.measurement }}</option>
+                <option v-for='size of sizes' :key='size.index' :value='size.value'>{{ size.sizeValue }}{{ size.measurement }}</option>
             </select>
             <div class='mat-icon small-icon arrow-icon'>keyboard_arrow_right</div>
             </div>
