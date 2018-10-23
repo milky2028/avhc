@@ -78,7 +78,7 @@ import CartBadge from '@/components/CartBadge.vue';
 
 @Component({
     components: {
-        CartBadge 
+        CartBadge
     }
 })
 export default class AppToolbar extends Vue { }

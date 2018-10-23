@@ -4,6 +4,7 @@
 
 <style lang="scss" scoped>
 #badge-root {
+    margin: 0 0 8px 8px;
     grid-area: all;
     align-self: start;
     justify-self: end;
