@@ -2,15 +2,22 @@
     <div id="toolbar">
         <h1><router-link to="/flower">AVHC</router-link></h1>
         <div id="button-container">
-            <router-link to="/about" id="faq-icon" class="small-icon">?</router-link>
-            <router-link to="/cart"><div class="mat-icon small-icon">shopping_cart</div></router-link>
-            <router-link to="/orders"><div id="account" class="mat-icon small-icon">person</div></router-link>
+            <router-link to="/about" id="faq-icon" class="small-icon"><button>?</button></router-link>
+            <router-link id="cart-container" to="/cart">
+                <cart-badge></cart-badge>
+                <button id="cart-icon" class="mat-icon small-icon">shopping_cart</button>
+            </router-link>
+            <router-link to="/orders"><button id="account" class="mat-icon small-icon">person</button></router-link>
         </div>
     </div>
 </template>
 
 <style lang="scss" scoped>
     @import '../styles/theme.scss';
+
+    button {
+        background: transparent;
+    }
 
     #toolbar {
         position: sticky;
@@ -24,6 +31,16 @@
         align-items: stretch;
         padding: 18px 26px;
         z-index: 100;
+    }
+
+    #cart-container {
+        display: grid;
+        grid-template-areas: 
+            "all"
+    }
+
+    #cart-icon {
+        grid-area: all;
     }
 
     h1 {
@@ -57,8 +74,13 @@
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator';
+import CartBadge from '@/components/CartBadge.vue';
 
-@Component
+@Component({
+    components: {
+        CartBadge 
+    }
+})
 export default class AppToolbar extends Vue { }
 </script>
 
