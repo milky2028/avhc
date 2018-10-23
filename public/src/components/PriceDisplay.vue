@@ -1,5 +1,5 @@
 <template>
-    <div>$28</div>
+    <div>${{ price }}</div>
 </template>
 
 <style lang="scss" scoped>
@@ -10,7 +10,11 @@
 import { Vue, Component } from 'vue-property-decorator';
 
 @Component
-export default class PriceDisplay extends Vue { }
+export default class PriceDisplay extends Vue {
+    private get price() {
+        return this.$store.getters['products/activeProduct'].price;
+    }
+}
 </script>
 
 

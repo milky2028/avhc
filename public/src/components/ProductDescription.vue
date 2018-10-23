@@ -35,6 +35,14 @@ h3 {
     text-align: left;
     text-transform: none;
     letter-spacing: normal;
+} 
+
+// TODO: This is impacting styles elsewhere and needs to get moved.
+h2 {
+    font-weight: 600;
+    text-align: left;
+    text-transform: none;
+    letter-spacing: normal;
 }
 </style>
 

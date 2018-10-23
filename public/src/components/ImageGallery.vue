@@ -16,7 +16,7 @@
     background-size: cover;
     height: 42vh;
     display: grid;
-    grid-template-columns: 55px 1fr 55px;
+    grid-template-columns: 115px 1fr 115px;
     align-items: center;
     grid-template-areas:
       "left-arrow main right-arrow"
@@ -33,6 +33,8 @@
   #price-display {
     grid-area: right-arrow;
     align-self: end;
+    font-size: 45px;
+    margin: 0 10px 10px 0;
   }
 </style>
 
