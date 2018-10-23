@@ -1,7 +1,5 @@
 <template>
-    <div id="badge-root">
-        
-    </div>
+    <div id="cart-root">This is the cart</div>
 </template>
 
 <style lang="scss" scoped>
@@ -11,6 +9,6 @@
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator';
 
-export default class CartBadge extends Vue {}
+export default class Cart extends Vue {}
 </script>
 
