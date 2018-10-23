@@ -116,7 +116,8 @@ export default class ProductSelector extends Vue {
 
     EventBus.$on('buyFlow', () => {
       const item: CartItem = {
-        price: this.activeProduct.price,
+        price: (this.selectedProductSize) ?
+          this.activeProduct.sizes[this.$store.state.products.selectedSizeIndex] : this.activeProduct.price,
         quantity: this.$store.state.cart.quantity,
         product: this.activeProduct.name,
         size: Number(this.selectedProductSize),
