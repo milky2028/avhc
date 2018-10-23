@@ -3,13 +3,15 @@ import Product from '@/types/Product';
 interface ProductState {
   activeProductName: string;
   products: Product[];
+  selectedSizeIndex: number;
 }
 
 const ProductsModule = {
   namespaced: true,
   state: {
     products: [],
-    activeProductName: ''
+    activeProductName: '',
+    selectedSizeIndex: 0
   },
   getters: {
     activeProduct: (state: ProductState): Product  => {
@@ -23,6 +25,9 @@ const ProductsModule = {
     },
     setActiveProductName: (state: ProductState, payload: string) => {
       state.activeProductName = payload;
+    },
+    setSelectedProductSize: (state: ProductState, payload: number) => {
+      state.selectedSizeIndex = payload;
     }
   }
 };

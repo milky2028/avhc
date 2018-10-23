@@ -14,9 +14,9 @@
         <div id='left-select' class='select-wrapper half-width' :style="sizeDynamicStyle">
             <p>Size</p>
             <div class='select-container'>
-                <select class='lower-selector' v-model='selectedProductSize'>
+                <select class='lower-selector' v-model='selectedProductSize' @input="setProductSize($event.target)">
                 <option value='' disabled selected>Size</option>
-                <option v-for='size of sizes' :key='size.index' :value='size.value'>{{ size.sizeValue }}{{ size.measurement }}</option>
+                <option v-for='size of sizes' :key='size.index' :value='size.index'>{{ size.sizeValue }}{{ size.measurement }}</option>
             </select>
             <div class='mat-icon small-icon arrow-icon'>keyboard_arrow_right</div>
             </div>
@@ -133,6 +133,10 @@ export default class ProductSelector extends Vue {
     this.selectedProductSize = '';
     this.selectedProductStrain = '';
     return this.selectedProductName;
+  }
+
+  private setProductSize(event: InputEventTarget) {
+    this.$store.commit('products/setSelectedProductSize', event.value);
   }
 
   private get sizeDynamicStyle() {
