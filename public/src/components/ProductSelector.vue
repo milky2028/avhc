@@ -23,7 +23,7 @@
         </div>
         <div v-if="strains.length > 0" class='select-wrapper half-width'>
             <p>Strain</p>
-            <div class='select-container'>
+            <div class='select-container strain'>
                 <select class='lower-selector' v-model='selectedProductStrain'>
                 <option value='' disabled selected>Strain</option>
                 <option v-for='strain of strains' :key='strain.name' :value='strain.name'>{{ strain.title }}</option>
@@ -57,6 +57,13 @@ select {
   outline: transparent;
   font-size: 28px;
   z-index: 10;
+}
+
+.strain > select, option.selected {
+  width: 110px; 
+  overflow: hidden; 
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .select-wrapper {
