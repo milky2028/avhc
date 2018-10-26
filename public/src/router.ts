@@ -9,6 +9,9 @@ const About = () => import(/* webpackChunkName: "about" */'./views/About.vue');
 const TestResults = () => import(/* webpackChunkName: "testResults" */'./views/TestResults.vue');
 const Flower = () => import(/* webpackChunkName: "flower" */'./views/Flower.vue');
 const Cart = () => import(/* webpackChunkName: "cart" */'./views/Cart.vue');
+const Login = () => import(/* webpackChunkName: "login" */'./views/Login.vue');
+const PrivacyPolicy = () => import(/* webpackChunkName: "privacyPolicy" */'./views/PrivacyPolicy.vue');
+const TermsAndConditions = () => import(/* webpackChunkName: "termsAndConditions" */'./views/TermsAndConditions.vue');
 
 Vue.use(Router);
 
@@ -23,6 +26,16 @@ export default new Router({
       path: '/',
       name: 'intro',
       component: Intro,
+    },
+    {
+      path: '/flower',
+      name: 'flower',
+      component: Flower
+    },
+    {
+      path: '/shop/:productName',
+      name: 'shop',
+      component: Shop,
     },
     {
       path: '/about',
@@ -45,24 +58,29 @@ export default new Router({
       component: ThankYou,
     },
     {
+      path: '/login',
+      name: 'login',
+      component: Login,
+    },
+    {
       path: '/orders',
       name: 'orders',
       component: Orders,
     },
     {
-      path: '/flower',
-      name: 'flower',
-      component: Flower
-    },
-    {
-      path: '/shop/:productName',
-      name: 'shop',
-      component: Shop,
-    },
-    {
       path: '/test-results',
       name: 'test-results',
       component: TestResults,
+    },
+    {
+      path: '/privacy-policy',
+      name: 'privacy-policy',
+      component: PrivacyPolicy
+    },
+    {
+      path: '/terms-and-conditions',
+      name: 'terms-and-conditions',
+      component: TermsAndConditions,
     }
   ]
 });
