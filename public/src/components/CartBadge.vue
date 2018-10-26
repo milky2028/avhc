@@ -1,5 +1,5 @@
 <template>
-    <div id="badge-root">10</div>
+    <div id="badge-root">{{ cartQuantity }}</div>
 </template>
 
 <style lang="scss" scoped>
@@ -15,7 +15,7 @@
     width: 20px;
     height: 20px;
     background-color: red;
-    font-size: 15px;
+    font-size: 16px;
     z-index: 10;
 }
 </style>
@@ -23,6 +23,10 @@
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator';
 
-export default class CartBadge extends Vue {}
+export default class CartBadge extends Vue {
+    private get cartQuantity() {
+        return this.$store.state.cart.quantity;
+    }
+}
 </script>
 

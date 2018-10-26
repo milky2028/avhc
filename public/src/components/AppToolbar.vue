@@ -4,7 +4,7 @@
         <div id="button-container">
             <router-link to="/about" id="faq-icon" class="small-icon"><button>?</button></router-link>
             <router-link id="cart-container" to="/cart">
-                <cart-badge></cart-badge>
+                <cart-badge v-if="cartQuantity > 0"></cart-badge>
                 <button id="cart-icon" class="mat-icon small-icon">shopping_cart</button>
             </router-link>
             <router-link to="/orders"><button id="account" class="mat-icon small-icon">person</button></router-link>
@@ -81,7 +81,11 @@ import CartBadge from '@/components/CartBadge.vue';
         CartBadge
     }
 })
-export default class AppToolbar extends Vue { }
+export default class AppToolbar extends Vue {
+    private get cartQuantity() {
+        return this.$store.state.cart.quantity;
+    }
+}
 </script>
 
 

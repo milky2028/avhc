@@ -24,7 +24,7 @@ const CartModule: CartModule = {
     state: {
         cart: [],
         shippingOptions: [],
-        quantity: 0
+        quantity: 10
     },
     getters: {
         total(state: CartState): number {
