@@ -79,7 +79,6 @@ export default class ShopButtons extends Vue {
 
     private get addButtonField(): string | number {
         if (this.itemQuantity < 1) {
-          this.$store.commit('cart/clearQuantity');
           return 'Add';
         } else {
             return this.itemQuantity;

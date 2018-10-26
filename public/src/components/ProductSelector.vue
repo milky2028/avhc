@@ -133,7 +133,9 @@ export default class ProductSelector extends Vue {
           this.activeProduct.sizes[this.$store.state.products.selectedSizeIndex].price : this.activeProduct.price,
         quantity: this.$store.state.cart.tempQuantity,
         product: this.activeProduct.name,
-        size: (this.selectedProductSize) ? Number(this.selectedProductSize) : `${this.sizes[0].sizeValue}${this.sizes[0].measurement}`,
+        size: (this.selectedProductSize) ?
+          `${this.sizes[this.selectedProductSize].sizeValue}${this.sizes[0].measurement}` :
+          `${this.sizes[0].sizeValue}${this.sizes[0].measurement}`,
         strain: (this.selectedProductStrain) ? this.selectedProductStrain : (this.strains.length > 0) ? this.strains[0].name : ''
       };
       this.$store.commit('cart/addItemToCart', item);
