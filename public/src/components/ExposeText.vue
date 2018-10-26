@@ -41,5 +41,5 @@
 import { Vue, Component } from 'vue-property-decorator';
 
 @Component
-export default class EposeText extends Vue {}
+export default class ExposeText extends Vue {}
 </script>

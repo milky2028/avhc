@@ -3,7 +3,8 @@ import CartItem from '@/types/CartItem';
 interface CartState {
     cart: CartItem[];
     shippingOptions: any[];
-    quantity: number;
+    tempQuantity: number;
+    tempPrice: number;
 }
 
 interface CartModule {
@@ -24,9 +25,18 @@ const CartModule: CartModule = {
     state: {
         cart: [],
         shippingOptions: [],
-        quantity: 0
+        tempQuantity: 0,
+        tempPrice: 0
     },
     getters: {
+        computedQuantity(state: CartState) {
+            if (state.cart.length > 0) {
+                const cartQuantities = state.cart.map((item: CartItem) => item.quantity);
+                return cartQuantities.reduce((a: number, b: number) => a + b, 0);
+            } else {
+                return 0;
+            }
+        },
         total(state: CartState): number {
             let total: number = 0;
             state.cart.forEach((item: CartItem) => {
@@ -37,13 +47,13 @@ const CartModule: CartModule = {
     },
     mutations: {
         increaseQuantity(state: CartState) {
-            state.quantity++;
+            state.tempQuantity++;
         },
         decreaseQuantity(state: CartState) {
-            state.quantity--;
+            state.tempQuantity--;
         },
         clearQuantity(state: CartState) {
-            state.quantity = 0;
+            state.tempQuantity = 0;
         },
         setShippingOptions(state: CartState, payload: PaymentShippingOption[]) {
             state.shippingOptions = payload;
