@@ -4,7 +4,7 @@
         <div id="button-container">
             <router-link to="/about" id="faq-icon" class="small-icon"><button>?</button></router-link>
             <router-link id="cart-container" to="/cart">
-                <cart-badge v-if="cartQuantity > 0"></cart-badge>
+                <div v-if="cartQuantity > 0" id="badge-root">{{ cartQuantity }}</div>
                 <button id="cart-icon" class="mat-icon small-icon">shopping_cart</button>
             </router-link>
             <router-link to="/orders"><button id="account" class="mat-icon small-icon">person</button></router-link>
@@ -17,6 +17,22 @@
 
     button {
         background: transparent;
+    }
+
+    #badge-root {
+        margin: 0 0 8px 8px;
+        grid-area: all;
+        align-self: start;
+        justify-self: end;
+        display: grid;
+        align-items: center;
+        justify-items: center;
+        border-radius: 50%;
+        width: 20px;
+        height: 20px;
+        background-color: #fc5316;
+        font-size: 16px;
+        z-index: 10;
     }
 
     #toolbar {
@@ -74,13 +90,8 @@
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator';
-import CartBadge from '@/components/CartBadge.vue';
 
-@Component({
-    components: {
-        CartBadge
-    }
-})
+@Component
 export default class AppToolbar extends Vue {
     private get cartQuantity() {
         return this.$store.getters['cart/computedQuantity'];
