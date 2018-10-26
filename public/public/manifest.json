@@ -1,5 +1,5 @@
 {
-  "name": "Aspen Valley Hmep Company - CBD-Rich Hemp Products",
+  "name": "Aspen Valley Hemp Company",
   "short_name": "AVHC",
   "icons": [
     {
@@ -13,7 +13,7 @@
       "type": "image/png"
     }
   ],
-  "start_url": "/index.html",
+  "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#004D40"
