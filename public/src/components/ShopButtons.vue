@@ -60,7 +60,7 @@ import SubmitPayment from '@/exports/SubmitPayment';
 @Component
 export default class ShopButtons extends Vue {
     private get itemQuantity() {
-        return this.$store.state.cart.quantity;
+        return this.$store.state.cart.tempQuantity;
     }
 
     public increase() {
@@ -95,7 +95,7 @@ export default class ShopButtons extends Vue {
     }
 
     private buyOrAddToCart(): void {
-        this.buyButtonField === 'Buy' ? EventBus.$emit('buyFlow') : EventBus.$emit('addToCart');
+        (this.buyButtonField === 'Buy') ? EventBus.$emit('buyFlow') : EventBus.$emit('addToCart');
     }
 }
 </script>

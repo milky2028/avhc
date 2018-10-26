@@ -117,11 +117,24 @@ export default class ProductSelector extends Vue {
     EventBus.$on('buyFlow', () => {
       const item: CartItem = {
         price: (this.selectedProductSize) ?
-          this.activeProduct.sizes[this.$store.state.products.selectedSizeIndex] : this.activeProduct.price,
-        quantity: this.$store.state.cart.quantity,
+          this.activeProduct.sizes[this.$store.state.products.selectedSizeIndex].price : this.activeProduct.price,
+        quantity: this.$store.state.cart.tempQuantity,
         product: this.activeProduct.name,
-        size: Number(this.selectedProductSize),
-        strain: this.selectedProductStrain,
+        size: (this.selectedProductSize) ? Number(this.selectedProductSize) : `${this.sizes[0].sizeValue}${this.sizes[0].measurement}`,
+        strain: (this.selectedProductStrain) ? this.selectedProductStrain : (this.strains) ? this.strains[0].name : ''
+      };
+      this.$store.commit('cart/addItemToCart', item);
+      this.$store.commit('cart/clearQuantity');
+    });
+
+    EventBus.$on('addToCart', () => {
+      const item: CartItem = {
+        price: (this.selectedProductSize) ?
+          this.activeProduct.sizes[this.$store.state.products.selectedSizeIndex].price : this.activeProduct.price,
+        quantity: this.$store.state.cart.tempQuantity,
+        product: this.activeProduct.name,
+        size: (this.selectedProductSize) ? Number(this.selectedProductSize) : `${this.sizes[0].sizeValue}${this.sizes[0].measurement}`,
+        strain: (this.selectedProductStrain) ? this.selectedProductStrain : (this.strains.length > 0) ? this.strains[0].name : ''
       };
       this.$store.commit('cart/addItemToCart', item);
       this.$store.commit('cart/clearQuantity');

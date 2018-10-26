@@ -83,7 +83,7 @@ import CartBadge from '@/components/CartBadge.vue';
 })
 export default class AppToolbar extends Vue {
     private get cartQuantity() {
-        return this.$store.state.cart.quantity;
+        return this.$store.getters['cart/computedQuantity'];
     }
 }
 </script>
