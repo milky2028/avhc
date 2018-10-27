@@ -48,6 +48,12 @@ h2 {
 #buy {
     color: $primary;
 }
+
+@media(min-width: 825px) {
+    #expose-root {
+        height: calc(100vh - 64.5px - 100px);
+    }
+}
 </style>
 
 <script lang="ts">

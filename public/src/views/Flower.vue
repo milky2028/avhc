@@ -1,7 +1,7 @@
 <template>
     <div id="flower-root">
-        <product-expose url="/shop/cbd-flower" src="solo.jpg" alt="CBD-Rich Hemp Flower in Isolation">
-            <h1>Aspen Valley</h1>
+        <product-expose class="expose" url="/shop/cbd-flower" src="solo.jpg" alt="CBD-Rich Hemp Flower in Isolation">
+            <h1 v-if="window.innerWidth < 825">Aspen Valley</h1>
             <h2>The Best CBD Flower on Planet Earth.</h2>
         </product-expose>
         <div id="second-section" class="section">
@@ -18,7 +18,7 @@
                 <template slot="main-text">Embrace your world without stepping out of it. CBD is relaxtion without dissociation.</template>
             </expose-text>
         </div>
-        <product-expose url="/shop/filtered-cbd-cigarettes" src="cig.jpg" alt="CBD-Rich Hemp Flower in Isolation" :verticalPosition="0">
+        <product-expose class="expose" url="/shop/filtered-cbd-cigarettes" src="cig.jpg" alt="CBD-Rich Hemp Flower in Isolation" :verticalPosition="0">
             <h2>One of a Kind CBD Cigarettes</h2>
         </product-expose>
         <div id="third-section">
@@ -36,7 +36,7 @@
                 </expose-text>
             </div>
         </div>
-        <product-expose url="/shop/unfiltered-cbd-joints" src="joints.jpg" alt="CBD-Rich Hemp Joints" :horizontalPosition="10">
+        <product-expose class="expose" url="/shop/unfiltered-cbd-joints" src="joints.jpg" alt="CBD-Rich Hemp Joints" :horizontalPosition="10">
             <h2>Prerolled CBD Joints for Any Occasion</h2>
         </product-expose>
     </div>
@@ -84,6 +84,49 @@
         margin-top: 100px;
     }
 }
+
+@media (min-width: 940px) {
+    #flower-root {
+        padding-right: 3vw;
+        background-image: url('../assets/intro.svg');
+        background-position: 10% 50%;
+        background-size: cover;
+        height: $full-window;
+        display: grid;
+        grid-template-columns: 320px 1fr 1fr 1fr;
+        grid-template-rows: $full-window;
+        grid-column-gap: 3vw;
+        grid-template-areas: 
+          "sidebar card1 card2 card3" 
+    }
+
+    .section {
+        height: auto;
+        min-height: auto;
+    }
+
+    #third-section {
+        display: none;
+    }
+
+    #second-section {
+        grid-area: sidebar;
+        box-shadow: $standard-shadow;
+    }
+
+    .expose {
+        margin: 50px 0;
+        box-shadow: $standard-shadow;
+        background-color: white;
+        width: 100%;
+    }
+}
+
+@media (min-width: 825px) and (max-width: 1200px) {
+    h2 {
+        font-size: 16px;
+    }
+}
 </style>
 
 <script lang="ts">
@@ -92,6 +135,8 @@ import ProductExpose from '@/components/ProductExpose.vue';
 import ExposeText from '@/components/ExposeText.vue';
 import Products from '@/exports/Products';
 
+declare const window: Window;
+
 @Component({
     components: {
         ProductExpose,
@@ -99,6 +144,7 @@ import Products from '@/exports/Products';
     }
 })
 export default class Flower extends Vue {
+    private window = window;
     private async beforeMount() {
         this.$store.commit('products/setProducts', await Products());
     }
