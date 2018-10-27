@@ -95,7 +95,7 @@
         display: grid;
         grid-template-columns: 320px 1fr 1fr 1fr;
         grid-template-rows: $full-window;
-        grid-column-gap: 3vw;
+        grid-column-gap: 4vw;
         grid-template-areas: 
           "sidebar card1 card2 card3" 
     }
@@ -115,7 +115,7 @@
     }
 
     .expose {
-        margin: 50px 0;
+        margin: 70px 0;
         box-shadow: $standard-shadow;
         background-color: white;
         width: 100%;

@@ -51,7 +51,7 @@ h2 {
 
 @media(min-width: 825px) {
     #expose-root {
-        height: calc(100vh - 65.5px - 100px);
+        height: calc(100vh - 65.5px - 140px);
     }
 }
 </style>
