@@ -35,6 +35,17 @@
     line-height: 36px;
     margin-bottom: 10px;
 }
+
+@media (min-width: 825px) and (max-width: 1200px) {
+    .header {
+        font-size: 24px;
+    }
+
+    .main-text {
+        font-size: 16px;
+        line-height: 28px;
+    }
+}
 </style>
 
 <script lang="ts">

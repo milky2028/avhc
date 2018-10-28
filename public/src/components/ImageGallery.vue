@@ -1,5 +1,5 @@
 <template>
-    <div id="root" :style="backgroundStyles" :title="image.alt">
+    <div id="image-gallery-root" :style="backgroundStyles" :title="image.alt">
         <img class="hidden-image" :src="image.src" :alt="image.alt">
         <div id="left-arrow" v-if="this.activeProduct.images && this.activeProduct.images.length > 1" @click="previousImage" class="mat-icon">keyboard_arrow_left</div>
         <div id="right-arrow" v-if="this.activeProduct.images && this.activeProduct.images.length > 1" @click="nextImage"  class="mat-icon">keyboard_arrow_right</div>
@@ -10,7 +10,7 @@
 <style scoped lang="scss">
   @import '../styles/theme.scss';
 
-  #root {
+  #image-gallery-root {
     grid-area: image-gallery;
     background-position: 50% 50%;
     background-size: cover;
@@ -35,6 +35,13 @@
     align-self: end;
     font-size: 45px;
     margin: 0 10px 10px 0;
+  }
+
+  @media (min-width: 1025px) {
+    #image-gallery-root {
+      grid-area: image;
+      height: calc(100% - 175px);
+    }
   }
 </style>
 

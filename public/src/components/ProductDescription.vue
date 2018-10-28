@@ -11,6 +11,7 @@
     font-family: $secondary-font;
     padding: 12px 22px;
     line-height: 130%;
+    margin-bottom: 18px;
 }
 
 .product-header {
@@ -43,6 +44,13 @@ h2 {
     text-align: left;
     text-transform: none;
     letter-spacing: normal;
+}
+
+@media (min-width: 1025px) {
+    #descriptions-root {
+        grid-area: description;
+        padding: 12px 0 22px 22px;
+    }
 }
 </style>
 

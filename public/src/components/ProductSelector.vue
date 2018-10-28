@@ -1,5 +1,5 @@
 <template>
-    <div id='root'>
+    <div id='product-selector-root'>
         <div class='select-wrapper'>
             <p>Product</p>
             <div class='select-container'>
@@ -21,7 +21,7 @@
             <div class='mat-icon small-icon arrow-icon'>keyboard_arrow_right</div>
             </div>
         </div>
-        <div v-if="strains.length > 0" class='select-wrapper half-width'>
+        <div id='right-select' v-if="strains.length > 0" class='select-wrapper half-width'>
             <p>Strain</p>
             <div class='select-container strain'>
                 <select class='lower-selector' v-model='selectedProductStrain'>
@@ -38,7 +38,7 @@
 <style lang='scss' scoped>
 @import '../styles/theme.scss';
 
-#root {
+#product-selector-root {
   grid-area: product-selector;
   font-family: $secondary-font;
 }
@@ -60,7 +60,7 @@ select {
 }
 
 .strain > select, option.selected {
-  width: 110px; 
+  width: 115px; 
   overflow: hidden; 
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -97,6 +97,37 @@ select {
 .arrow-icon {
   grid-area: main;
   justify-self: end;
+}
+
+@media (min-width: 1025px) {
+  #product-selector-root {
+    grid-area: image;
+    align-self: end;
+  }
+
+  .select-wrapper {
+    padding: 12px;
+  }
+
+  #lower-select-container {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  #left-select { 
+    border: none;
+  }
+
+  #right-select {
+    border: none;
+  }
+
+  .half-width {
+    width: 50%;
+  }
+
+  .strain > select, option.selected {
+    width: 180px; 
+  }
 }
 </style>
 

@@ -1,5 +1,5 @@
 <template>
-    <div id="root">
+    <div id="shop-buttons-root">
         <button id="add" class="bottom-button" :style="itemQuantity ? { justifyContent: 'space-between' } : { justifyContent: 'center' }">
             <button @click="decrease()" :style="hideIfItemQuantityZero" class="mat-icon small-icon">remove_circle_outline</button>
             <span @click="increase()">{{ addButtonField }}</span>
@@ -15,7 +15,7 @@
 <style lang="scss" scoped>
 @import '../styles/theme.scss';
 
-#root {
+#shop-buttons-root {
     grid-area: shop-buttons;
     align-self: end;
     width: 100vw;
@@ -30,7 +30,7 @@
     border-style: solid;
     border-color: black;
     font-size: 28px;
-    padding: 24.5px;
+    padding: 26px;
     width: 50vw;
     display: flex;
     align-items: center;
@@ -49,6 +49,26 @@
     justify-self: flex-start;
     padding-right: 10px;
     margin-top: -15px;
+}
+
+@media (min-width: 1025px) {
+    #shop-buttons-root {
+        width: 25vw;
+        grid-area: description;
+        justify-self: end;
+    }
+
+    .bottom-button {
+        padding: 20px 26px;
+    }
+
+    #add {
+        border-width: 3px 1.5px 3px 3px;
+    }
+
+    #buy {
+        border-width: 3px 3px 3px 1.5px;
+    }
 }
 </style>
 

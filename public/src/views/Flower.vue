@@ -93,7 +93,7 @@
         background-size: cover;
         height: $full-window;
         display: grid;
-        grid-template-columns: 320px 1fr 1fr 1fr;
+        grid-template-columns: 23vw 1fr 1fr 1fr;
         grid-template-rows: $full-window;
         grid-column-gap: 4vw;
         grid-template-areas: 
@@ -120,11 +120,15 @@
         background-color: white;
         width: 100%;
     }
+
+    h2 {
+        font-size: 20px;
+    }
 }
 
 @media (min-width: 825px) and (max-width: 1200px) {
     h2 {
-        font-size: 16px;
+        font-size: 14px;
     }
 }
 </style>
