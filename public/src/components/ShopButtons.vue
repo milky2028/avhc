@@ -1,11 +1,11 @@
 <template>
     <div id="shop-buttons-root">
-        <button id="add" class="bottom-button" :style="itemQuantity ? { justifyContent: 'space-between' } : { justifyContent: 'center' }">
+        <button id="add" class="bottom-button" v-if="route !== 'cart'" :style="itemQuantity ? { justifyContent: 'space-between' } : { justifyContent: 'center' }">
             <button @click="decrease()" :style="hideIfItemQuantityZero" class="mat-icon small-icon">remove_circle_outline</button>
             <span @click="increase()">{{ addButtonField }}</span>
             <button @click="increase()" :style="hideIfItemQuantityZero" class="mat-icon small-icon">add_circle</button>
         </button>
-        <button id="buy" class="bottom-button" @click="buyOrAddToCart()">
+        <button id="buy" class="bottom-button" :class="route === 'cart' ? 'no-add' : ''" @click="buyOrAddToCart()">
             <span><span :style="hideIfItemQuantityZero" class="mat-icon small-icon arrow-icon">keyboard_arrow_up</span></span>
             <span>{{ buyButtonField }}</span>
         </button>
@@ -51,6 +51,11 @@
     margin-top: -15px;
 }
 
+.no-add {
+    width: 100%;
+    border-left: none;
+}
+
 @media (min-width: 1025px) {
     #shop-buttons-root {
         width: 25vw;
@@ -79,6 +84,9 @@ import SubmitPayment from '@/exports/SubmitPayment';
 
 @Component
 export default class ShopButtons extends Vue {
+    private get route() {
+        return this.$route.name;
+    }
     private get itemQuantity() {
         return this.$store.state.cart.tempQuantity;
     }
