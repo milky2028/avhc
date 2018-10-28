@@ -23,6 +23,10 @@
     "shop-buttons"
 }
 
+shop-buttons {
+  grid-area: shop-buttons;
+}
+
 @media (min-width: 1025px) {
   #shop-root {
     height: $full-window;

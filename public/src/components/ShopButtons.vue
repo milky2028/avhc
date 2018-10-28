@@ -16,7 +16,6 @@
 @import '../styles/theme.scss';
 
 #shop-buttons-root {
-    grid-area: shop-buttons;
     align-self: end;
     width: 100vw;
     display: flex;
