@@ -21,7 +21,7 @@ const formatTimestamp = (date: Date): string => {
       hour: 'numeric',
       minute: 'numeric',
       second: 'numeric',
-      timeZone: 'America/Los_Angeles',
+      timeZone: 'America/Indianapolis',
       timeZoneName: 'short'
     });
     return dtf.format(date);
