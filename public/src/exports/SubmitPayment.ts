@@ -14,7 +14,7 @@ const getDate = (date: Date): string => {
       day: 'numeric',
     });
     return dtf.format(date);
-  }
+  };
 
 const getTimestamp = (date: Date): string => {
     const dtf = new Intl.DateTimeFormat('en-US', {
