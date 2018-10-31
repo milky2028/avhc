@@ -57,6 +57,7 @@ const SubmitPayment = async () => {
           });
 
         try {
+            await request.canMakePayment();
             const paymentResponse: PaymentResponse = await request.show();
             await paymentResponse.complete('success');
             const order = {
@@ -93,6 +94,7 @@ const SubmitPayment = async () => {
             router.push('/thank-you');
         } catch (e) {
             Sentry.captureException(e);
+            router.push('/checkout');
             throw e;
         }
     } else {
