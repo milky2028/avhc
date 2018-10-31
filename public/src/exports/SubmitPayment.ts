@@ -7,7 +7,7 @@ import EncryptData from './EncryptData';
 
 const store: any = Store;
 
-const getDate = (date: Date): string => {
+const formatDate = (date: Date): string => {
     const dtf = new Intl.DateTimeFormat('en-US', {
       year: 'numeric',
       month: 'numeric',
@@ -16,7 +16,7 @@ const getDate = (date: Date): string => {
     return dtf.format(date);
   };
 
-const getTimestamp = (date: Date): string => {
+const formatTimestamp = (date: Date): string => {
     const dtf = new Intl.DateTimeFormat('en-US', {
       hour: 'numeric',
       minute: 'numeric',
@@ -67,8 +67,8 @@ const SubmitPayment = async () => {
             const paymentResponse: PaymentResponse = await request.show();
             await paymentResponse.complete('success');
             const order = {
-                orderDay: getDate(new Date()),
-                orderTime: getTimestamp(new Date()),
+                orderDay: formatDate(new Date()),
+                orderTime: formatTimestamp(new Date()),
                 requestId: paymentResponse.requestId,
                 methodName: paymentResponse.methodName,
                 payerEmail: paymentResponse.payerEmail,
