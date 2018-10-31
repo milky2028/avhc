@@ -11,11 +11,10 @@
 #cart-root {
     display: grid;
     height: $full-window;
-    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
     grid-template-columns: 1fr;
     grid-template-areas:
-        "header"
-        "cart-items"
+        "items"
         "buttons"
 }
 

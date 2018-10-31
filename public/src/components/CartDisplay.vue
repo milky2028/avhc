@@ -2,6 +2,23 @@
     <div id="cart-display-root">
         <h2>Cart</h2>
         <div class="divider"></div>
+        <div>
+            <cart-item></cart-item>
+            <cart-item></cart-item>
+            <cart-item></cart-item>
+        </div>
+        <div id="tax" class="split-container">
+            <h2>Tax</h2>
+            <div>
+                <h2>10.70%</h2>
+                <h2>$69.99</h2>
+            </div>
+        </div>
+        <div id="divider-2" class="divider"></div>
+        <div class="split-container">
+            <h2>Total</h2>
+            <h2>$69.99</h2>
+        </div>
     </div>
 </template>
 
@@ -14,6 +31,9 @@
 
 h2 {
     text-align: left;
+    text-transform: none;
+    letter-spacing: normal;
+    font-size: 28px;
 }
 
 .divider {
@@ -22,12 +42,27 @@ h2 {
     height: 2px;
 }
 
+.split-container {
+    padding-right: 26px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+#tax {
+    padding: 26px 26px 0 0;
+}
 </style>
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator';
+import CartItem from '@/components/CartItem.vue';
 
-@Component
+@Component({
+    components: {
+        CartItem
+    }
+})
 export default class CartDisplay extends Vue {}
 </script>
 
