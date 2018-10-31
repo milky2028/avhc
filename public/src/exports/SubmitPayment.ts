@@ -7,19 +7,25 @@ import EncryptData from './EncryptData';
 
 const store: any = Store;
 
-const convertDate = (date: Date) => {
-    const year = date.getFullYear();
-    const month = (String(date.getMonth() + 1).length < 2 ) ? `0${date.getMonth() + 1}` : date.getMonth() + 1;
-    const day = String(date.getDate()).length < 2 ? `0${date.getDate()}` : date.getDate();
-    return `${month}/${day}/${year}`;
-  };
+const getDate = (date: Date): string => {
+    const dtf = new Intl.DateTimeFormat('en-US', {
+      year: 'numeric',
+      month: 'numeric',
+      day: 'numeric',
+    });
+    return dtf.format(date);
+  }
 
-const convertTimestamp = (date: Date) => {
-  const hours = (String(date.getHours()).length < 2) ? `0${date.getHours()}` : date.getHours();
-  const minutes = (String(date.getMinutes()).length < 2) ? `0${date.getMinutes()}` : date.getMinutes();
-  const seconds = (String(date.getSeconds()).length < 2) ? `0${date.getSeconds()}` : date.getSeconds();
-  return `${hours}:${minutes}:${seconds}`;
-};
+const getTimestamp = (date: Date): string => {
+    const dtf = new Intl.DateTimeFormat('en-US', {
+      hour: 'numeric',
+      minute: 'numeric',
+      second: 'numeric',
+      timeZone: 'America/Los_Angeles',
+      timeZoneName: 'short'
+    });
+    return dtf.format(date);
+  };
 
 const SubmitPayment = async () => {
     if ('PaymentRequest' in window) {
@@ -61,8 +67,8 @@ const SubmitPayment = async () => {
             const paymentResponse: PaymentResponse = await request.show();
             await paymentResponse.complete('success');
             const order = {
-                orderDay: convertDate(new Date()),
-                orderTime: convertTimestamp(new Date()),
+                orderDay: getDate(new Date()),
+                orderTime: getTimestamp(new Date()),
                 requestId: paymentResponse.requestId,
                 methodName: paymentResponse.methodName,
                 payerEmail: paymentResponse.payerEmail,
