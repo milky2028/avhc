@@ -95,7 +95,6 @@ const SubmitPayment = async () => {
         } catch (e) {
             Sentry.captureException(e);
             router.push('/checkout');
-            throw e;
         }
     } else {
         router.push('/checkout');
