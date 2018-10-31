@@ -1,11 +1,5 @@
 functions/node_modules
 functions/lib
 /public/node_modules
-/.firebase
-.firebase
-.firebase/hosting.cHVibGljL2Rpc3Q.cache
-.firebase/hosting.cHVibGljL2Rpc3Q.cache
-*.cache
-.firebase/hosting.cHVibGljL2Rpc3Q.cache
-.firebase/hosting.cHVibGljL2Rpc3Q.cache
-*.cache
+.firebase/hosting.*.cache
+.firebase/
