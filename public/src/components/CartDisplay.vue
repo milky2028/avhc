@@ -3,7 +3,7 @@
         <h2>Cart</h2>
         <div class="divider"></div>
         <div>
-            <cart-item v-for="item in cart" :key="item.id" :cartItem="item"></cart-item>
+            <cart-item v-for="item in cart" :key="item.product" :cartItem="item"></cart-item>
         </div>
         <div id="tax" class="split-container">
             <h2>Tax</h2>
