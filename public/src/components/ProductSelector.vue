@@ -154,6 +154,7 @@ export default class ProductSelector extends Vue {
 
     EventBus.$on('buyFlow', () => {
       const item: CartItem = {
+        id: this.createId(),
         price: (this.selectedProductSize) ?
           this.activeProduct.sizes[this.$store.state.products.selectedSizeIndex].price : this.activeProduct.price,
         quantity: this.$store.state.cart.tempQuantity,
@@ -169,6 +170,7 @@ export default class ProductSelector extends Vue {
 
     EventBus.$on('addToCart', () => {
       const item: CartItem = {
+        id: this.createId(),
         price: (this.selectedProductSize) ?
           this.activeProduct.sizes[this.$store.state.products.selectedSizeIndex].price : this.activeProduct.price,
         quantity: this.$store.state.cart.tempQuantity,
@@ -213,6 +215,17 @@ export default class ProductSelector extends Vue {
 
   private get sizes() {
     return this.activeProduct.sizes;
+  }
+
+  private createId() {
+    let text = '';
+    const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+
+    for (var i = 0; i < 9; i++) {
+      text += possible.charAt(Math.floor(Math.random() * possible.length));
+    }
+
+    return text;
   }
 }
 </script>
