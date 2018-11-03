@@ -55,9 +55,16 @@ select {
 </style>
 
 <script lang="ts">
-import { Vue, Component } from 'vue-property-decorator';
+import { Vue, Component, Prop } from 'vue-property-decorator';
+import Product from '@/types/Product';
 
 @Component
-export default class CartItem extends Vue {}
+export default class CartItem extends Vue {
+    @Prop() private cartItem!: Product;
+
+    private get currentProduct(): Product {
+        return this.$store.state.products.products.find((product: Product) => product.name === this.cartItem.product)
+    }
+}
 </script>
 

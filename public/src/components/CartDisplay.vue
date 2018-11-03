@@ -3,9 +3,7 @@
         <h2>Cart</h2>
         <div class="divider"></div>
         <div>
-            <cart-item></cart-item>
-            <cart-item></cart-item>
-            <cart-item></cart-item>
+            <cart-item v-for="item in cart" :key="item.id" :cartItem="item"></cart-item>
         </div>
         <div id="tax" class="split-container">
             <h2>Tax</h2>
@@ -63,6 +61,10 @@ import CartItem from '@/components/CartItem.vue';
         CartItem
     }
 })
-export default class CartDisplay extends Vue {}
+export default class CartDisplay extends Vue {
+    private get cart() {
+        return this.$store.state.cart.cart;
+    }
+}
 </script>
 
