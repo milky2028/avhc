@@ -221,7 +221,7 @@ export default class ProductSelector extends Vue {
     let text = '';
     const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 
-    for (const i = 0; i < 9; i++) {
+    for (let i = 0; i < 9; i++) {
       text += possible.charAt(Math.floor(Math.random() * possible.length));
     }
 
