@@ -65,7 +65,7 @@ export default class CartItem extends Vue {
     }
 
     private get currentProduct(): Product {
-        return this.$store.state.products.products.find((product: Product) => product.name === this.cartItem.product)
+        return this.$store.state.products.products.find((product: Product) => product.name === this.cartItem.product);
     }
 }
 </script>
