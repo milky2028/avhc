@@ -4,7 +4,7 @@
         <h3>{{ currentProduct.title }}</h3>
         <div id="quantity-container">
             <h3>Quantity</h3> 
-            <select v-model="selectedQuantity" @input="setQuantity($event)">
+            <select v-model="selectedQuantity" @input="setQuantity($event.target)">
                 <option v-for="option of options" :key="option">{{ option}}</option>
             </select>
             <h3 id="price">${{ priceDisplay }}</h3>
@@ -61,10 +61,10 @@ export default class CartItem extends Vue {
     private selectedQuantity = 0;
     private options = [...Array(25).keys()];
 
-    private setQuantity(event) {
+    private setQuantity(target: HTMLSelectElement) {
         const payload = {
             productName: this.currentProduct.name,
-            quantity: event.target.selectedIndex
+            quantity: target.selectedIndex
         };
         this.$store.commit('cart/setQuantity', payload);
     }
@@ -73,21 +73,21 @@ export default class CartItem extends Vue {
         this.selectedQuantity = this.cartItem.quantity!;
     }
 
-    get backgroundStyles() {
+    private get backgroundStyles() {
       return {
         backgroundImage: `url('${this.image.src}')`
       };
     }
 
-    get image() {
+    private get image() {
         return {
             src: require(`../assets/product-images/${this.currentProduct.images[0].src}.jpg`),
             alt: this.currentProduct.images[0].alt
         };
     }
 
-    get priceDisplay() {
-        return (this.currentProduct.price * this.selectedQuantity).toFixed(2);
+    public get priceDisplay() {
+        return (this.cartItem.price * this.selectedQuantity).toFixed(2);
     }
 
     private get currentProduct(): Product {
