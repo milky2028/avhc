@@ -3,19 +3,12 @@
         <h2>Cart</h2>
         <div class="divider"></div>
         <div>
-            <cart-item v-for="item in cart" :key="item.product" :cartItem="item"></cart-item>
-        </div>
-        <div id="tax" class="split-container">
-            <h2>Tax</h2>
-            <div>
-                <h2>10.70%</h2>
-                <h2>$69.99</h2>
-            </div>
+            <cart-item v-for="item in cart" :key="item.id" :cartItem="item"></cart-item>
         </div>
         <div id="divider-2" class="divider"></div>
         <div class="split-container">
-            <h2>Total</h2>
-            <h2>$69.99</h2>
+            <h2>Subtotal</h2>
+            <h2>${{ subtotal }}</h2>
         </div>
     </div>
 </template>
@@ -40,15 +33,15 @@ h2 {
     height: 2px;
 }
 
+#divider-2 {
+    margin-top: 26px;
+}
+
 .split-container {
     padding-right: 26px;
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
-}
-
-#tax {
-    padding: 26px 26px 0 0;
 }
 </style>
 
@@ -64,6 +57,10 @@ import CartItem from '@/components/CartItem.vue';
 export default class CartDisplay extends Vue {
     private get cart() {
         return this.$store.state.cart.cart;
+    }
+
+    private get subtotal() {
+        return (this.$store.getters['cart/subtotal']).toFixed(2);
     }
 }
 </script>

@@ -185,6 +185,10 @@ export default class ProductSelector extends Vue {
     });
   }
 
+  private beforeDestroy() {
+    EventBus.$off();
+  }
+
   private setProduct(event: InputEventTarget) {
     const clickValue: string = event.value;
     this.$store.commit('products/setActiveProductName', clickValue);

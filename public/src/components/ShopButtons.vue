@@ -105,15 +105,11 @@ export default class ShopButtons extends Vue {
     }
 
     private get addButtonField(): string | number {
-        if (this.itemQuantity < 1) {
-          return 'Add';
-        } else {
-            return this.itemQuantity;
-        }
+        return (this.itemQuantity < 1) ? 'Add' : this.itemQuantity;
     }
 
     private get buyButtonField(): string  {
-        return this.itemQuantity ? 'Cart' : 'Buy';
+        return (this.itemQuantity) ? 'Cart' : (this.route === 'cart') ? 'Checkout' : 'Buy';
     }
 
     private get hideIfItemQuantityZero(): { display: string } {

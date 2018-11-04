@@ -37,10 +37,10 @@ const CartModule: CartModule = {
                 return 0;
             }
         },
-        total(state: CartState): number {
+        subtotal(state: CartState): number {
             let total: number = 0;
             state.cart.forEach((item: CartItem) => {
-                total = 35; // total + (item.quantity * item.price);
+                total += (item.quantity * item.price);
             });
             return total;
         },
@@ -59,7 +59,13 @@ const CartModule: CartModule = {
             state.shippingOptions = payload;
         },
         addItemToCart(state: CartState, item: CartItem) {
-            state.cart.push(item);
+            const productsInCart = state.cart.map((productInCart: CartItem) => productInCart.product);
+            if (productsInCart.includes(item.product)) {
+                const duplicatedProduct = state.cart.find((cartItem) => cartItem.product === item.product)!;
+                duplicatedProduct.quantity += item.quantity;
+            } else {
+                state.cart.push(item);
+            }
         }
     }
 };
