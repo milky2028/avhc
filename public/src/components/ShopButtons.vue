@@ -86,6 +86,7 @@ export default class ShopButtons extends Vue {
     private get route() {
         return this.$route.name;
     }
+
     private get itemQuantity() {
         return this.$store.state.cart.tempQuantity;
     }

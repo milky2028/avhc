@@ -1,14 +1,14 @@
 <template>
     <div id="cart-display-root">
-        <h2>Cart</h2>
-        <div class="divider"></div>
+        <h2 :class="(isWhite) ? 'white-text' : ''">Cart</h2>
+        <div class="divider" :class="(isWhite) ? 'white-background' : ''"></div>
         <div>
             <cart-item v-for="item in cart" :key="item.id" :cartItem="item"></cart-item>
         </div>
-        <div id="divider-2" class="divider"></div>
+        <div id="divider-2" class="divider" :class="(isWhite) ? 'white-background' : ''"></div>
         <div class="split-container">
-            <h2>Subtotal</h2>
-            <h2>${{ subtotal }}</h2>
+            <h2 :class="(isWhite) ? 'white-text' : ''">Subtotal</h2>
+            <h2 :class="(isWhite) ? 'white-text' : ''">${{ subtotal }}</h2>
         </div>
     </div>
 </template>
@@ -43,6 +43,14 @@ h2 {
     justify-content: space-between;
     align-items: flex-end;
 }
+
+.white-text {
+    color: white;
+}
+
+.white-background {
+    background-color: white;
+}
 </style>
 
 <script lang="ts">
@@ -55,12 +63,20 @@ import CartItem from '@/components/CartItem.vue';
     }
 })
 export default class CartDisplay extends Vue {
+    private get route() {
+        return this.$route.name;
+    }
+
     private get cart() {
         return this.$store.state.cart.cart;
     }
 
     private get subtotal() {
         return (this.$store.getters['cart/subtotal']).toFixed(2);
+    }
+
+    private get isWhite() {
+        return (this.route === 'shop') ? true : false;
     }
 }
 </script>

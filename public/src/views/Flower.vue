@@ -1,7 +1,7 @@
 <template>
     <div id="flower-root">
         <product-expose class="expose" url="/shop/cbd-flower" src="solo.jpg" alt="CBD-Rich Hemp Flower in Isolation">
-            <h1 v-if="window.innerWidth < 825">Aspen Valley</h1>
+            <h1 class="display">Aspen Valley</h1>
             <h2>The Best CBD Flower on Planet Earth.</h2>
         </product-expose>
         <div id="second-section" class="section">
@@ -79,6 +79,10 @@
     min-height: 375px;
 }
 
+.display {
+    display: block;
+}
+
 @media (max-width: 340px) {
     .section {
         margin-top: 100px;
@@ -124,6 +128,10 @@
     h2 {
         font-size: 20px;
     }
+
+    .display {
+        display: none;
+    }
 }
 
 @media (min-width: 825px) and (max-width: 1200px) {
@@ -148,7 +156,10 @@ declare const window: Window;
     }
 })
 export default class Flower extends Vue {
-    private window = window;
+    private get windowInnerWidth() {
+        return window.innerWidth;
+    }
+
     private async beforeMount() {
         this.$store.commit('products/setProducts', await Products());
     }

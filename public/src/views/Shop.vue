@@ -1,6 +1,8 @@
 <template>
   <div id="shop-root">
-    <div id="sidebar"></div>
+    <div id="sidebar" class="display">
+      <cart-display></cart-display>
+    </div>
     <div id="main-container">
       <image-gallery></image-gallery>
       <product-selector></product-selector>
@@ -27,6 +29,10 @@ shop-buttons {
   grid-area: shop-buttons;
 }
 
+#sidebar {
+  display: none;
+}
+
 @media (min-width: 1025px) {
   #shop-root {
     height: $full-window;
@@ -44,6 +50,7 @@ shop-buttons {
   #sidebar {
     background-color: $primary;
     box-shadow: $standard-shadow;
+    display: block;
   }
 
   #main-container {
@@ -65,15 +72,21 @@ import ImageGallery from '@/components/ImageGallery.vue';
 import ShopButtons from '@/components/ShopButtons.vue';
 import ProductDescription from '@/components/ProductDescription.vue';
 import ProductSelector from '@/components/ProductSelector.vue';
+import CartDisplay from '@/components/CartDisplay.vue';
+
+declare const window: Window;
 
 @Component({
   components: {
     ImageGallery,
     ProductSelector,
     ProductDescription,
-    ShopButtons
+    ShopButtons,
+    CartDisplay
   }
 })
 
-export default class Shop extends Vue { }
+export default class Shop extends Vue {
+  private window = window;
+}
 </script>
