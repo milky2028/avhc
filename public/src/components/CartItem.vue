@@ -4,7 +4,7 @@
         <h3>{{ currentProduct.title }}</h3>
         <div id="quantity-container">
             <h3>Quantity</h3> 
-            <select v-model="selectedQuantity">
+            <select v-model="selectedQuantity" @input="setQuantity($event)">
                 <option v-for="option of options" :key="option">{{ option}}</option>
             </select>
             <h3 id="price">${{ priceDisplay }}</h3>
@@ -60,6 +60,14 @@ export default class CartItem extends Vue {
     @Prop() private cartItem!: Product;
     private selectedQuantity = 0;
     private options = [...Array(25).keys()];
+
+    private setQuantity(event) {
+        const payload = {
+            productName: this.currentProduct.name,
+            quantity: event.target.selectedIndex
+        };
+        this.$store.commit('cart/setQuantity', payload);
+    }
 
     private beforeMount() {
         this.selectedQuantity = this.cartItem.quantity!;
