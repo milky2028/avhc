@@ -5,7 +5,7 @@
             <span @click="increase()">{{ addButtonField }}</span>
             <button @click="increase()" :style="hideIfItemQuantityZero" class="mat-icon small-icon">add_circle</button>
         </button>
-        <button id="buy" class="bottom-button" :class="route === 'cart' ? 'no-add' : ''" @click="buyOrAddToCart()">
+        <button id="buy" class="bottom-button" :class="(cartPageStyles) ? 'no-add' : ''" :style="borderStyles" @click="buyOrAddToCart()">
             <span><span :style="hideIfItemQuantityZero" class="mat-icon small-icon arrow-icon">keyboard_arrow_up</span></span>
             <span>{{ buyButtonField }}</span>
         </button>
@@ -65,21 +65,25 @@
     .bottom-button {
         padding: 20px 26px;
     }
+    
+    .no-add {
+        border: 3px solid black;
+        border-width: 3px;
+        margin: 50px;
+    }
 
     #add {
         border-width: 3px 1.5px 3px 3px;
-    }
-
-    #buy {
-        border-width: 3px 3px 3px 1.5px;
     }
 }
 </style>
 
 <script lang="ts">
-import { Vue, Component } from 'vue-property-decorator';
+import { Vue, Component, Watch } from 'vue-property-decorator';
 import EventBus from '@/exports/EventBus';
 import SubmitPayment from '@/exports/SubmitPayment';
+
+declare const window: Window;
 
 @Component
 export default class ShopButtons extends Vue {
@@ -119,6 +123,19 @@ export default class ShopButtons extends Vue {
 
     private buyOrAddToCart(): void {
         (this.buyButtonField === 'Buy') ? EventBus.$emit('buyFlow') : EventBus.$emit('addToCart');
+    }
+
+    private get cartPageStyles() {
+        return (this.route === 'cart') ? true : false;
+    }
+
+    private get borderStyles() {
+        return (window.innerWidth < 1024) ? '' :
+        (this.route === 'cart') ? {
+            borderWidth: '3px'
+        } : {
+            borderWidth: '3px 3px 3px 1.5px'
+        };
     }
 }
 </script>

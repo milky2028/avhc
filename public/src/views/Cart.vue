@@ -1,7 +1,9 @@
 <template>
     <div id="cart-root">
-        <cart-display></cart-display>
-        <shop-buttons class="buy-button"></shop-buttons>
+        <div id="cart-container">
+            <cart-display class="cart-display"></cart-display>
+            <shop-buttons class="buy-button"></shop-buttons>
+        </div>
     </div>
 </template>
 
@@ -11,6 +13,10 @@
 #cart-root {
     display: grid;
     height: $full-window;
+}
+
+#cart-container {
+    display: grid;
     grid-template-rows: 1fr 1fr;
     grid-template-columns: 1fr;
     grid-template-areas:
@@ -26,6 +32,32 @@ cart-display {
     grid-area: buttons;
     align-self: end;
     justify-self: end;
+}
+
+@media (min-width: 1025px) {
+    #cart-root {
+        place-content: center;
+        background-image: url('../assets/intro.svg');
+        background-position: 10% 50%;
+        background-size: cover;
+    }
+
+    #cart-container {
+        overflow: auto;
+        width: 80vw;
+        background-color: white;
+        height: 70vh;
+        box-shadow: $standard-shadow;
+        grid-template-rows: 1fr;
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "top"
+            "description";
+    }
+
+    .cart-display {
+        grid-area: top;
+    }
 }
 </style>
 
