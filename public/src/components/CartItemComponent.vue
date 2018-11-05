@@ -82,14 +82,16 @@ import ColorShift from '@/mixins/ColorShift.vue';
 
 @Component
 export default class CartItemComponent extends Mixins(ColorShift) {
-    @Prop() private cartItem!: Product;
+    @Prop() private cartItem!: CartItem;
     private selectedQuantity = 0;
     private options = [...Array(25).keys()];
 
     // TODO: Find and set quantity by name, size, and strain
     private setQuantity(target: HTMLSelectElement) {
         const payload = {
-            productName: this.currentProduct.name,
+            productName: this.cartItem.product,
+            size: this.cartItem.size,
+            strain: this.cartItem.strain,
             quantity: target.selectedIndex
         };
         this.$store.commit('cart/setQuantity', payload);

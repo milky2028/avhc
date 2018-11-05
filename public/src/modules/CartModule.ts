@@ -17,6 +17,8 @@ interface CartModule {
 
 interface QuantityPayload {
     productName: string;
+    size: string;
+    strain: string;
     quantity: number;
 }
 
@@ -56,7 +58,9 @@ const CartModule: CartModule = {
             state.tempQuantity = 0;
         },
         setQuantity(state: CartState, payload: QuantityPayload) {
-            const cartItem = state.cart.find((item: CartItem) => item.product === payload.productName)!;
+            const cartItem = state.cart.find((item: CartItem) => {
+                return item.product === payload.productName && item.size === payload.size && item.strain === payload.strain;
+            })!;
             cartItem.quantity = payload.quantity;
         },
         setShippingOptions(state: CartState, payload: PaymentShippingOption[]) {
