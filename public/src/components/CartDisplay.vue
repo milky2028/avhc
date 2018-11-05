@@ -3,11 +3,11 @@
         <h2 v-if="cart.length < 1" id="empty-cart" :class="(isWhite) ? 'white-text' : ''">Your cart is empty.</h2>
         <div v-if="cart.length >= 1">
             <h2 :class="(isWhite) ? 'white-text' : ''">Cart</h2>
-            <div :class="(isWhite) ? 'white-background' : 'blackbackground'" class="divider"></div>
+            <div :class="(isWhite) ? 'white-background' : 'black-background'" class="divider"></div>
             <div>
                 <cart-item-component v-for="item in cart" :key="item.id" :cartItem="item"></cart-item-component>
             </div>
-            <div id="divider-2" class="divider" :class="(isWhite) ? 'white-background' : ''"></div>
+            <div id="divider-2" class="divider" :class="(isWhite) ? 'white-background' : 'black-background'"></div>
             <div class="split-container">
                 <h2 :class="(isWhite) ? 'white-text' : ''">Subtotal</h2>
                 <h2 :class="(isWhite) ? 'white-text' : ''">${{ subtotal }}</h2>
