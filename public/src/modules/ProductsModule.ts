@@ -20,6 +20,9 @@ const ProductsModule = {
     }
   },
   mutations: {
+    clearSizeIndex: (state: ProductState) => {
+      state.selectedSizeIndex = 0;
+    },
     setProducts: (state: ProductState, payload: Product[]) => {
       state.products = payload;
     },

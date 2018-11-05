@@ -63,8 +63,10 @@ const CartModule: CartModule = {
             state.shippingOptions = payload;
         },
         addItemToCart(state: CartState, item: CartItem) {
-            const productsInCart = state.cart.map((productInCart: CartItem) => productInCart.product);
-            if (productsInCart.includes(item.product)) {
+            const productsInCart = state.cart.map((productInCart) => productInCart.product);
+            const productSizesInCart = state.cart.map((productInCart) => productInCart.size);
+            const strainsInCart = state.cart.map((productInCart) => productInCart.strain);
+            if (productsInCart.includes(item.product) && productSizesInCart.includes(item.size) && strainsInCart.includes(item.strain)) {
                 const duplicatedProduct = state.cart.find((cartItem) => cartItem.product === item.product)!;
                 duplicatedProduct.quantity += item.quantity;
             } else {

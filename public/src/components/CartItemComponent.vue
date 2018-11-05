@@ -1,19 +1,21 @@
 <template>
     <div id="cart-item-root">
         <div id="cart-image" :name="image.alt" :style="backgroundStyles"></div>
-        <h3>{{ currentProduct.title }}</h3>
+        <router-link class="link" :to="`/shop/${cartItem.product}`"><h3 :class="(isWhite) ? 'white-text' : ''">{{ cartItem.size }} - {{ currentProduct.title }}</h3></router-link>
+        <h3 id="strain" :class="(isWhite) ? 'white-text' : ''">{{ currentStrainTitle }}</h3>
         <div id="quantity-container">
-            <h3>Quantity</h3> 
+            <h3 id="quantity-header" :class="(isWhite) ? 'white-text' : ''">Quantity</h3>
             <select v-model="selectedQuantity" @input="setQuantity($event.target)">
                 <option v-for="option of options" :key="option">{{ option}}</option>
             </select>
-            <h3 id="price">${{ priceDisplay }}</h3>
+            <h3 id="price" :class="(isWhite) ? 'white-text' : ''">${{ priceDisplay }}</h3>
         </div>
     </div>
 </template>
 
 <style lang="scss" scoped>
 @import '../styles/theme.scss';
+@import '../styles/color-shift.scss';
 
 #cart-item-root {
     font-family: $secondary-font;
@@ -22,21 +24,36 @@
     font-size: 22px;
     display: grid;
     grid-template-columns: 80px 1fr;
-    grid-template-rows: 30px 30px;
+    grid-template-rows: 30px 30px 30px;
     grid-template-areas:
         "image title"
+        "image strain"
         "image details"
 }
 
 #cart-image {
     width: 80px;
-    height: 60px;
+    height: 90px;
     background-position: 50% 50%;
     background-size: cover;
 }
 
+#strain {
+    grid-area: strain;
+}
+
+.link {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    color: $primary;
+}
+
 h3 {
     padding-left: 12px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
 }
 
 select {
@@ -49,14 +66,22 @@ select {
     width: 100%;
     justify-content: space-between;
 }
+
+#quantity-header {
+    padding-right: 12px;
+}
 </style>
 
 <script lang="ts">
-import { Vue, Component, Prop } from 'vue-property-decorator';
+import { Vue, Component, Prop, Mixins } from 'vue-property-decorator';
 import Product from '@/types/Product';
+import EventBus from '@/exports/EventBus';
+import Strain from '@/types/Strain';
+import CartItem from '@/types/CartItem';
+import ColorShift from '@/mixins/ColorShift.vue';
 
 @Component
-export default class CartItem extends Vue {
+export default class CartItemComponent extends Mixins(ColorShift) {
     @Prop() private cartItem!: Product;
     private selectedQuantity = 0;
     private options = [...Array(25).keys()];
@@ -70,6 +95,10 @@ export default class CartItem extends Vue {
     }
 
     private beforeMount() {
+        EventBus.$on('addToCart', () => {
+            this.selectedQuantity = this.cartItem.quantity!;
+        });
+
         this.selectedQuantity = this.cartItem.quantity!;
     }
 
@@ -92,6 +121,11 @@ export default class CartItem extends Vue {
 
     private get currentProduct(): Product {
         return this.$store.state.products.products.find((product: Product) => product.name === this.cartItem.product);
+    }
+
+    private get currentStrainTitle(): string {
+        return (this.currentProduct.strains.find((strain) => strain.name === this.cartItem.strain)) ?
+            this.currentProduct.strains.find((strain) => strain.name === this.cartItem.strain)!.title : 'Aspen Valley OG';
     }
 }
 </script>

@@ -40,7 +40,7 @@ shop-buttons {
     background-position: 10% 50%;
     background-size: cover;
     display: grid;
-    grid-template-columns: 23vw 1fr;
+    grid-template-columns: 25vw 1fr;
     grid-column-gap: 4vw;
     padding-right: 4vw;
     grid-template-areas:
@@ -51,6 +51,7 @@ shop-buttons {
     background-color: $primary;
     box-shadow: $standard-shadow;
     display: block;
+    overflow-y: auto; 
   }
 
   #main-container {

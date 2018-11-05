@@ -132,7 +132,7 @@ select {
 </style>
 
 <script lang='ts'>
-import { Vue, Component } from 'vue-property-decorator';
+import { Vue, Component, Watch } from 'vue-property-decorator';
 import EventBus from '@/exports/EventBus';
 import CartItem from '@/types/CartItem';
 import Products from '@/exports/Products';
@@ -147,26 +147,22 @@ export default class ProductSelector extends Vue {
   public selectedProductStrain = '';
   public selectedProductName = '';
 
+  @Watch('$route') private onRouteChange() {
+    this.selectedProductName = (this.$route.params.productName) ? this.$route.params.productName : '';
+    this.$store.commit('products/setActiveProductName', this.selectedProductName);
+    this.selectedProductSize = '';
+    this.selectedProductStrain = '';
+  }
+
   private async beforeMount() {
+    this.$store.commit('products/clearSizeIndex');
     this.selectedProductName = (this.$route.params.productName) ? this.$route.params.productName : '';
     this.$store.commit('products/setActiveProductName', this.selectedProductName);
     this.$store.commit('products/setProducts', await Products());
 
-    EventBus.$on('buyFlow', () => {
-      const item: CartItem = {
-        id: this.createId(),
-        price: (this.selectedProductSize) ?
-          this.activeProduct.sizes[this.$store.state.products.selectedSizeIndex].price : this.activeProduct.price,
-        quantity: this.$store.state.cart.tempQuantity,
-        product: this.activeProduct.name,
-        size: (this.selectedProductSize) ?
-          `${this.sizes[this.selectedProductSize].sizeValue}${this.sizes[0].measurement}` :
-          `${this.sizes[0].sizeValue}${this.sizes[0].measurement}`,
-        strain: (this.selectedProductStrain) ? this.selectedProductStrain : (this.strains) ? this.strains[0].name : ''
-      };
-      this.$store.commit('cart/addItemToCart', item);
-      this.$store.commit('cart/clearQuantity');
-    });
+    // EventBus.$on('buyFlow', () => {
+
+    // });
 
     EventBus.$on('addToCart', () => {
       const item: CartItem = {
@@ -192,6 +188,7 @@ export default class ProductSelector extends Vue {
   private setProduct(event: InputEventTarget) {
     const clickValue: string = event.value;
     this.$store.commit('products/setActiveProductName', clickValue);
+    this.$router.push(`/shop/${event.value}`);
     this.selectedProductSize = '';
     this.selectedProductStrain = '';
     return this.selectedProductName;
