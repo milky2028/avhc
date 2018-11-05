@@ -122,7 +122,11 @@ export default class ShopButtons extends Vue {
     }
 
     private buyOrAddToCart(): void {
-        (this.buyButtonField === 'Buy') ? EventBus.$emit('buyFlow') : EventBus.$emit('addToCart');
+        (this.buyButtonField === 'Buy') ?
+            EventBus.$emit('buyFlow') :
+        (this.buyButtonField === 'Checkout') ?
+            this.$router.push('/checkout') :
+            EventBus.$emit('addToCart');
     }
 
     private get cartPageStyles() {
