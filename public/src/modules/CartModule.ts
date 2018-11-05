@@ -76,6 +76,9 @@ const CartModule: CartModule = {
             } else {
                 state.cart.push(item);
             }
+        },
+        removeItemFromCart(state: CartState, id: string) {
+            state.cart = state.cart.filter((item) => item.id !== id);
         }
     }
 };

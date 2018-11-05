@@ -88,13 +88,17 @@ export default class CartItemComponent extends Mixins(ColorShift) {
 
     // TODO: Find and set quantity by name, size, and strain
     private setQuantity(target: HTMLSelectElement) {
-        const payload = {
+        if (target.selectedIndex === 0) {
+            this.$store.commit('cart/removeItemFromCart', this.cartItem.id);
+        } else {
+          const payload = {
             productName: this.cartItem.product,
             size: this.cartItem.size,
             strain: this.cartItem.strain,
             quantity: target.selectedIndex
-        };
-        this.$store.commit('cart/setQuantity', payload);
+          };
+          this.$store.commit('cart/setQuantity', payload);
+        }
     }
 
     private beforeMount() {
