@@ -86,6 +86,7 @@ export default class CartItemComponent extends Mixins(ColorShift) {
     private selectedQuantity = 0;
     private options = [...Array(25).keys()];
 
+    // TODO: Find and set quantity by name, size, and strain
     private setQuantity(target: HTMLSelectElement) {
         const payload = {
             productName: this.currentProduct.name,
