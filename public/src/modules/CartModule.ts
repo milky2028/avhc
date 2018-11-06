@@ -76,6 +76,9 @@ const CartModule: CartModule = {
             } else {
                 state.cart.push(item);
             }
+            const localStorage = window.localStorage;
+            localStorage.clear();
+            localStorage.setItem('cart', JSON.stringify(state.cart));
         },
         removeItemFromCart(state: CartState, id: string) {
             state.cart = state.cart.filter((item) => item.id !== id);
