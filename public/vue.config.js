@@ -9,17 +9,11 @@ module.exports = {
     loaderOptions: {
       sass: {
           includePaths: [
-              'node_modules', 'src', '.'
+              './node_modules', 'src', '.'
             ]
       }
     }
   },
-
-  baseUrl: undefined,
-  outputDir: undefined,
   assetsDir: 'assets',
-  runtimeCompiler: undefined,
   productionSourceMap: false,
-  parallel: undefined,
-  css: undefined
 }
