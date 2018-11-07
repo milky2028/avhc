@@ -88,8 +88,11 @@ export default class CartItemComponent extends Mixins(ColorShift) {
 
     // TODO: Find and set quantity by name, size, and strain
     private setQuantity(target: HTMLSelectElement) {
+        const localStorage = window.localStorage;
+        localStorage.clear();
         if (target.selectedIndex === 0) {
             this.$store.commit('cart/removeItemFromCart', this.cartItem.id);
+            localStorage.setItem('cart', JSON.stringify(this.$store.state.cart.cart));
         } else {
           const payload = {
             productName: this.cartItem.product,
@@ -98,6 +101,7 @@ export default class CartItemComponent extends Mixins(ColorShift) {
             quantity: target.selectedIndex
           };
           this.$store.commit('cart/setQuantity', payload);
+          localStorage.setItem('cart', JSON.stringify(this.$store.state.cart.cart));
         }
     }
 
