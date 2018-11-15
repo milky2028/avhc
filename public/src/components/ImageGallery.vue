@@ -72,7 +72,7 @@
         alt: this.activeProduct.images[0].alt
       } :
       {
-        src: require(`../assets/product-images/all-products.jpg`),
+        src: '',
         alt: `The entire Aspen Valley Prerolls products suite,
               including CBD Hemp Flower, Filtered CBD Hemp Cigarrettes, and Unfiltered CBD Joints`
       };
