@@ -1,9 +1,9 @@
 <template>
     <div id='product-selector-root'>
         <div class='select-wrapper'>
-            <p>Product</p>
+            <label for="product-select">Product</label>
             <div class='select-container'>
-                <select v-model='selectedProductName' @input='setProduct($event.target)'>
+                <select id="product-select" v-model='selectedProductName' @input='setProduct($event.target)'>
                 <option value='' disabled selected>Select a Product</option>
                 <option v-for='product of products' :key='product.name' :value='product.name'>{{ product.title }}</option>
             </select>
@@ -12,9 +12,9 @@
         </div>
         <div id='lower-select-container'>
         <div id='left-select' class='select-wrapper half-width' :style="sizeDynamicStyle">
-            <p>Size</p>
+            <label for="size-select">Size</label>
             <div class='select-container'>
-                <select class='lower-selector' v-model='selectedProductSize' @input="setProductSize($event.target)">
+                <select id="size-select" class='lower-selector' v-model='selectedProductSize' @input="setProductSize($event.target)">
                 <option value='' disabled selected>Size</option>
                 <option v-for='size of sizes' :key='size.index' :value='size.index'>{{ size.sizeValue }}{{ size.measurement }}</option>
             </select>
@@ -22,9 +22,9 @@
             </div>
         </div>
         <div id='right-select' v-if="strains.length > 0" class='select-wrapper half-width'>
-            <p>Strain</p>
+            <label for="strain-select">Strain</label>
             <div class='select-container strain'>
-                <select class='lower-selector' v-model='selectedProductStrain'>
+                <select id="strain-select" class='lower-selector' v-model='selectedProductStrain'>
                 <option value='' disabled selected>Strain</option>
                 <option v-for='strain of strains' :key='strain.name' :value='strain.name'>{{ strain.title }}</option>
             </select>
@@ -97,6 +97,7 @@ select {
 .arrow-icon {
   grid-area: main;
   justify-self: end;
+  align-self: center;
 }
 
 @media (min-width: 1025px) {
@@ -154,7 +155,7 @@ export default class ProductSelector extends Vue {
     this.selectedProductStrain = '';
   }
 
-  private async beforeMount() {
+  private async beforeCreate() {
     this.$store.commit('products/clearSizeIndex');
     this.selectedProductName = (this.$route.params.productName) ? this.$route.params.productName : '';
     this.$store.commit('products/setActiveProductName', this.selectedProductName);

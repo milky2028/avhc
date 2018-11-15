@@ -1,7 +1,8 @@
 <template>
   <div id="checkout-root">
     <div id="checkout-container">
-        <textfield></textfield>
+      <av-textfield class="positions" type="email" label="Email" :required="true" autocomplete="email"></av-textfield>
+      <shipping-form formHeader="Shipping Address"></shipping-form>
     </div>
   </div>
 </template>
@@ -14,6 +15,14 @@
   height: $full-window;
 }
 
+#checkout-container {
+  padding: 26px 0 26px 26px;
+}
+
+.positions {
+  margin: 0 26px 26px 0;
+}
+
 @media (min-width: 1025px) {
     #checkout-root {
         place-content: center;
@@ -23,6 +32,7 @@
     }
 
     #checkout-container {
+        padding: 25px;
         overflow: auto;
         width: 80vw;
         background-color: white;
@@ -34,11 +44,13 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import Textfield from '@/components/Textfield.vue';
+import ShippingForm from '@/components/ShippingForm.vue';
+import AvTextfield from '@/components/AvTextfield.vue';
 
 @Component({
   components: {
-    Textfield
+    ShippingForm,
+    AvTextfield
   }
 })
 export default class Checkout extends Vue {}

@@ -6,12 +6,12 @@
 </template>
 
 <style lang="scss">
-  @import './styles/reset.scss';
+@import '@/styles/reset.scss';
 
-  #app {
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
+#app {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 </style>
 
 <script lang="ts">
