@@ -1,7 +1,17 @@
 <template>
     <div class="textfield-root">
         <label for="textfield">{{ label }}</label>
-        <input id="textfield" :type="type" :placeholder="label" :autocomplete="autocomplete" :required="required">
+        <input
+            id="textfield"
+            :type="type"
+            :placeholder="label"
+            :autocomplete="autocomplete"
+            :pattern="pattern"
+            :required="required"
+            list="list">
+        <datalist v-if="datalist" id="list">
+            <option v-for="item of datalist" :key="item[itemKey]">{{ item[itemTitle] }}</option>
+        </datalist>
     </div>
 </template>
 
@@ -58,5 +68,11 @@ export default class AvTextfield extends Vue {
     @Prop(String) private type!: string;
     @Prop(String) private autocomplete!: string;
     @Prop(Boolean) private required!: boolean;
+    @Prop(String) private pattern!: string;
+    @Prop(Number) private maxLength!: number;
+    @Prop(Number) private minLength!: number;
+    @Prop(Array) private datalist!: any[];
+    @Prop(String) private itemKey!: string;
+    @Prop(String) private itemTitle!: string;
 }
 </script>

@@ -2,12 +2,47 @@
     <form autocomplete="on">
         <h2>{{ formHeader }}</h2>
         <div class="divider"></div>
-        <av-textfield class="padding-right" type="text" label="Name" autocomplete="name" :required="true"></av-textfield>
-        <av-textfield class="padding-right" type="text" label="Address" autocomplete="shipping street-address" :required="true"></av-textfield>
-        <av-textfield class="padding-right" type="text" label="City" autocomplete="shipping locality" :required="true"></av-textfield>
-        <!-- <generic-selector class="padding-right" label="State" :options="stateTaxes" titleKey="abbr" valueKey="abbr"></generic-selector> -->
-        <av-textfield class="padding-right" type="text" label="State/Province/Region" autocomplete="shipping region" :required="true"></av-textfield>
-        <generic-selector class="padding-right" label="Shipping Option" :options="shippingOptions" titleKey="label" valueKey="id"></generic-selector>
+        <av-textfield
+            class="padding-right"
+            type="text"
+            label="Name"
+            autocomplete="name"
+            :required="true"></av-textfield>
+        <av-textfield
+            class="padding-right"
+            type="text" label="Address"
+            autocomplete="shipping street-address"
+            :required="true"></av-textfield>
+        <av-textfield
+            class="padding-right"
+            type="text"
+            label="City"
+            autocomplete="shipping address-level2"
+            :required="true"></av-textfield>
+        <av-textfield
+            class="padding-right"
+            type="text"
+            label="State/Province/Region"
+            autocomplete="shipping address-level1"
+            :required="true"
+            :datalist="stateTaxes"
+            itemKey="state"
+            itemTitle="abbr"></av-textfield>
+        <av-textfield
+            class="padding-right"
+            type="number"
+            label="Zip Code"
+            autocomplete="shipping postal-code"
+            :required="true"
+            pattern="^\d{5,6}(?:[-\s]\d{4})?$"
+            :maxLength="6"
+            :minLength="6"></av-textfield>
+        <generic-selector
+            class="padding-right"
+            label="Shipping Option"
+            :options="shippingOptions"
+            titleKey="label"
+            valueKey="id"></generic-selector>
     </form>
 </template>
 
