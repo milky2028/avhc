@@ -69,7 +69,7 @@
     .no-add {
         border: 3px solid black;
         border-width: 3px;
-        margin: 50px;
+        // margin: 50px;
     }
 
     #add {

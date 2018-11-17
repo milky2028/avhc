@@ -93,6 +93,11 @@ h2 {
     margin-right: 26px
 }
 
+.button-container {
+  margin: 0;
+  padding: 0;
+}
+
 @media (min-width: 1025px) {
     #checkout-root {
         place-content: center;

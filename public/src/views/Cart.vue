@@ -42,6 +42,7 @@ cart-display {
     }
 
     #cart-container {
+        padding: 26px;
         overflow: auto;
         width: 80vw;
         background-color: white;
