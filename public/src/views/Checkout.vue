@@ -1,6 +1,7 @@
 <template>
   <div id="checkout-root">
     <div id="checkout-container">
+      <div class="non-button-container">
       <form>
         <av-textfield class="positions" type="email" label="Email" :required="true" autocomplete="email" fieldId="email"></av-textfield>
       </form>
@@ -46,6 +47,7 @@
       <form>
         <av-textfield class="positions" type="password" label="Password" :required="true" autocomplete="new-password" fieldId="password"></av-textfield>
       </form>
+      </div>
       <div class="button-container">
         <shop-buttons class="buy-button" :showAddButton="false" buyButtonText="Buy"></shop-buttons>
       </div>
@@ -75,7 +77,7 @@ h2 {
   height: $full-window;
 }
 
-#checkout-container {
+.non-button-container {
   padding: 26px 0 26px 26px;
 }
 
