@@ -2,7 +2,7 @@
     <div id="cart-root">
         <div id="cart-container">
             <cart-display class="cart-display"></cart-display>
-            <shop-buttons class="buy-button"></shop-buttons>
+            <shop-buttons class="buy-button" :showAddButton="false" buyButtonText="Checkout"></shop-buttons>
         </div>
     </div>
 </template>

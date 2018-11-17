@@ -1,11 +1,11 @@
 <template>
     <div id="shop-buttons-root">
-        <button id="add" class="bottom-button" v-if="route !== 'cart'" :style="itemQuantity ? { justifyContent: 'space-between' } : { justifyContent: 'center' }">
+        <button id="add" class="bottom-button" v-if="showAddButton" :style="itemQuantity ? { justifyContent: 'space-between' } : { justifyContent: 'center' }">
             <button @click="decrease()" :style="hideIfItemQuantityZero" class="mat-icon small-icon">remove_circle_outline</button>
             <span @click="increase()">{{ addButtonField }}</span>
             <button @click="increase()" :style="hideIfItemQuantityZero" class="mat-icon small-icon">add_circle</button>
         </button>
-        <button id="buy" class="bottom-button" :class="(cartPageStyles) ? 'no-add' : ''" :style="borderStyles" @click="buyOrAddToCart()">
+        <button id="buy" class="bottom-button" :class="(singleButtonStyles) ? 'no-add' : ''" :style="borderStyles" @click="buyOrAddToCart()">
             <span><span :style="hideIfItemQuantityZero" class="mat-icon small-icon arrow-icon">keyboard_arrow_up</span></span>
             <span>{{ buyButtonField }}</span>
         </button>
@@ -79,7 +79,7 @@
 </style>
 
 <script lang="ts">
-import { Vue, Component, Watch } from 'vue-property-decorator';
+import { Vue, Component, Watch, Prop } from 'vue-property-decorator';
 import EventBus from '@/exports/EventBus';
 import SubmitPayment from '@/exports/SubmitPayment';
 
@@ -87,6 +87,8 @@ declare const window: Window;
 
 @Component
 export default class ShopButtons extends Vue {
+    @Prop(Boolean) private showAddButton!: boolean;
+    @Prop(String) buyButtonText!: string;
     private get route() {
         return this.$route.name;
     }
@@ -114,7 +116,7 @@ export default class ShopButtons extends Vue {
     }
 
     private get buyButtonField(): string  {
-        return (this.itemQuantity) ? 'Cart' : (this.route === 'cart') ? 'Checkout' : 'Buy';
+        return (this.buyButtonText) ? this.buyButtonText : (this.itemQuantity) ? 'Cart' : 'Buy';
     }
 
     private get hideIfItemQuantityZero(): { display: string } {
@@ -125,17 +127,16 @@ export default class ShopButtons extends Vue {
         (this.buyButtonField === 'Buy') ?
             EventBus.$emit('buyFlow') :
         (this.buyButtonField === 'Checkout') ?
-            this.$router.push('/checkout') :
-            EventBus.$emit('addToCart');
+            this.$router.push('/checkout') : EventBus.$emit('addToCart');
     }
 
-    private get cartPageStyles() {
-        return (this.route === 'cart') ? true : false;
+    private get singleButtonStyles() {
+        return (!this.showAddButton) ? true : false;
     }
 
     private get borderStyles() {
         return (window.innerWidth < 1024) ? '' :
-        (this.route === 'cart') ? {
+        (this.singleButtonStyles) ? {
             borderWidth: '3px'
         } : {
             borderWidth: '3px 3px 3px 1.5px'

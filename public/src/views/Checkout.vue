@@ -13,18 +13,41 @@
       <form>
         <h2>Billing Info</h2>
         <div class="divider"></div>
-        <av-textfield class="positions" type="text" label="Name on Card" :required="true" autocomplete="name" fieldId="nameOnCard"></av-textfield>
-        <av-textfield class="positions" type="month" label="Expiration Date" :required="true"></av-textfield>
-        <av-textfield class="positions" type="text" label="Coupon Code" :required="true"></av-textfield>
+        <av-textfield class="positions" type="text" label="Name on Card" :required="true" autocomplete="cc-name" fieldId="nameOnCard"></av-textfield>
+        <av-textfield
+          fieldId="cardNumber"
+          class="positions"
+          type="number"
+          label="Card Number"
+          :required="true"
+          autocomplete="cc-number"
+          pattern="^(?:4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|6(?:011|5[0-9]{2})[0-9]{12}|(?:2131|1800|35\d{3})\d{11})$"></av-textfield>
+        <av-textfield
+          fieldId="cardExpiration"
+          class="positions"
+          type="month"
+          label="Expiration Date"
+          :required="true"></av-textfield>
+        <av-textfield
+          fieldId="cvv"
+          class="positions"
+          type="number"
+          label="CVV"
+          :required="true"
+          autocomplete="cc-csc"
+          :minLength="3"
+          :maxLength="4"></av-textfield>
+        <av-textfield class="positions" type="text" label="Coupon Code"></av-textfield>
       </form>
       <div class="switch-container padding-right">
         <p>Create an account?</p>
         <av-switch fieldId="createAccount"></av-switch>
       </div>
       <form>
-        <av-textfield class="positions" type="password" label="Password" :required="true" autocomplete="password" fieldId="password"></av-textfield>
+        <av-textfield class="positions" type="password" label="Password" :required="true" autocomplete="new-password" fieldId="password"></av-textfield>
       </form>
     </div>
+    <shop-buttons :showAddButton="false" buyButtonText="Buy"></shop-buttons>
   </div>
 </template>
 
@@ -92,12 +115,14 @@ import { Component, Vue } from 'vue-property-decorator';
 import ShippingForm from '@/components/ShippingForm.vue';
 import AvTextfield from '@/components/AvTextfield.vue';
 import AvSwitch from '@/components/AvSwitch.vue';
+import ShopButtons from '@/components/ShopButtons.vue';
 
 @Component({
   components: {
     ShippingForm,
     AvTextfield,
-    AvSwitch
+    AvSwitch,
+    ShopButtons
   }
 })
 export default class Checkout extends Vue {}

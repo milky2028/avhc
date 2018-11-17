@@ -7,7 +7,7 @@
       <image-gallery></image-gallery>
       <product-selector></product-selector>
       <product-description></product-description>
-      <shop-buttons></shop-buttons>
+      <shop-buttons :showAddButton="true"></shop-buttons>
     </div>
   </div>
 </template>
