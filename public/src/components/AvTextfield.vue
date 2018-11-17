@@ -1,9 +1,10 @@
 <template>
     <div class="textfield-root">
-        <label for="textfield">{{ label }}</label>
+        <label :for="fieldId">{{ label }}</label>
         <input
-            id="textfield"
+            :id="fieldId"
             :type="type"
+            :style="(type === 'month') ? { width: 'calc(100% - 26px)'} : ''"
             :placeholder="label"
             :autocomplete="autocomplete"
             :pattern="pattern"
@@ -64,6 +65,7 @@ import { Vue, Component, Prop } from 'vue-property-decorator';
 
 @Component
 export default class AvTextfield extends Vue {
+    @Prop(String) private fieldId!: string;
     @Prop(String) private label!: string;
     @Prop(String) private type!: string;
     @Prop(String) private autocomplete!: string;

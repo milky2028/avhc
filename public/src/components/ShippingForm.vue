@@ -3,23 +3,27 @@
         <h2>{{ formHeader }} Address</h2>
         <div class="divider"></div>
         <av-textfield
+            :fieldId="`${formHeader}Name`"
             class="padding-right"
             type="text"
             label="Name"
             autocomplete="name"
             :required="true"></av-textfield>
         <av-textfield
+            :fieldId="`${formHeader}Address`"
             class="padding-right"
             type="text" label="Address"
             autocomplete="shipping street-address"
             :required="true"></av-textfield>
         <av-textfield
+            :fieldId="`${formHeader}City`"
             class="padding-right"
             type="text"
             label="City"
             autocomplete="shipping address-level2"
             :required="true"></av-textfield>
         <av-textfield
+            :fieldId="`${formHeader}State`"
             class="padding-right"
             type="text"
             label="State/Province/Region"
@@ -29,6 +33,7 @@
             itemKey="state"
             itemTitle="abbr"></av-textfield>
         <av-textfield
+            :fieldId="`${formHeader}Zip`"
             class="padding-right"
             type="number"
             label="Zip Code"
@@ -38,18 +43,22 @@
             :maxLength="6"
             :minLength="6"></av-textfield>
         <av-textfield
+            :fieldId="`${formHeader}Country`"
             class="padding-right"
             type="text"
             label="Country"
             autocomplete="shipping country"
             :required="true"></av-textfield>
         <av-textfield
+            v-if="formHeader === 'Shipping'"
+            :fieldId="`${formHeader}Phone`"
             class="padding-right"
             type="number"
             label="Phone Number"
             autocomplete="tel"></av-textfield>
         <generic-selector
             v-if="formHeader === 'Shipping'"
+            fieldId="shippingSelector"
             class="padding-right"
             label="Shipping Option"
             :options="shippingOptions"
@@ -60,6 +69,9 @@
 
 <style lang="scss" scoped>
 @import '@/styles/theme.scss';
+form {
+    margin-bottom: 26px;
+}
 
 h2 {
     text-align: left;
