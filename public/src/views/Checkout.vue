@@ -23,12 +23,20 @@
           :required="true"
           autocomplete="cc-number"
           pattern="^(?:4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|6(?:011|5[0-9]{2})[0-9]{12}|(?:2131|1800|35\d{3})\d{11})$"></av-textfield>
-        <av-textfield
-          fieldId="cardExpiration"
-          class="positions"
-          type="month"
-          label="Expiration Date"
-          :required="true"></av-textfield>
+        <generic-selector
+          fieldId="monthSelector"
+          class="padding-right"
+          label="Expiration Month"
+          :options="months"
+          titleKey="abbr"
+          valueKey="abbr"></generic-selector>
+        <generic-selector
+          fieldId="yearSelector"
+          class="padding-right"
+          label="Expiration Year"
+          :options="years"
+          titleKey="year"
+          valueKey="year"></generic-selector>
         <av-textfield
           fieldId="cvv"
           class="positions"
@@ -135,14 +143,49 @@ import ShippingForm from '@/components/ShippingForm.vue';
 import AvTextfield from '@/components/AvTextfield.vue';
 import AvSwitch from '@/components/AvSwitch.vue';
 import ShopButtons from '@/components/ShopButtons.vue';
+import GenericSelector from '@/components/GenericSelector.vue';
 
 @Component({
   components: {
     ShippingForm,
     AvTextfield,
     AvSwitch,
-    ShopButtons
+    ShopButtons,
+    GenericSelector
   }
 })
-export default class Checkout extends Vue {}
+export default class Checkout extends Vue {
+  public months = [
+    { month: 'January', abbr: 'Jan' },
+    { month: 'February', abbr: 'Feb' },
+    { month: 'March', abbr: 'Mar' },
+    { month: 'April', abbr: 'Apr' },
+    { month: 'May', abbr: 'May' },
+    { month: 'June', abbr: 'June' },
+    { month: 'July', abbr: 'July' },
+    { month: 'August', abbr: 'Aug' },
+    { month: 'September', abbr: 'Sept' },
+    { month: 'October', abbr: 'Oct' },
+    { month: 'November', abbr: 'Nov' },
+    { month: 'December', abbr: 'Dec' }
+  ];
+
+  public years = [
+    { year: 2018 },
+    { year: 2019 },
+    { year: 2020 },
+    { year: 2021 },
+    { year: 2022 },
+    { year: 2023 },
+    { year: 2024 },
+    { year: 2025 },
+    { year: 2026 },
+    { year: 2027 },
+    { year: 2028 },
+    { year: 2029 },
+    { year: 2030 },
+    { year: 2031 },
+    { year: 2032 }
+  ]
+}
 </script>

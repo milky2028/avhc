@@ -7,7 +7,6 @@
             :class="(dirty) ? 'dirty' : ''"
             :id="fieldId"
             :type="type"
-            :style="(type === 'month') ? { width: 'calc(100% - 26px)', padding: '17px 12px' } : ''"
             :placeholder="label"
             :autocomplete="autocomplete"
             :pattern="pattern"
