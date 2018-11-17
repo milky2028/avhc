@@ -1,6 +1,6 @@
 <template>
     <form autocomplete="on">
-        <h2>{{ formHeader }}</h2>
+        <h2>{{ formHeader }} Address</h2>
         <div class="divider"></div>
         <av-textfield
             class="padding-right"
@@ -37,7 +37,19 @@
             pattern="^\d{5,6}(?:[-\s]\d{4})?$"
             :maxLength="6"
             :minLength="6"></av-textfield>
+        <av-textfield
+            class="padding-right"
+            type="text"
+            label="Country"
+            autocomplete="shipping country"
+            :required="true"></av-textfield>
+        <av-textfield
+            class="padding-right"
+            type="number"
+            label="Phone Number"
+            autocomplete="tel"></av-textfield>
         <generic-selector
+            v-if="formHeader === 'Shipping'"
             class="padding-right"
             label="Shipping Option"
             :options="shippingOptions"

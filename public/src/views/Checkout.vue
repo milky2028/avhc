@@ -2,7 +2,7 @@
   <div id="checkout-root">
     <div id="checkout-container">
       <av-textfield class="positions" type="email" label="Email" :required="true" autocomplete="email"></av-textfield>
-      <shipping-form formHeader="Shipping Address"></shipping-form>
+      <shipping-form formHeader="Shipping"></shipping-form>
     </div>
   </div>
 </template>

@@ -8,7 +8,7 @@
             :autocomplete="autocomplete"
             :pattern="pattern"
             :required="required"
-            list="list">
+            :list="(datalist) ? 'list' : ''">
         <datalist v-if="datalist" id="list">
             <option v-for="item of datalist" :key="item[itemKey]">{{ item[itemTitle] }}</option>
         </datalist>
