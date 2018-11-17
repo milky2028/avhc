@@ -186,6 +186,6 @@ export default class Checkout extends Vue {
     { year: 2030 },
     { year: 2031 },
     { year: 2032 }
-  ]
+  ];
 }
 </script>
