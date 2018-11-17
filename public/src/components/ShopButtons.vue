@@ -88,11 +88,7 @@ declare const window: Window;
 @Component
 export default class ShopButtons extends Vue {
     @Prop(Boolean) private showAddButton!: boolean;
-    @Prop(String) buyButtonText!: string;
-    private get route() {
-        return this.$route.name;
-    }
-
+    @Prop(String) private buyButtonText!: string;
     private get itemQuantity() {
         return this.$store.state.cart.tempQuantity;
     }
