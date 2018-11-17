@@ -2,13 +2,18 @@
     <div class="textfield-root">
         <label :for="fieldId">{{ label }}</label>
         <input
+            @input="$emit('dirty', true)"
+            @blur="$emit('dirty', true)"
+            :class="(dirty) ? 'dirty' : ''"
             :id="fieldId"
             :type="type"
-            :style="(type === 'month') ? { width: 'calc(100% - 26px)'} : ''"
+            :style="(type === 'month') ? { width: 'calc(100% - 26px)', padding: '17px 12px' } : ''"
             :placeholder="label"
             :autocomplete="autocomplete"
             :pattern="pattern"
             :required="required"
+            :minlength="minLength"
+            :maxlength="maxLength"
             :list="(datalist) ? 'list' : ''">
         <datalist v-if="datalist" id="list">
             <option v-for="item of datalist" :key="item[itemKey]">{{ item[itemTitle] }}</option>
@@ -39,25 +44,15 @@ input {
     -webkit-tap-highlight-color: transparent;
 }
 
-input:required {
-  border-color: $primary;
+input.dirty:not(:focus):invalid {
+  border-color: #fc5316;
 }
 
-// input:required:invalid {
-//   border-color: red;
-// }
-
-// input:required:invalid {
-//   border-color: red;
-// }
-
-// input:valid {
-//   border: 2px solid red;
-// }
-
-// input:optional {
-//   border: 2px solid red;
-// }
+@media (min-width: 1025px) {
+    .textfield-root {
+        width: 280px;
+    }
+}
 </style>
 
 <script lang="ts">
@@ -65,16 +60,22 @@ import { Vue, Component, Prop } from 'vue-property-decorator';
 
 @Component
 export default class AvTextfield extends Vue {
-    @Prop(String) private fieldId!: string;
-    @Prop(String) private label!: string;
-    @Prop(String) private type!: string;
-    @Prop(String) private autocomplete!: string;
-    @Prop(Boolean) private required!: boolean;
-    @Prop(String) private pattern!: string;
-    @Prop(Number) private maxLength!: number;
-    @Prop(Number) private minLength!: number;
-    @Prop(Array) private datalist!: any[];
-    @Prop(String) private itemKey!: string;
-    @Prop(String) private itemTitle!: string;
+    @Prop(String) public fieldId!: string;
+    @Prop(String) public label!: string;
+    @Prop(String) public type!: string;
+    @Prop(String) public autocomplete!: string;
+    @Prop(Boolean) public required!: boolean;
+    @Prop(String) public pattern!: string;
+    @Prop(Number) public maxLength!: number;
+    @Prop(Number) public minLength!: number;
+    @Prop(Array) public datalist!: any[];
+    @Prop(String) public itemKey!: string;
+    @Prop(String) public itemTitle!: string;
+
+    private dirty: boolean = false;
+
+    private beforeCreate() {
+        this.$on('dirty', (event: boolean) => this.dirty = event);
+    }
 }
 </script>

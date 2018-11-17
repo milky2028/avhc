@@ -14,7 +14,9 @@
 <style lang='scss' scoped>
 @import '../styles/theme.scss';
 .selector-root {
-    margin-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 16px;
 }
 
 label {
@@ -25,7 +27,7 @@ label {
 
 select {
   font-family: $secondary-font;
-  padding: 20px 12px;
+  padding: 21.5px 12px;
   border: 2px solid $primary;
   border-radius: 5px;
   grid-area: main;
@@ -39,7 +41,6 @@ select {
 }
 
 .select-container {
-  margin-top: 5px;
   width: 100%;
   display: grid;
   grid-template-areas: 'main';
@@ -56,6 +57,7 @@ select {
   .selector-root {
     grid-area: image;
     align-self: end;
+    width: 280px;
   }
 
   .select-wrapper {

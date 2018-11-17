@@ -1,7 +1,8 @@
 <template>
+<div>
+    <h2>{{ formHeader }} Address</h2>
+    <div class="divider"></div>
     <form autocomplete="on">
-        <h2>{{ formHeader }} Address</h2>
-        <div class="divider"></div>
         <av-textfield
             :fieldId="`${formHeader}Name`"
             class="padding-right"
@@ -39,9 +40,7 @@
             label="Zip Code"
             autocomplete="shipping postal-code"
             :required="true"
-            pattern="^\d{5,6}(?:[-\s]\d{4})?$"
-            :maxLength="6"
-            :minLength="6"></av-textfield>
+            pattern="^\d{5,6}(?:[-\s]\d{4})?$"></av-textfield>
         <av-textfield
             :fieldId="`${formHeader}Country`"
             class="padding-right"
@@ -65,6 +64,7 @@
             titleKey="label"
             valueKey="id"></generic-selector>
     </form>
+</div>
 </template>
 
 <style lang="scss" scoped>
@@ -89,6 +89,13 @@ h2 {
 
 .padding-right {
     margin-right: 26px
+}
+
+@media (min-width: 1025px) {
+    form {
+        display: flex;
+        flex-wrap: wrap;
+    }
 }
 </style>
 

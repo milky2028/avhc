@@ -10,9 +10,9 @@
         <av-switch fieldId="billingVsShipping"></av-switch>
       </div>
       <shipping-form formHeader="Billing"></shipping-form>
+      <h2>Billing Info</h2>
+      <div class="divider"></div>
       <form>
-        <h2>Billing Info</h2>
-        <div class="divider"></div>
         <av-textfield class="positions" type="text" label="Name on Card" :required="true" autocomplete="cc-name" fieldId="nameOnCard"></av-textfield>
         <av-textfield
           fieldId="cardNumber"
@@ -46,8 +46,10 @@
       <form>
         <av-textfield class="positions" type="password" label="Password" :required="true" autocomplete="new-password" fieldId="password"></av-textfield>
       </form>
+      <div class="button-container">
+        <shop-buttons class="buy-button" :showAddButton="false" buyButtonText="Buy"></shop-buttons>
+      </div>
     </div>
-    <shop-buttons :showAddButton="false" buyButtonText="Buy"></shop-buttons>
   </div>
 </template>
 
@@ -100,12 +102,22 @@ h2 {
     }
 
     #checkout-container {
-        padding: 25px;
+        padding: 26px;
         overflow: auto;
         width: 80vw;
         background-color: white;
         height: 70vh;
         box-shadow: $standard-shadow;
+    }
+
+    form {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .button-container {
+      display: flex;
+      justify-content: flex-end;
     }
 }
 </style>
