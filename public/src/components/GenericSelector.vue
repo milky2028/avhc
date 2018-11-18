@@ -2,7 +2,7 @@
     <div class='selector-root'>
         <label>{{ label }}</label>
         <div class='select-container'>
-            <select :id="fieldId">
+            <select :id="fieldId" @input="onInput($event.target)">
             <option value='' disabled selected>Select a {{ label }}</option>
             <option v-for='option of options' :key='option[valueKey]' :value='option[valueKey]'>{{ option[titleKey] }}</option>
         </select>
@@ -72,6 +72,10 @@ import EventBus from '@/exports/EventBus';
 import CartItem from '@/types/CartItem';
 import Products from '@/exports/Products';
 
+interface InputEventTarget extends EventTarget {
+  value: any;
+}
+
 @Component
 export default class GenerticSelector extends Vue {
   @Prop(String) private fieldId!: string;
@@ -79,5 +83,14 @@ export default class GenerticSelector extends Vue {
   @Prop(Array) private options!: any[];
   @Prop(String) private valueKey!: string;
   @Prop(String) private titleKey!: string;
+
+  private onInput(event: InputEventTarget) {
+    this.$emit('dirty', true);
+    const payload = {
+        key: this.fieldId,
+        value: event.value
+    };
+    this.$store.commit('order/setOrderItem', payload);
+  }
 }
 </script>

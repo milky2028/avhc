@@ -4,27 +4,27 @@
     <div class="divider"></div>
     <form autocomplete="on">
         <av-textfield
-            :fieldId="`${formHeader}Name`"
+            :fieldId="`${formHeader.toLowerCase()}Name`"
             class="padding-right"
             type="text"
             label="Name"
             autocomplete="name"
             :required="true"></av-textfield>
         <av-textfield
-            :fieldId="`${formHeader}Address`"
+            :fieldId="`${formHeader.toLowerCase()}Address`"
             class="padding-right"
             type="text" label="Address"
             autocomplete="shipping street-address"
             :required="true"></av-textfield>
         <av-textfield
-            :fieldId="`${formHeader}City`"
+            :fieldId="`${formHeader.toLowerCase()}City`"
             class="padding-right"
             type="text"
             label="City"
             autocomplete="shipping address-level2"
             :required="true"></av-textfield>
         <av-textfield
-            :fieldId="`${formHeader}State`"
+            :fieldId="`${formHeader.toLowerCase()}State`"
             class="padding-right"
             type="text"
             label="State/Province/Region"
@@ -34,7 +34,7 @@
             itemKey="state"
             itemTitle="abbr"></av-textfield>
         <av-textfield
-            :fieldId="`${formHeader}Zip`"
+            :fieldId="`${formHeader.toLowerCase()}Zip`"
             class="padding-right"
             type="number"
             label="Zip Code"
@@ -42,7 +42,7 @@
             :required="true"
             pattern="^\d{5,6}(?:[-\s]\d{4})?$"></av-textfield>
         <av-textfield
-            :fieldId="`${formHeader}Country`"
+            :fieldId="`${formHeader.toLowerCase()}Country`"
             class="padding-right"
             type="text"
             label="Country"
@@ -50,14 +50,14 @@
             :required="true"></av-textfield>
         <av-textfield
             v-if="formHeader === 'Shipping'"
-            :fieldId="`${formHeader}Phone`"
+            fieldId="phone"
             class="padding-right"
             type="number"
             label="Phone Number"
             autocomplete="tel"></av-textfield>
         <generic-selector
             v-if="formHeader === 'Shipping'"
-            fieldId="shippingSelector"
+            fieldId="shippingMethod"
             class="padding-right"
             label="Shipping Option"
             :options="shippingOptions"

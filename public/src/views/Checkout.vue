@@ -8,9 +8,9 @@
       <shipping-form formHeader="Shipping"></shipping-form>
       <div class="switch-container padding-right">
         <p>Different billing address?</p>
-        <av-switch fieldId="billingVsShipping"></av-switch>
+        <av-switch fieldId="billingVsShipping" v-model="differentBilling"></av-switch>
       </div>
-      <shipping-form formHeader="Billing"></shipping-form>
+      <shipping-form formHeader="Billing" v-if="differentBilling"></shipping-form>
       <h2>Billing Info</h2>
       <div class="divider"></div>
       <form>
@@ -24,14 +24,14 @@
           autocomplete="cc-number"
           pattern="^(?:4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|6(?:011|5[0-9]{2})[0-9]{12}|(?:2131|1800|35\d{3})\d{11})$"></av-textfield>
         <generic-selector
-          fieldId="monthSelector"
+          fieldId="expirationMonth"
           class="padding-right"
           label="Expiration Month"
           :options="months"
           titleKey="abbr"
           valueKey="abbr"></generic-selector>
         <generic-selector
-          fieldId="yearSelector"
+          fieldId="expirationYear"
           class="padding-right"
           label="Expiration Year"
           :options="years"
@@ -46,14 +46,25 @@
           autocomplete="cc-csc"
           :minLength="3"
           :maxLength="4"></av-textfield>
-        <av-textfield class="positions" type="text" label="Coupon Code"></av-textfield>
+        <av-textfield
+          fieldId="couponCode"
+          class="positions"
+          type="text"
+          label="Coupon Code"></av-textfield>
       </form>
       <div class="switch-container padding-right">
         <p>Create an account?</p>
-        <av-switch fieldId="createAccount"></av-switch>
+        <av-switch fieldId="createAccount" v-model="createAccount"></av-switch>
       </div>
       <form>
-        <av-textfield class="positions" type="password" label="Password" :required="true" autocomplete="new-password" fieldId="password"></av-textfield>
+        <av-textfield
+          v-if="createAccount"
+          fieldId="password"
+          class="positions"
+          type="password"
+          label="Password"
+          :required="true"
+          autocomplete="new-password"></av-textfield>
       </form>
           <div>
             <div id="subtotal-container">
@@ -189,6 +200,8 @@ import GenericSelector from '@/components/GenericSelector.vue';
 })
 
 export default class Checkout extends Vue {
+  public createAccount: boolean = false;
+  public differentBilling: boolean = false;
   public months = [
     { month: 'January', abbr: 'Jan' },
     { month: 'February', abbr: 'Feb' },
@@ -235,7 +248,7 @@ export default class Checkout extends Vue {
   }
 
   private get grandTotal() {
-    return (this.subtotal + this.shippingCost) * (this.tax/100 + 1);
+    return (this.subtotal + this.shippingCost) * (this.tax / 100 + 1);
   }
 }
 </script>

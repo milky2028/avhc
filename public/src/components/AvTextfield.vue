@@ -2,7 +2,7 @@
     <div class="textfield-root">
         <label :for="fieldId">{{ label }}</label>
         <input
-            @input="$emit('dirty', true)"
+            @input="onInput($event.target)"
             @blur="$emit('dirty', true)"
             :class="(dirty) ? 'dirty' : ''"
             :id="fieldId"
@@ -57,6 +57,10 @@ input.dirty:not(:focus):invalid {
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator';
 
+interface InputEventTarget extends EventTarget {
+  value: any;
+}
+
 @Component
 export default class AvTextfield extends Vue {
     @Prop(String) public fieldId!: string;
@@ -75,6 +79,15 @@ export default class AvTextfield extends Vue {
 
     private beforeCreate() {
         this.$on('dirty', (event: boolean) => this.dirty = event);
+    }
+
+    private onInput(event: InputEventTarget) {
+        this.$emit('dirty', true);
+        const payload = {
+            key: this.fieldId,
+            value: event.value
+        };
+        this.$store.commit('order/setOrderItem', payload);
     }
 }
 </script>

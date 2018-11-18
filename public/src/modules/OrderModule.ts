@@ -33,8 +33,10 @@ const OrderModule = {
         items: [],
         orderTotal: ''
     },
-    setOrderItem(state: Order, payload: SetOrderPayload) {
-        state[payload.key] = payload.value;
+    mutations: {
+        setOrderItem(state: Order, payload: SetOrderPayload) {
+            state[payload.key] = payload.value;
+        }
     }
 };
 

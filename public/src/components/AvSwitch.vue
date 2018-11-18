@@ -1,6 +1,11 @@
 <template>
     <div>
-        <input type="checkbox" :id="fieldId" class="checkbox">
+        <input
+          :id="fieldId"
+          type="checkbox"
+          class="checkbox"
+          :value="value"
+          @input="$emit('input', $event.target.checked)">
         <label :for="fieldId"></label>
     </div>
 </template>
@@ -84,6 +89,7 @@ import { Vue, Component, Prop } from 'vue-property-decorator';
 
 @Component
 export default class AvSwitch extends Vue {
+    @Prop(Boolean) public value!: boolean;
     @Prop(String) private fieldId!: string;
 }
 </script>
