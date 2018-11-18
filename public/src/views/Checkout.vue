@@ -237,10 +237,6 @@ export default class Checkout extends Vue {
     { year: 2032 }
   ];
 
-  private async beforeCreate() {
-    this.$store.commit('cart/setShippingOptions', await ShippingOptions());
-  }
-
   private get shippingOptions() {
     return this.$store.state.cart.shippingOptions;
   }
