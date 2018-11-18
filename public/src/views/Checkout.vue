@@ -153,6 +153,7 @@ h3 {
 
 @media (min-width: 1025px) {
     #checkout-root {
+        height: $full-window;
         place-content: center;
         background-image: url('../assets/intro.svg');
         background-position: 10% 50%;
