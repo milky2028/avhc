@@ -188,6 +188,8 @@ import AvTextfield from '@/components/AvTextfield.vue';
 import AvSwitch from '@/components/AvSwitch.vue';
 import ShopButtons from '@/components/ShopButtons.vue';
 import GenericSelector from '@/components/GenericSelector.vue';
+import ShippingMethod from '@/types/ShippingMethod';
+import ShippingOptions from '@/exports/ShippingOptions';
 
 @Component({
   components: {
@@ -235,6 +237,14 @@ export default class Checkout extends Vue {
     { year: 2032 }
   ];
 
+  private async beforeCreate() {
+    this.$store.commit('cart/setShippingOptions', await ShippingOptions());
+  }
+
+  private get shippingOptions() {
+    return this.$store.state.cart.shippingOptions;
+  }
+
   private get subtotal() {
     return this.$store.getters['cart/subtotal'];
   }
@@ -244,7 +254,10 @@ export default class Checkout extends Vue {
   }
 
   private get shippingCost() {
-    return 6;
+    const shippingMethodName: string = this.$store.state.order.shippingMethod;
+    const shippingMethod = (shippingMethodName) ?
+      this.shippingOptions.find((method: ShippingMethod) => method.id === shippingMethodName) : this.shippingOptions[0];
+    return shippingMethod.price;
   }
 
   private get grandTotal() {

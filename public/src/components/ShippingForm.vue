@@ -114,14 +114,17 @@ import StateTaxes from '@/exports/StateTaxes';
 })
 export default class ShippingForm extends Vue {
   @Prop(String) private formHeader!: string;
-  private shippingOptions: any[] = [];
 
   private async beforeCreate() {
-    this.shippingOptions = await ShippingOptions();
+    this.$store.commit('cart/setShippingOptions', await ShippingOptions());
   }
 
   private get stateTaxes() {
       return StateTaxes;
+  }
+
+  private get shippingOptions() {
+      return this.$store.state.cart.shippingOptions;
   }
 }
 </script>
