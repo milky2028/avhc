@@ -117,7 +117,6 @@ h3 {
 
 #checkout-root {
   display: grid;
-  height: $full-window;
 }
 
 .non-button-container {
