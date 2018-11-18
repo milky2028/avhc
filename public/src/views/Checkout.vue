@@ -55,6 +55,25 @@
       <form>
         <av-textfield class="positions" type="password" label="Password" :required="true" autocomplete="new-password" fieldId="password"></av-textfield>
       </form>
+          <div>
+            <div id="subtotal-container">
+              <h3>Subtotal</h3>
+              <h3 class="padding-right">${{ subtotal.toFixed(2) }}</h3>
+            </div>
+            <div id="subtotal-container">
+              <h3>Shipping</h3>
+              <h3 class="padding-right">${{ shippingCost.toFixed(2) }}</h3>
+            </div>
+            <div id="subtotal-container">
+              <h3>Tax</h3>
+              <h3 class="padding-right">{{ tax.toFixed(2) }}%</h3>
+            </div>
+          <div class="divider less-margin"></div>
+          <div id="subtotal-container">
+            <h2>Total</h2>
+            <h2 class="padding-right">${{ grandTotal.toFixed(2) }}</h2>
+          </div>
+        </div>
       </div>
       <div class="button-container">
         <shop-buttons class="buy-button" :showAddButton="false" buyButtonText="Buy"></shop-buttons>
@@ -71,6 +90,11 @@ h2 {
     text-transform: none;
     letter-spacing: normal;
     font-size: 28px;
+}
+
+h3 {
+  font-size: 18px;
+  font-family: $secondary-font;
 }
 
 .divider {
@@ -106,6 +130,15 @@ h2 {
 .button-container {
   margin: 0;
   padding: 0;
+}
+
+.less-margin {
+  margin-bottom: 10px;
+}
+
+#subtotal-container {
+  display: flex;
+  justify-content: space-between;
 }
 
 @media (min-width: 1025px) {
@@ -154,6 +187,7 @@ import GenericSelector from '@/components/GenericSelector.vue';
     GenericSelector
   }
 })
+
 export default class Checkout extends Vue {
   public months = [
     { month: 'January', abbr: 'Jan' },
@@ -187,5 +221,21 @@ export default class Checkout extends Vue {
     { year: 2031 },
     { year: 2032 }
   ];
+
+  private get subtotal() {
+    return this.$store.getters['cart/subtotal'];
+  }
+
+  private get tax() {
+    return 10.05;
+  }
+
+  private get shippingCost() {
+    return 6;
+  }
+
+  private get grandTotal() {
+    return (this.subtotal + this.shippingCost) * (this.tax/100 + 1);
+  }
 }
 </script>
