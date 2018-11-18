@@ -2,6 +2,7 @@
     <div class="textfield-root">
         <label :for="fieldId">{{ label }}</label>
         <input
+            :value="value"
             @input="onInput($event.target)"
             @blur="$emit('dirty', true)"
             :class="(dirty) ? 'dirty' : ''"
@@ -74,8 +75,12 @@ export default class AvTextfield extends Vue {
     @Prop(Array) public datalist!: any[];
     @Prop(String) public itemKey!: string;
     @Prop(String) public itemTitle!: string;
-
     private dirty: boolean = false;
+
+    public get value() {
+        const storeVal = this.$store.state.order[this.fieldId];
+        return storeVal ? storeVal : '';
+    }
 
     private beforeCreate() {
         this.$on('dirty', (event: boolean) => this.dirty = event);
