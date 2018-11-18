@@ -14,21 +14,21 @@
             :fieldId="`${formHeader.toLowerCase()}Address`"
             class="padding-right"
             type="text" label="Address"
-            autocomplete="shipping street-address"
+            autocomplete="street-address"
             :required="true"></av-textfield>
         <av-textfield
             :fieldId="`${formHeader.toLowerCase()}City`"
             class="padding-right"
             type="text"
             label="City"
-            autocomplete="shipping address-level2"
+            autocomplete="address-level2"
             :required="true"></av-textfield>
         <av-textfield
             :fieldId="`${formHeader.toLowerCase()}State`"
             class="padding-right"
             type="text"
             label="State/Province/Region"
-            autocomplete="shipping address-level1"
+            autocomplete="address-level1"
             :required="true"
             :datalist="stateTaxes"
             itemKey="state"
@@ -38,7 +38,7 @@
             class="padding-right"
             type="number"
             label="Zip Code"
-            autocomplete="shipping postal-code"
+            autocomplete="postal-code"
             :required="true"
             pattern="^\d{5,6}(?:[-\s]\d{4})?$"></av-textfield>
         <av-textfield
@@ -46,7 +46,7 @@
             class="padding-right"
             type="text"
             label="Country"
-            autocomplete="shipping country"
+            autocomplete="country"
             :required="true"></av-textfield>
         <av-textfield
             v-if="formHeader === 'Shipping'"
