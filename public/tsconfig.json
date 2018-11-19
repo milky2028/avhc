@@ -14,7 +14,8 @@
     "sourceMap": true,
     "baseUrl": ".",
     "types": [
-      "node"    ],
+      "node"    
+    ],
     "paths": {
       "@/*": [
         "src/*"
@@ -25,7 +26,8 @@
       "es2017",
       "dom",
       "dom.iterable",
-      "scripthost"
+      "scripthost",
+      "es2018.regexp"
     ]
   },
   "include": [

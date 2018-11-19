@@ -1,10 +1,12 @@
 import CartItem from '@/types/CartItem';
+import CouponCode from '@/types/CouponCode';
 
 interface CartState {
     cart: CartItem[];
     shippingOptions: any[];
     tempQuantity: number;
     tempPrice: number;
+    coupons: CouponCode[];
 }
 
 interface CartModule {
@@ -28,7 +30,8 @@ const CartModule: CartModule = {
         cart: [],
         shippingOptions: [],
         tempQuantity: 0,
-        tempPrice: 0
+        tempPrice: 0,
+        coupons: []
     },
     getters: {
         computedQuantity(state: CartState) {
@@ -62,6 +65,9 @@ const CartModule: CartModule = {
                 return item.product === payload.productName && item.size === payload.size && item.strain === payload.strain;
             })!;
             cartItem.quantity = payload.quantity;
+        },
+        setCoupons(state: CartState, payload: CouponCode[]) {
+            state.coupons = payload;
         },
         setShippingOptions(state: CartState, payload: PaymentShippingOption[]) {
             state.shippingOptions = payload;

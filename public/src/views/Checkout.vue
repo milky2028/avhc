@@ -75,6 +75,10 @@
               <h3>Shipping</h3>
               <h3 class="padding-right">${{ shippingCost.toFixed(2) }}</h3>
             </div>
+            <div id="subtotal-container" v-if="discount">
+              <h3>Discount</h3>
+              <h3 class="padding-right">{{ `-${discount.type === 'fixed' ? '$' : ''}${discount.amount.toFixed(2)}${discount.type === 'percent' ? '%' : ''}` }}</h3>
+            </div>
             <div id="subtotal-container">
               <h3>Tax</h3>
               <h3 class="padding-right">{{ tax.toFixed(2) }}%</h3>
@@ -190,6 +194,9 @@ import ShopButtons from '@/components/ShopButtons.vue';
 import GenericSelector from '@/components/GenericSelector.vue';
 import ShippingMethod from '@/types/ShippingMethod';
 import ShippingOptions from '@/exports/ShippingOptions';
+import StateTaxes from '@/exports/StateTaxes';
+import CouponCode from '@/types/CouponCode';
+import { StringToDate } from '@/exports/DateFunctions';
 
 @Component({
   components: {
@@ -246,7 +253,18 @@ export default class Checkout extends Vue {
   }
 
   private get tax() {
-    return 10.05;
+    const billingState = (this.$store.state.order.billingState) ?
+      this.$store.state.order.billingState : this.$store.state.order.shippingState ;
+    const stateTax = StateTaxes.find((state) => state.abbr === billingState) ?
+      StateTaxes.find((state) => state.abbr === billingState)! : StateTaxes[51];
+    return stateTax.taxRate;
+  }
+
+  private get discount(): CouponCode {
+    const code = this.$store.state.order.couponCode.toLowerCase().replace(/\s/gi, '');
+    const coop = this.$store.state.cart.coupons.find((coupon: CouponCode) => coupon.code === code);
+    const notExpired = (coop) ? new Date() < StringToDate(coop.expirationDate) : false;
+    return (coop && coop.active && notExpired) ? coop : false;
   }
 
   private get shippingCost() {
@@ -257,7 +275,11 @@ export default class Checkout extends Vue {
   }
 
   private get grandTotal() {
-    return (this.subtotal + this.shippingCost) * (this.tax / 100 + 1);
+    return (this.discount) ?
+      (this.discount.type === 'fixed') ?
+      ((this.subtotal + this.shippingCost) - this.discount.amount) * (this.tax / 100 + 1) :
+      ((this.subtotal + this.shippingCost) * ((100 - this.discount.amount) / 100)) * (this.tax / 100 + 1) :
+      (this.subtotal + this.shippingCost) * (this.tax / 100 + 1);
   }
 }
 </script>

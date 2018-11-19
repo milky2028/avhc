@@ -4,28 +4,9 @@ import * as Sentry from '@sentry/browser';
 import { db } from './Firebase';
 import router from '@/router';
 import EncryptData from './EncryptData';
+import { FormatJsDate, FormatJsTimestamp } from './DateFunctions';
 
 const store: any = Store;
-
-const formatDate = (date: Date): string => {
-    const dtf = new Intl.DateTimeFormat('en-US', {
-      year: 'numeric',
-      month: 'numeric',
-      day: 'numeric',
-    });
-    return dtf.format(date);
-  };
-
-const formatTimestamp = (date: Date): string => {
-    const dtf = new Intl.DateTimeFormat('en-US', {
-      hour: 'numeric',
-      minute: 'numeric',
-      second: 'numeric',
-      timeZone: 'America/Indianapolis',
-      timeZoneName: 'short'
-    });
-    return dtf.format(date);
-  };
 
 const SubmitPayment = async () => {
     if ('PaymentRequest' in window) {
@@ -67,8 +48,8 @@ const SubmitPayment = async () => {
             const paymentResponse: PaymentResponse = await request.show();
             await paymentResponse.complete('success');
             const order = {
-                orderDay: formatDate(new Date()),
-                orderTime: formatTimestamp(new Date()),
+                orderDay: FormatJsDate(new Date()),
+                orderTime: FormatJsTimestamp(new Date()),
                 requestId: paymentResponse.requestId,
                 methodName: paymentResponse.methodName,
                 payerEmail: paymentResponse.payerEmail,
