@@ -155,11 +155,10 @@ export default class ProductSelector extends Vue {
     this.selectedProductStrain = '';
   }
 
-  private async beforeCreate() {
+  private beforeMount() {
     this.$store.commit('products/clearSizeIndex');
     this.selectedProductName = (this.$route.params.productName) ? this.$route.params.productName : '';
     this.$store.commit('products/setActiveProductName', this.selectedProductName);
-    this.$store.commit('products/setProducts', await Products());
 
     // EventBus.$on('buyFlow', () => {
 
@@ -189,7 +188,7 @@ export default class ProductSelector extends Vue {
   private setProduct(event: InputEventTarget) {
     const clickValue: string = event.value;
     this.$store.commit('products/setActiveProductName', clickValue);
-    this.$router.push(`/shop/${event.value}`);
+    this.$router.push(`/shop/${clickValue}`);
     this.selectedProductSize = '';
     this.selectedProductStrain = '';
     return this.selectedProductName;
