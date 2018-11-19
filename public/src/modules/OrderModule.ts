@@ -31,7 +31,7 @@ const OrderModule = {
         couponCode: '',
         password: '',
         items: [],
-        orderTotal: ''
+        orderTotal: 0
     },
     mutations: {
         setOrderItem(state: Order, payload: SetOrderPayload) {

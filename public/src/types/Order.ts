@@ -10,6 +10,7 @@ export default interface Order {
     shippingCountry: string;
     phone?: string;
     shippingMethod: string;
+    sameBillingAddress?: boolean;
     billingName: string;
     billingAddress: string;
     billingCity: string;
@@ -24,6 +25,6 @@ export default interface Order {
     couponCode?: string;
     password?: string;
     items: CartItem[];
-    orderTotal: string;
+    orderTotal: number;
     [key: string]: any;
 }
