@@ -81,7 +81,6 @@
 <script lang="ts">
 import { Vue, Component, Watch, Prop } from 'vue-property-decorator';
 import EventBus from '@/exports/EventBus';
-import SubmitPayment from '@/exports/SubmitPayment';
 
 declare const window: Window;
 
@@ -89,7 +88,8 @@ declare const window: Window;
 export default class ShopButtons extends Vue {
     @Prop(Boolean) private showAddButton!: boolean;
     @Prop(String) private buyButtonText!: string;
-    private get itemQuantity() {
+
+    public get itemQuantity() {
         return this.$store.state.cart.tempQuantity;
     }
 
@@ -99,12 +99,6 @@ export default class ShopButtons extends Vue {
 
     public decrease() {
         this.$store.commit('cart/decreaseQuantity');
-    }
-
-    private created(): void {
-        EventBus.$on('buyFlow', () => {
-            SubmitPayment();
-        });
     }
 
     private get addButtonField(): string | number {
@@ -123,7 +117,8 @@ export default class ShopButtons extends Vue {
         (this.buyButtonField === 'Buy') ?
             EventBus.$emit('buyFlow') :
         (this.buyButtonField === 'Checkout') ?
-            this.$router.push('/checkout') : EventBus.$emit('addToCart');
+            this.$router.push('/checkout') :
+                EventBus.$emit('addToCart');
     }
 
     private get singleButtonStyles() {

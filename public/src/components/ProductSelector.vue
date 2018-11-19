@@ -160,10 +160,6 @@ export default class ProductSelector extends Vue {
     this.selectedProductName = (this.$route.params.productName) ? this.$route.params.productName : '';
     this.$store.commit('products/setActiveProductName', this.selectedProductName);
 
-    // EventBus.$on('buyFlow', () => {
-
-    // });
-
     EventBus.$on('addToCart', () => {
       const item: CartItem = {
         id: this.createId(),
