@@ -27,7 +27,7 @@
       "dom",
       "dom.iterable",
       "scripthost",
-      "es2018.regexp"
+      "es2018"
     ]
   },
   "include": [

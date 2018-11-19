@@ -1,7 +1,10 @@
 const StringToDate = (input: string): Date => {
-  const dateReg = /(?<month>\d{2})\/(?<day>\d{2})\/(?<year>\d{4})/;
+  const dateReg = /(\d{2})\/(\d{2})\/(\d{4})/;
   const result = dateReg.exec(input);
-  return new Date(+result!.groups!.year, +result!.groups!.month - 1, +result!.groups!.day);
+  const year = +result![3];
+  const month = +result![1] - 1;
+  const day = +result![2];
+  return new Date(year, month, day);
 };
 
 const FormatJsDate = (date: Date): string => {
