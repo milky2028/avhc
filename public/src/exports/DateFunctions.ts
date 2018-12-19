@@ -1,7 +1,7 @@
 const StringToDate = (input: string): Date => {
     const dateReg = /(\d{2})\/(\d{2})\/(\d{4})/;
     const result = dateReg.exec(input);
-    const [, month, day, year] = dateReg.exec(input)
+    const [, month, day, year] = dateReg.exec(input)!;
     return new Date(+year, +month - 1, +day);
 };
 
