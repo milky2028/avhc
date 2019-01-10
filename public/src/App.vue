@@ -19,8 +19,6 @@ import { Component, Vue } from 'vue-property-decorator';
 import AppToolbar from '@/components/AppToolbar.vue';
 import CartItem from '@/types/CartItem';
 import Products from '@/exports/Products';
-import ShippingOptions from '@/exports/ShippingOptions';
-import Coupons from '@/exports/Coupons';
 
 @Component({
   components: {
@@ -30,9 +28,7 @@ import Coupons from '@/exports/Coupons';
 
 export default class App extends Vue {
   private async beforeMount() {
-    this.$store.commit('cart/setShippingOptions', await ShippingOptions());
     this.$store.commit('products/setProducts', await Products());
-    this.$store.commit('cart/setCoupons', await Coupons());
     const localStorage = window.localStorage;
     if (localStorage.cart) {
       const cart = JSON.parse(localStorage.getItem('cart')!);

@@ -1,4 +1,7 @@
 module.exports = {
+  configureWebpack: {
+    devtool: 'source-map'
+  },
   pwa: {
     name: 'AVP',
     themeColor: '#004D40',

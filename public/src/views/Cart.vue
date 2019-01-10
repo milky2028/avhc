@@ -65,6 +65,8 @@ cart-display {
 import { Vue, Component } from 'vue-property-decorator';
 import ShopButtons from '@/components/ShopButtons.vue';
 import CartDisplay from '@/components/CartDisplay.vue';
+import ShippingOptions from '@/exports/ShippingOptions';
+import Coupons from '@/exports/Coupons';
 
 @Component({
     components: {
@@ -72,6 +74,11 @@ import CartDisplay from '@/components/CartDisplay.vue';
         CartDisplay
     }
 })
-export default class Cart extends Vue {}
+export default class Cart extends Vue {
+  private async beforeMount() {
+    this.$store.commit('cart/setShippingOptions', await ShippingOptions());
+    this.$store.commit('cart/setCoupons', await Coupons());
+  }
+}
 </script>
 

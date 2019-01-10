@@ -59,22 +59,19 @@
       return this.$store.getters['products/activeProduct'];
     }
 
-    get backgroundStyles() {
+    private get backgroundStyles() {
       return {
         backgroundImage: `url('${this.image.src}')`
       };
     }
 
-    get image() {
-      return (this.activeProduct && this.activeProduct.images) ?
-       {
+    private get image() {
+      return (this.activeProduct && this.activeProduct.images) ? {
         src: require(`../assets/product-images/${this.activeProduct.images[0].src}.jpg`),
         alt: this.activeProduct.images[0].alt
-      } :
-      {
-        src: '',
-        alt: `The entire Aspen Valley Prerolls products suite,
-              including CBD Hemp Flower, Filtered CBD Hemp Cigarrettes, and Unfiltered CBD Joints`
+      } : {
+        src: '../assets/product-images/generic-cbd.jpg',
+        alt: 'CBD Hemp Flower'
       };
     }
 
