@@ -1,10 +1,11 @@
 <template>
-    <div id="image-gallery-root" :style="backgroundStyles" :title="image.alt">
+    <div id="image-gallery-root" v-if="this.activeProduct && this.activeProduct.images.length > 0" :style="backgroundStyles" :title="image.alt">
         <img class="hidden-image" :src="image.src" :alt="image.alt">
         <div id="left-arrow" v-if="this.activeProduct.images && this.activeProduct.images.length > 1" @click="previousImage" class="mat-icon">keyboard_arrow_left</div>
         <div id="right-arrow" v-if="this.activeProduct.images && this.activeProduct.images.length > 1" @click="nextImage"  class="mat-icon">keyboard_arrow_right</div>
         <price-display  v-if="this.activeProduct.images" id="price-display"></price-display>
     </div>
+    <div v-else>Some other div</div>
 </template>
 
 <style scoped lang="scss">
