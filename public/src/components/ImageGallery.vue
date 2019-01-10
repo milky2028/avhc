@@ -11,6 +11,7 @@
   @import '../styles/theme.scss';
 
   #image-gallery-root {
+    background: blueviolet;
     grid-area: image-gallery;
     background-position: 50% 50%;
     background-size: cover;
@@ -62,15 +63,15 @@
     private get backgroundStyles() {
       return {
         backgroundImage: `url('${this.image.src}')`
-      };
+      }
     }
 
     private get image() {
-      return (this.activeProduct && this.activeProduct.images) ? {
+      return (this.activeProduct && this.activeProduct.images.length > 0) ? {
         src: require(`../assets/product-images/${this.activeProduct.images[0].src}.jpg`),
         alt: this.activeProduct.images[0].alt
       } : {
-        src: '../assets/product-images/generic-cbd.jpg',
+        src: '',
         alt: 'CBD Hemp Flower'
       };
     }
@@ -82,5 +83,5 @@
     private previousImage() {
       // console.log('previous');
     }
-   }
+  }
 </script>
