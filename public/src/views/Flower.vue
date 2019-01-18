@@ -159,10 +159,6 @@ export default class Flower extends Vue {
     private get windowInnerWidth() {
         return window.innerWidth;
     }
-
-    private async beforeMount() {
-        this.$store.commit('products/setProducts', await Products());
-    }
 }
 </script>
 

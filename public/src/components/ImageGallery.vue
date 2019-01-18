@@ -12,7 +12,6 @@
   @import '../styles/theme.scss';
 
   #image-gallery-root {
-    background: blueviolet;
     grid-area: image-gallery;
     background-position: 50% 50%;
     background-size: cover;
@@ -64,7 +63,7 @@
     private get backgroundStyles() {
       return {
         backgroundImage: `url('${this.image.src}')`
-      }
+      };
     }
 
     private get image() {

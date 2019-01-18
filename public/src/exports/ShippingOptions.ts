@@ -1,8 +1,9 @@
-import { db } from './Firebase';
+import { firestore } from './Firebase';
 import * as Sentry from '@sentry/browser';
 
 const ShippingOptions = async () => {
     try {
+        const db = await firestore();
         const snapshot = await db.collection('shipping-options').get();
         return snapshot.docs.map((doc: any) => doc.data());
     } catch (e) {

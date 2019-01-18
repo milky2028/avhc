@@ -162,7 +162,7 @@ export default class ProductSelector extends Vue {
 
     EventBus.$on('addToCart', () => {
       const item: CartItem = {
-        id: this.createId(),
+        id: this.createRandomId(12),
         price: (this.selectedProductSize) ?
           this.activeProduct.sizes[this.$store.state.products.selectedSizeIndex].price : this.activeProduct.price,
         quantity: this.$store.state.cart.tempQuantity,
@@ -214,11 +214,10 @@ export default class ProductSelector extends Vue {
     return this.activeProduct.sizes;
   }
 
-  private createId() {
+  private createRandomId(length: number) {
     let text = '';
     const possible = 'ABCDEFGHJKMNPQRSTUVWXYZabcdefghjkmnpqrstuvwxyz123456789';
-
-    for (let i = 0; i < 9; i++) {
+    for (let i = 0; i < length; i++) {
       text += possible.charAt(Math.floor(Math.random() * possible.length));
     }
 
