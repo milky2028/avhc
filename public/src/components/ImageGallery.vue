@@ -69,7 +69,7 @@
       const path = this.$route.params.productName;
       return {
         backgroundImage: `url(${require('../assets/product-images/placeholder-' + path + '.svg')})`
-      }
+      };
     }
 
     private get backgroundStyles() {

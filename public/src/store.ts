@@ -3,11 +3,13 @@ import Vuex from 'vuex';
 import ProductsModule from '@/modules/ProductsModule';
 import CartModule from '@/modules/CartModule';
 import OrderModule from './modules/OrderModule';
+import FirebaseModule from './modules/FirebaseModule';
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
   modules: {
+    firebase: FirebaseModule,
     products: ProductsModule,
     cart: CartModule,
     order: OrderModule

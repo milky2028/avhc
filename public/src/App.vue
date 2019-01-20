@@ -19,6 +19,7 @@ import { Component, Vue } from 'vue-property-decorator';
 import AppToolbar from '@/components/AppToolbar.vue';
 import CartItem from '@/types/CartItem';
 import Products from '@/exports/Products';
+import { Firestore } from '@/exports/Firebase';
 
 @Component({
   components: {
@@ -28,6 +29,7 @@ import Products from '@/exports/Products';
 
 export default class App extends Vue {
   private async beforeMount() {
+    this.$store.commit('firebase/setFirestore', await Firestore());
     this.$store.commit('products/setProducts', await Products());
     const localStorage = window.localStorage;
     if (localStorage.cart) {

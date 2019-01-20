@@ -1,8 +1,6 @@
-// import firebase from 'firebase/app';
-// import 'firebase/firestore';
 import * as Sentry from '@sentry/browser';
 
-const firestore = async () => {
+const Firestore = async () => {
   const firebase = await import(/* webpackChunkName: "firebase" */'firebase/app');
   // @ts-ignore
   const fs = await import(/* webpackChunkName: "firestore" */'firebase/firestore');
@@ -26,4 +24,4 @@ const firestore = async () => {
   return db;
 };
 
-export { firestore };
+export { Firestore };

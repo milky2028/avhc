@@ -1,7 +1,6 @@
 import Store from '@/store';
 import ShippingOptions from './ShippingOptions';
 import * as Sentry from '@sentry/browser';
-import { firestore } from './Firebase';
 import router from '@/router';
 import EncryptData from './EncryptData';
 import { FormatJsDate, FormatJsTimestamp } from './DateFunctions';
@@ -77,7 +76,7 @@ const SubmitPayment = async () => {
                     expiryYear: paymentResponse.details.expiryYear
                 }
             };
-            const db = await firestore();
+            const db = store.state.firebase.firestore;
             await db.collection('orders').add(order);
             router.push('/thank-you');
         } catch (e) {
