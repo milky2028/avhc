@@ -5,7 +5,7 @@
         <div id="right-arrow" v-if="this.activeProduct.images && this.activeProduct.images.length > 1" @click="nextImage"  class="mat-icon">keyboard_arrow_right</div>
         <price-display  v-if="this.activeProduct.images" id="price-display"></price-display>
     </div>
-    <div v-else>Some other div</div>
+    <div class="loading-image" :style="backgroundImagePerRoute" v-else></div>
 </template>
 
 <style scoped lang="scss">
@@ -21,6 +21,11 @@
     align-items: center;
     grid-template-areas:
       "left-arrow main right-arrow"
+  }
+
+  .loading-image {
+    background-position: 50% 50%;
+    background-size: cover;
   }
 
   #left-arrow {
@@ -58,6 +63,13 @@
   export default class ImageGallery extends Vue {
     private get activeProduct() {
       return this.$store.getters['products/activeProduct'];
+    }
+
+    private get backgroundImagePerRoute() {
+      const path = this.$route.params.productName;
+      return {
+        backgroundImage: `url(${require('../assets/product-images/placeholder-' + path + '.svg')})`
+      }
     }
 
     private get backgroundStyles() {
