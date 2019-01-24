@@ -1,7 +1,6 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import Store from '@/store';
-import Firebase from './exports/Firebase';
 const Intro = () => import(/* webpackChunkName: "intro" */'./views/Intro.vue');
 const Orders = () => import(/* webpackChunkName: "orders" */'./views/Orders.vue');
 const Checkout = () => import(/* webpackChunkName: "checkout" */'./views/Checkout.vue');
