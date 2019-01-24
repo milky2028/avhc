@@ -19,7 +19,7 @@ import { Component, Vue } from 'vue-property-decorator';
 import AppToolbar from '@/components/AppToolbar.vue';
 import CartItem from '@/types/CartItem';
 import Products from '@/exports/Products';
-import { Firestore } from '@/exports/Firebase';
+import Firebase from '@/exports/Firebase';
 
 @Component({
   components: {
@@ -29,7 +29,9 @@ import { Firestore } from '@/exports/Firebase';
 
 export default class App extends Vue {
   private async beforeMount() {
-    this.$store.commit('firebase/setFirestore', await Firestore());
+    const fb = await Firebase();
+    this.$store.commit('firebase/setFirestore', fb.db);
+    this.$store.commit('firebase/setAuth', fb.auth);
     this.$store.commit('products/setProducts', await Products());
     const localStorage = window.localStorage;
     if (localStorage.cart) {

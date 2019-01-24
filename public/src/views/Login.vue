@@ -1,5 +1,5 @@
 <template>
-    <div id="cart-root">This is login page</div>
+    <div id="login-root">This is login page</div>
 </template>
 
 <style lang="scss" scoped>
