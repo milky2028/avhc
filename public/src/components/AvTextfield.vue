@@ -45,7 +45,7 @@ input {
 }
 
 input.dirty:not(:focus):invalid {
-  border-color: #fc5316;
+    border-color: #fc5316;
 }
 
 @media (min-width: 1025px) {
@@ -59,7 +59,7 @@ input.dirty:not(:focus):invalid {
 import { Vue, Component, Prop } from 'vue-property-decorator';
 
 interface InputEventTarget extends EventTarget {
-  value: any;
+    value: any;
 }
 
 @Component
@@ -86,6 +86,7 @@ export default class AvTextfield extends Vue {
         this.$on('dirty', (event: boolean) => this.dirty = event);
     }
 
+    // TODO: Don't just blankly set to to order field, make this a prop that get's passed;
     private onInput(event: InputEventTarget) {
         this.$emit('dirty', true);
         const payload = {

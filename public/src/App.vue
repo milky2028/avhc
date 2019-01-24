@@ -33,6 +33,7 @@ export default class App extends Vue {
     this.$store.commit('firebase/setFirestore', fb.db);
     this.$store.commit('firebase/setAuth', fb.auth);
     this.$store.commit('products/setProducts', await Products());
+    this.$store.dispatch('user/setAuthState');
     const localStorage = window.localStorage;
     if (localStorage.cart) {
       const cart = JSON.parse(localStorage.getItem('cart')!);

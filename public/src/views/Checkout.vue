@@ -99,6 +99,7 @@
 
 <style lang="scss" scoped>
 @import '@/styles/theme.scss';
+@import '@/styles/switch.scss';
 
 h2 {
     text-align: left;
@@ -129,12 +130,6 @@ h3 {
 
 .positions {
   margin: 0 26px 26px 0;
-}
-
-.switch-container {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 26px;
 }
 
 .padding-right {

@@ -69,8 +69,10 @@ export default new Router({
       name: 'orders',
       component: Orders,
       beforeEnter(to, from, next) {
-        if (!store.state.firebase.auth.loggedInUser) {
+        if (!store.state.user.user) {
           next('/login');
+        } else {
+          next();
         }
       }
     },

@@ -1,4 +1,5 @@
 import Product from '@/types/Product';
+import Module from '@/types/Module';
 
 interface ProductState {
   activeProductName: string;
@@ -6,7 +7,7 @@ interface ProductState {
   selectedSizeIndex: number;
 }
 
-const ProductsModule = {
+const ProductsModule: Module = {
   namespaced: true,
   state: {
     products: [],

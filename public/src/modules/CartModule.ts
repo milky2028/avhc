@@ -1,5 +1,6 @@
 import CartItem from '@/types/CartItem';
 import CouponCode from '@/types/CouponCode';
+import Module from '@/types/Module';
 
 interface CartState {
     cart: CartItem[];
@@ -9,8 +10,7 @@ interface CartState {
     coupons: CouponCode[];
 }
 
-interface CartModule {
-    namespaced?: boolean;
+interface CartModule extends Module {
     state: CartState;
     getters?: any;
     mutations?: any;

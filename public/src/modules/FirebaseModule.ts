@@ -1,12 +1,9 @@
-interface FirebaseModule {
-    namespaced: boolean;
+import Module from '@/types/Module';
+
+interface FirebaseModule extends Module {
     state: {
         firestore: any;
         auth: any;
-        loggedInUser: firebase.User | null;
-    };
-    getters: {
-        loggedInUser: (state: State) => any;
     };
     mutations: {
         setFirestore: (state: State, payload: any) => void;
@@ -17,22 +14,13 @@ interface FirebaseModule {
 interface State {
     firestore: any;
     auth: any;
-    loggedInUser: firebase.User | null;
 }
 
 const FirebaseModule: FirebaseModule = {
     namespaced: true,
     state: {
         firestore: {},
-        auth: {},
-        loggedInUser: null
-    },
-    getters: {
-        loggedInUser(state) {
-            state.auth.onAuthStateChanged((user: firebase.User) => {
-                state.loggedInUser = user;
-            });
-        }
+        auth: {}
     },
     mutations: {
         setFirestore: (state, payload) => {

@@ -1,11 +1,12 @@
 import Order from '@/types/Order';
+import Module from '@/types/Module';
 
 interface SetOrderPayload {
     key: string;
     value: any;
 }
 
-const OrderModule = {
+const OrderModule: Module = {
     namespaced: true,
     state: {
         email: '',
