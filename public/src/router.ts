@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import Router from 'vue-router';
+import Store from '@/store';
 const Intro = () => import(/* webpackChunkName: "intro" */'./views/Intro.vue');
 const Orders = () => import(/* webpackChunkName: "orders" */'./views/Orders.vue');
 const Checkout = () => import(/* webpackChunkName: "checkout" */'./views/Checkout.vue');
@@ -12,6 +13,7 @@ const Cart = () => import(/* webpackChunkName: "cart" */'./views/Cart.vue');
 const Login = () => import(/* webpackChunkName: "login" */'./views/Login.vue');
 const PrivacyPolicy = () => import(/* webpackChunkName: "privacyPolicy" */'./views/PrivacyPolicy.vue');
 const TermsAndConditions = () => import(/* webpackChunkName: "termsAndConditions" */'./views/TermsAndConditions.vue');
+const store: any = Store;
 
 Vue.use(Router);
 
@@ -66,6 +68,11 @@ export default new Router({
       path: '/orders',
       name: 'orders',
       component: Orders,
+      beforeEnter(to, from, next) {
+        if (!store.state.firebase.auth.loggedInUser) {
+          next('/login');
+        }
+      }
     },
     {
       path: '/test-results',
