@@ -9,7 +9,7 @@ const FormatJsDate = (date: Date): string => {
     const dtf = new Intl.DateTimeFormat('en-US', {
       year: 'numeric',
       month: 'numeric',
-      day: 'numeric',
+      day: 'numeric'
     });
     return dtf.format(date);
   };

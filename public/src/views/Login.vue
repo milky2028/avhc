@@ -13,6 +13,7 @@
             type="password"
             label="Password"
             :required="true"
+            :onEnter="logInUser"
             autocomplete="password"></av-textfield>
         <div class="switch-container padding-right">
             <p>Create an account?</p>
@@ -22,7 +23,7 @@
     </div>
     <bottom-button
     :buttonText="buttonText"
-    :buttonAction="() => buttonAction()"></bottom-button>
+    :buttonAction="() => logInUser()"></bottom-button>
 </div>
 </template>
 
@@ -58,13 +59,14 @@ import BottomButton from '@/components/BottomButton.vue';
     }
 })
 export default class Login extends Vue {
-    createAccount: boolean = false;
+    private createAccount: boolean = false;
     get buttonText() {
         return (this.createAccount) ? 'Sign Up' : 'Login';
     }
 
-    buttonAction() {
-        this.$store.dispatch('user/logInUser', { email: this.$store.state.order.email, password: this.$store.state.order.password });
+    private async logInUser() {
+        await this.$store.dispatch('user/logInUser', { email: this.$store.state.order.email, password: this.$store.state.order.password });
+        this.$router.push('/orders');
     }
 }
 </script>

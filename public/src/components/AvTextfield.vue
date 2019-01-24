@@ -5,6 +5,7 @@
             :value="value"
             @input="onInput($event.target)"
             @blur="$emit('dirty', true)"
+            @keyup.enter="onEnter"
             :class="(dirty) ? 'dirty' : ''"
             :id="fieldId"
             :type="type"
@@ -75,6 +76,7 @@ export default class AvTextfield extends Vue {
     @Prop(Array) public datalist!: any[];
     @Prop(String) public itemKey!: string;
     @Prop(String) public itemTitle!: string;
+    @Prop(Function) public onEnter!: (params?: any) => any;
     private dirty: boolean = false;
 
     public get value() {
