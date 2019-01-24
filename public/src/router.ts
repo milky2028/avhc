@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import Store from '@/store';
+import Firebase from './exports/Firebase';
 const Intro = () => import(/* webpackChunkName: "intro" */'./views/Intro.vue');
 const Orders = () => import(/* webpackChunkName: "orders" */'./views/Orders.vue');
 const Checkout = () => import(/* webpackChunkName: "checkout" */'./views/Checkout.vue');
@@ -27,7 +28,7 @@ export default new Router({
     {
       path: '/',
       name: 'intro',
-      component: Intro,
+      component: Intro
     },
     {
       path: '/flower',
@@ -37,32 +38,32 @@ export default new Router({
     {
       path: '/shop/:productName',
       name: 'shop',
-      component: Shop,
+      component: Shop
     },
     {
       path: '/about',
       name: 'about',
-      component: About,
+      component: About
     },
     {
       path: '/cart',
       name: 'cart',
-      component: Cart,
+      component: Cart
     },
     {
       path: '/checkout',
       name: 'checkout',
-      component: Checkout,
+      component: Checkout
     },
     {
       path: '/thank-you',
       name: 'thank-you',
-      component: ThankYou,
+      component: ThankYou
     },
     {
       path: '/login',
       name: 'login',
-      component: Login,
+      component: Login
     },
     {
       path: '/orders',
@@ -79,7 +80,7 @@ export default new Router({
     {
       path: '/test-results',
       name: 'test-results',
-      component: TestResults,
+      component: TestResults
     },
     {
       path: '/privacy-policy',
@@ -89,7 +90,7 @@ export default new Router({
     {
       path: '/terms-and-conditions',
       name: 'terms-and-conditions',
-      component: TermsAndConditions,
+      component: TermsAndConditions
     }
   ]
 });
