@@ -145,7 +145,6 @@
 import { Component, Vue } from 'vue-property-decorator';
 import ProductExpose from '@/components/ProductExpose.vue';
 import ExposeText from '@/components/ExposeText.vue';
-import Products from '@/exports/Products';
 
 declare const window: Window;
 

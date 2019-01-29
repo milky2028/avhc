@@ -1,5 +1,6 @@
 import Product from '@/types/Product';
 import Module from '@/types/Module';
+import * as Sentry from '@sentry/browser';
 
 interface ProductState {
   activeProductName: string;
@@ -7,7 +8,23 @@ interface ProductState {
   selectedSizeIndex: number;
 }
 
-const ProductsModule: Module = {
+interface ProductsModule extends Module {
+  state: ProductState;
+  getters: {
+    activeProduct: (state: ProductState) => Product
+  };
+  mutations: {
+    clearSizeIndex: (state: ProductState) => void;
+    setProducts: (state: ProductState, payload: Product[]) => void;
+    setActiveProductName: (state: ProductState, payload: string) => void;
+    setSelectedProductSize: (state: ProductState, payload: number) => void;
+  };
+  actions: {
+    getProducts: (context: { commit: any, rootState: any }) => Promise<void>;
+  };
+}
+
+const ProductsModule: ProductsModule = {
   namespaced: true,
   state: {
     products: [],
@@ -15,23 +32,36 @@ const ProductsModule: Module = {
     selectedSizeIndex: 0
   },
   getters: {
-    activeProduct: (state: ProductState): Product  => {
+    activeProduct: (state): Product => {
       return (state.products.length > 0 && state.activeProductName) ?
         state.products.find((product: Product) => product.name === state.activeProductName)! : new Product();
     }
   },
   mutations: {
-    clearSizeIndex: (state: ProductState) => {
+    clearSizeIndex: (state) => {
       state.selectedSizeIndex = 0;
     },
-    setProducts: (state: ProductState, payload: Product[]) => {
+    setProducts: (state, payload) => {
       state.products = payload;
     },
-    setActiveProductName: (state: ProductState, payload: string) => {
+    setActiveProductName: (state, payload) => {
       state.activeProductName = payload;
     },
-    setSelectedProductSize: (state: ProductState, payload: number) => {
+    setSelectedProductSize: (state, payload) => {
       state.selectedSizeIndex = payload;
+    }
+  },
+  actions: {
+    getProducts: async ({ commit, rootState }): Promise<void> => {
+      try {
+        const db = rootState.firebase.firestore;
+        const snapshot = await db.collection('products').get();
+        const products = snapshot.docs.map((doc: any) => doc.data());
+        commit('setProducts', products);
+      } catch (e) {
+        Sentry.captureException(e);
+        throw e;
+      }
     }
   }
 };

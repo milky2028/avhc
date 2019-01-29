@@ -19,7 +19,7 @@ import { Vue, Component, Prop } from 'vue-property-decorator';
 
 @Component
 export default class BottomButton extends Vue {
-    @Prop(String) buttonText!: string;
-    @Prop(Function) buttonAction!: (params?: any) => any;
+    @Prop(String) public buttonText!: string;
+    @Prop(Function) public buttonAction!: (params?: any) => any;
 }
 </script>

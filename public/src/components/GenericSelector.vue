@@ -70,7 +70,6 @@ select {
 import { Vue, Component, Watch, Prop } from 'vue-property-decorator';
 import EventBus from '@/exports/EventBus';
 import CartItem from '@/types/CartItem';
-import Products from '@/exports/Products';
 
 interface InputEventTarget extends EventTarget {
   value: any;

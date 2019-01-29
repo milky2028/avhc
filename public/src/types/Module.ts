@@ -1,6 +1,6 @@
 export default interface Module {
     namespaced: boolean;
-    state?: {};
+    state: {};
     getters?: {};
     mutations?: {};
     actions?: {};
