@@ -1,6 +1,5 @@
 import Module from '@/types/Module';
 import * as Sentry from '@sentry/browser';
-import { firestore } from 'firebase';
 
 interface FirebaseModule extends Module {
     state: State;
@@ -25,9 +24,9 @@ interface State {
 const FirebaseModule: FirebaseModule = {
     namespaced: true,
     state: {
-        app: {},
-        firestore: {},
-        auth: {}
+        app: null,
+        firestore: null,
+        auth: null
     },
     mutations: {
         setApp: (state, payload) => state.app = payload,
