@@ -1,11 +1,8 @@
 <template>
-    <div id="image-gallery-root" v-if="this.activeProduct && this.activeProduct.images.length > 0" :style="backgroundStyles" :title="image.alt">
+    <div id="image-gallery-root" :style="backgroundStyles" :title="image.alt">
         <img class="hidden-image" :src="image.src" :alt="image.alt">
-        <div id="left-arrow" v-if="this.activeProduct.images && this.activeProduct.images.length > 1" @click="previousImage" class="mat-icon">keyboard_arrow_left</div>
-        <div id="right-arrow" v-if="this.activeProduct.images && this.activeProduct.images.length > 1" @click="nextImage"  class="mat-icon">keyboard_arrow_right</div>
-        <price-display  v-if="this.activeProduct.images" id="price-display"></price-display>
+        <price-display v-if="this.activeProduct" id="price-display"></price-display>
     </div>
-    <div class="loading-image" :style="backgroundImagePerRoute" v-else></div>
 </template>
 
 <style scoped lang="scss">
@@ -52,48 +49,37 @@
 </style>
 
 <script lang="ts">
-  import { Vue, Component } from 'vue-property-decorator';
-  import PriceDisplay from '@/components/PriceDisplay.vue';
+import { Vue, Component } from 'vue-property-decorator';
+import PriceDisplay from '@/components/PriceDisplay.vue';
+import { mapGetters } from 'vuex';
+import { ProductState } from '@/modules/ProductsModule';
+import Product from '@/types/Product';
 
-  @Component({
-    components: {
-      PriceDisplay
-    }
-  })
-  export default class ImageGallery extends Vue {
-    private get activeProduct() {
-      return this.$store.getters['products/activeProduct'];
-    }
-
-    private get backgroundImagePerRoute() {
-      const path = this.$route.params.productName;
-      return {
-        backgroundImage: `url(${require('../assets/product-images/placeholder-' + path + '.svg')})`
-      };
-    }
-
-    private get backgroundStyles() {
-      return {
-        backgroundImage: `url('${this.image.src}')`
-      };
-    }
-
-    private get image() {
-      return (this.activeProduct && this.activeProduct.images.length > 0) ? {
-        src: require(`../assets/product-images/${this.activeProduct.images[0].src}.jpg`),
-        alt: this.activeProduct.images[0].alt
-      } : {
-        src: '',
-        alt: 'CBD Hemp Flower'
-      };
-    }
-
-    private nextImage() {
-      // console.log('next');
-    }
-
-    private previousImage() {
-      // console.log('previous');
-    }
+@Component({
+  components: {
+    PriceDisplay
+  },
+  computed: {
+    ...mapGetters('products', {
+      activeProduct: 'activeProduct'
+    })
   }
+})
+export default class ImageGallery extends Vue {
+public activeProduct!: Product;
+private get backgroundStyles() {
+  return {
+    backgroundImage: `url('${this.image.src}')`
+  };
+}
+
+private get image() {
+  const path = this.$route.params.productName;
+  return {
+    src: require(`../assets/product-images/${path}.jpg`),
+    alt: (path === 'cbd-flower') ? '28 grams of CBD Hemp Flower' :
+    (path === 'unfiltered-cbd-joints') ? 'Unfiltered, Prerolled CBD Hemp Joints' : 'Prerolled Filtered Hemp CBD Cigarettes'
+  };
+}
+}
 </script>

@@ -1,9 +1,9 @@
 import * as Sentry from '@sentry/browser';
-const Firebase = import(/* wepackChunkName: 'firebase' */'firebase/app');
+const Firebase = import(/* webpackChunkName: 'firebase' */'firebase/app');
 // @ts-ignore
-const FirestoreImport = import(/* wepackChunkName: 'firestore' */'firebase/firestore');
+const FirestoreImport = import(/* webpackChunkName: 'firestore' */'firebase/firestore');
 // @ts-ignore
-const AuthImport = import(/* wepackChunkName: 'auth' */'firebase/auth');
+const AuthImport = import(/* webpackChunkName: 'auth' */'firebase/auth');
 
 export const productionConfig = {
   apiKey: 'AIzaSyBjIrG0X4W4plSyvUlv80BlRrFcrupNh5s',

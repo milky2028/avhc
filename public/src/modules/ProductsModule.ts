@@ -13,7 +13,7 @@ export interface ProductState {
 interface ProductsModule extends Module {
   state: ProductState;
   getters: {
-    activeProduct: (state: ProductState) => Product
+    activeProduct: (state: ProductState) => Product | null
   };
   mutations: {
     clearSizeIndex: (state: ProductState) => void;
@@ -34,9 +34,9 @@ const ProductsModule: ProductsModule = {
     selectedSizeIndex: 0
   },
   getters: {
-    activeProduct: (state): Product => {
+    activeProduct: (state) => {
       return (state.products.length > 0 && state.activeProductName) ?
-        state.products.find((product: Product) => product.name === state.activeProductName)! : new Product();
+        state.products.find((product: Product) => product.name === state.activeProductName)! : null;
     }
   },
   mutations: {
