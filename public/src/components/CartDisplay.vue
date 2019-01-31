@@ -1,19 +1,20 @@
 <template>
-    <div id="cart-display-root">
-        <h2 v-if="cart.length < 1" id="empty-cart" :class="(isWhite) ? 'white-text' : ''">Your cart is empty.</h2>
-        <div v-if="cart.length >= 1">
-            <h2 :class="(isWhite) ? 'white-text' : ''">Cart</h2>
-            <div :class="(isWhite) ? 'white-background' : 'black-background'" class="divider"></div>
-            <div>
-                <cart-item-component v-for="item in cart" :key="item.id" :cartItem="item"></cart-item-component>
-            </div>
-            <div id="divider-2" class="divider" :class="(isWhite) ? 'white-background' : 'black-background'"></div>
-            <div class="split-container">
-                <h2 :class="(isWhite) ? 'white-text' : ''">Subtotal</h2>
-                <h2 :class="(isWhite) ? 'white-text' : ''">${{ subtotal }}</h2>
-            </div>
-        </div>
+  <div id="cart-display-root">
+  <h2 v-if="cart.length < 1" id="empty-cart" :class="(isWhite) ? 'white-text' : ''">Your cart is empty.</h2>
+  <div v-if="cart.length >= 1">
+      <h2 :class="(isWhite) ? 'white-text' : ''">Cart</h2>
+      <div :class="(isWhite) ? 'white-background' : 'black-background'" class="divider"></div>
+      <div>
+        <cart-item-component v-for="item in cart" :key="item.id" :cartItem="item"></cart-item-component>
+      </div>
+      <div id="divider-2" class="divider" :class="(isWhite) ? 'white-background' : 'black-background'"></div>
+      <div class="split-container">
+        <h2 :class="(isWhite) ? 'white-text' : ''">Subtotal</h2>
+        <h2 :class="(isWhite) ? 'white-text' : ''">${{ subtotal.toFixed(2) }}</h2>
+      </div>
+      <div id="clear-button-container"><button @click="clearCart()">Clear Cart</button></div>
     </div>
+  </div>
 </template>
 
 <style lang="scss" scoped>
@@ -51,29 +52,54 @@ h2 {
     justify-content: space-between;
     align-items: flex-end;
 }
+
+#clear-button-container {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+button {
+  margin-top: 26px;
+  margin-right: 26px;
+  color: white;
+  background-color: $primary;
+  font-family: $secondary-font;
+  padding: 6px 14px;
+  border-radius: 5px;
+  box-shadow: $standard-shadow;
+}
 </style>
 
 <script lang="ts">
 import { Vue, Component, Mixins } from 'vue-property-decorator';
 import CartItemComponent from '@/components/CartItemComponent.vue';
 import ColorShift from '@/mixins/ColorShift.vue';
-import { mapState } from 'vuex';
+import { mapState, mapGetters, mapMutations } from 'vuex';
 import { CartState } from '@/modules/CartModule';
 
 @Component({
-    components: {
-        CartItemComponent
-    },
-    computed: {
-        ...mapState('cart', {
-            cart: (state: CartState) => state.cart
-        })
-    }
+  components: {
+    CartItemComponent
+  },
+  computed: {
+    ...mapState('cart', [
+      'cart'
+    ]),
+    ...mapGetters('cart', [
+      'subtotal'
+    ])
+  },
+  methods: {
+    ...mapMutations('cart', [
+      'clearCart'
+    ])
+  }
 })
 export default class CartDisplay extends Mixins(ColorShift) {
-    private get subtotal() {
-        return (this.$store.getters['cart/subtotal']).toFixed(2);
-    }
+  public clearCart!: () => void;
+  private cart!: CartItemComponent[];
+  private subtotal!: number;
 }
 </script>
 

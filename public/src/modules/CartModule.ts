@@ -26,6 +26,7 @@ interface CartModule extends Module {
     setQuantity: (state: CartState, payload: QuantityPayload) => void;
     setCoupons: (state: CartState, payload: CouponCode[]) => void;
     setShippingOptions: (state: CartState, payload: PaymentShippingOption[]) => void;
+    clearCart: (state: CartState) => void;
     addItemToCart: (state: CartState, item: CartItem) => void;
     removeItemFromCart: (state: CartState, id: string) => void;
   };
@@ -35,7 +36,7 @@ interface CartModule extends Module {
   };
 }
 
-interface QuantityPayload {
+export interface QuantityPayload {
   productName: string;
   size: string;
   strain: string;
@@ -80,6 +81,7 @@ const CartModule: CartModule = {
     },
     setCoupons: (state, payload) => state.coupons = payload,
     setShippingOptions: (state, payload) => state.shippingOptions = payload,
+    clearCart: (state) => state.cart = [],
     addItemToCart(state, item) {
       const productsInCart = state.cart.map((productInCart) => productInCart.product);
       const productSizesInCart = state.cart.map((productInCart) => productInCart.size);

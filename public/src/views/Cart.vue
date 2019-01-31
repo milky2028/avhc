@@ -1,10 +1,10 @@
 <template>
-    <div id="cart-root">
-        <div id="cart-container">
-            <cart-display class="cart-display"></cart-display>
-            <shop-buttons class="buy-button" :showAddButton="false" buyButtonText="Checkout"></shop-buttons>
-        </div>
+  <div id="cart-root">
+    <div id="cart-container">
+      <cart-display class="cart-display"></cart-display>
+      <shop-buttons class="buy-button" :showAddButton="false" buyButtonText="Checkout"></shop-buttons>
     </div>
+  </div>
 </template>
 
 <style lang="scss" scoped>
@@ -65,18 +65,28 @@ cart-display {
 import { Vue, Component } from 'vue-property-decorator';
 import ShopButtons from '@/components/ShopButtons.vue';
 import CartDisplay from '@/components/CartDisplay.vue';
+import { mapActions } from 'vuex';
 
 @Component({
+  methods: {
+    ...mapActions('cart', [
+      'getCoupons',
+      'getShippingOptions'
+    ])
+  },
   components: {
     ShopButtons,
     CartDisplay
   }
 })
 export default class Cart extends Vue {
-private async beforeMount() {
-  this.$store.dispatch('cart/getShippingOptions');
-  this.$store.dispatch('cart/getCoupons');
-}
+  private getCoupons!: () => void;
+  private getShippingOptions!: () => void;
+
+  private async beforeMount() {
+    this.getShippingOptions();
+    this.getCoupons();
+  }
 }
 </script>
 

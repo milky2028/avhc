@@ -1,11 +1,11 @@
 <template>
-    <div id="cart-item-root">
+    <div id="cart-item-root" v-if="currentProduct">
         <div id="cart-image" :name="image.alt" :style="backgroundStyles"></div>
         <router-link class="link" :to="`/shop/${cartItem.product}`"><h3 :class="(isWhite) ? 'white-text' : ''">{{ cartItem.size }} - {{ currentProduct.title }}</h3></router-link>
         <h3 id="strain" :class="(isWhite) ? 'white-text' : ''">{{ currentStrainTitle }}</h3>
         <div id="quantity-container">
             <h3 id="quantity-header" :class="(isWhite) ? 'white-text' : ''">Quantity</h3>
-            <select v-model="selectedQuantity" @input="setQuantity($event.target)">
+            <select v-model="selectedQuantity" @input="setItemQuantity($event.target)">
                 <option v-for="option of options" :key="option">{{ option}}</option>
             </select>
             <h3 id="price" :class="(isWhite) ? 'white-text' : ''">${{ priceDisplay }}</h3>
@@ -79,38 +79,58 @@ import EventBus from '@/exports/EventBus';
 import Strain from '@/types/Strain';
 import CartItem from '@/types/CartItem';
 import ColorShift from '@/mixins/ColorShift.vue';
+import { mapState, mapMutations } from 'vuex';
+import { QuantityPayload } from '@/modules/CartModule';
 
-@Component
+@Component({
+  computed: {
+    ...mapState('cart', [
+      'cart'
+    ]),
+    ...mapState('products', [
+      'products'
+    ])
+  },
+  methods: {
+    ...mapMutations('cart', [
+      'removeItemFromCart',
+      'setQuantity'
+    ])
+  }
+})
 export default class CartItemComponent extends Mixins(ColorShift) {
     @Prop() private cartItem!: CartItem;
+    private cart!: CartItem[];
+    private removeItemFromCart!: (payload: string) => void;
+    private setQuantity!: (payload: QuantityPayload) => void;
+    private products!: Product[];
     private selectedQuantity = 0;
     private options = [...Array(25).keys()];
 
-    // TODO: Find and set quantity by name, size, and strain
-    private setQuantity(target: HTMLSelectElement) {
-        const localStorage = window.localStorage;
-        localStorage.clear();
-        if (target.selectedIndex === 0) {
-            this.$store.commit('cart/removeItemFromCart', this.cartItem.id);
-            localStorage.setItem('cart', JSON.stringify(this.$store.state.cart.cart));
-        } else {
-          const payload = {
-            productName: this.cartItem.product,
-            size: this.cartItem.size,
-            strain: this.cartItem.strain,
-            quantity: target.selectedIndex
-          };
-          this.$store.commit('cart/setQuantity', payload);
-          localStorage.setItem('cart', JSON.stringify(this.$store.state.cart.cart));
-        }
+    private setItemQuantity(target: HTMLSelectElement) {
+      const localStorage = window.localStorage;
+      localStorage.clear();
+      if (target.selectedIndex === 0) {
+        this.removeItemFromCart(this.cartItem.id);
+        localStorage.setItem('cart', JSON.stringify(this.cart));
+      } else {
+        const payload: QuantityPayload = {
+          productName: this.cartItem.product,
+          size: this.cartItem.size,
+          strain: this.cartItem.strain,
+          quantity: target.selectedIndex
+        };
+        this.setQuantity(payload);
+        localStorage.setItem('cart', JSON.stringify(this.cart));
+      }
     }
 
     private beforeMount() {
-        EventBus.$on('addToCart', () => {
-            this.selectedQuantity = this.cartItem.quantity!;
-        });
-
+      EventBus.$on('addToCart', () => {
         this.selectedQuantity = this.cartItem.quantity!;
+      });
+
+      this.selectedQuantity = this.cartItem.quantity!;
     }
 
     private get backgroundStyles() {
@@ -120,23 +140,23 @@ export default class CartItemComponent extends Mixins(ColorShift) {
     }
 
     private get image() {
-        return {
-            src: require(`../assets/product-images/${this.currentProduct.images[0].src}.jpg`),
-            alt: this.currentProduct.images[0].alt
-        };
+      return {
+        src: require(`../assets/product-images/${this.currentProduct.images[0].src}.jpg`),
+        alt: this.currentProduct.images[0].alt
+      };
     }
 
     public get priceDisplay() {
-        return (this.cartItem.price * this.selectedQuantity).toFixed(2);
+      return (this.cartItem.price * this.selectedQuantity).toFixed(2);
     }
 
     private get currentProduct(): Product {
-        return this.$store.state.products.products.find((product: Product) => product.name === this.cartItem.product);
+      return this.products.find((product: Product) => product.name === this.cartItem.product)!;
     }
 
     private get currentStrainTitle(): string {
-        return (this.currentProduct.strains.find((strain) => strain.name === this.cartItem.strain)) ?
-            this.currentProduct.strains.find((strain) => strain.name === this.cartItem.strain)!.title : 'Aspen Valley OG';
+      return (this.currentProduct.strains.find((strain) => strain.name === this.cartItem.strain)) ?
+        this.currentProduct.strains.find((strain) => strain.name === this.cartItem.strain)!.title : 'Aspen Valley OG';
     }
 }
 </script>
