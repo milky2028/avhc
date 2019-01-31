@@ -26,13 +26,15 @@ const Firestore = async () => {
   const app = (fb.apps.length < 1) ? fb.initializeApp(productionConfig) : fb.app();
   await FirestoreImport;
   const db = app.firestore();
-  db.enablePersistence({ experimentalTabSynchronization: true }).catch((e) => {
-    if (e.code === 'failed-precondition') {
-      Sentry.captureException(e);
-    } else if (e.code === 'unimplemented') {
-      Sentry.captureException(e);
-    }
-  });
+  if (!app.firestore) {
+    db.enablePersistence({ experimentalTabSynchronization: true }).catch((e) => {
+      if (e.code === 'failed-precondition') {
+        Sentry.captureException(e);
+      } else if (e.code === 'unimplemented') {
+        Sentry.captureException(e);
+      }
+    });
+  }
   return db;
 };
 
