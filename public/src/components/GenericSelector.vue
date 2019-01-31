@@ -4,7 +4,7 @@
         <div class='select-container'>
             <select :id="fieldId" @input="onInput($event.target)">
             <option value='' disabled selected>Select a {{ label }}</option>
-            <option v-for='option of options' :key='option[valueKey]' :value='option[valueKey]'>{{ option[titleKey] }}</option>
+            <option v-for='option of options' :key='getOption(option, valueKey)' :value='getOption(option, valueKey)'>{{ getOption(option, titleKey) }}</option>
         </select>
             <div class='mat-icon small-icon arrow-icon'>keyboard_arrow_right</div>
         </div>
@@ -90,6 +90,10 @@ export default class GenerticSelector extends Vue {
         value: event.value
     };
     this.$store.commit('order/setOrderItem', payload);
+  }
+
+  private getOption(option: any, keyVal: string) {
+    return (keyVal) ? option : option[keyVal];
   }
 }
 </script>

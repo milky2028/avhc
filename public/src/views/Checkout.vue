@@ -222,21 +222,21 @@ export default class Checkout extends Vue {
   ];
 
   public years = [
-    { year: 2018 },
-    { year: 2019 },
-    { year: 2020 },
-    { year: 2021 },
-    { year: 2022 },
-    { year: 2023 },
-    { year: 2024 },
-    { year: 2025 },
-    { year: 2026 },
-    { year: 2027 },
-    { year: 2028 },
-    { year: 2029 },
-    { year: 2030 },
-    { year: 2031 },
-    { year: 2032 }
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025,
+    2026,
+    2027,
+    2028,
+    2029,
+    2030,
+    2031,
+    2032
   ];
 
   private get shippingOptions() {
