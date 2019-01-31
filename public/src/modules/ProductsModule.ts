@@ -34,10 +34,7 @@ const ProductsModule: ProductsModule = {
     selectedSizeIndex: 0
   },
   getters: {
-    activeProduct: (state) => {
-      return (state.products.length > 0 && state.activeProductName) ?
-        state.products.find((product: Product) => product.name === state.activeProductName)! : null;
-    }
+    activeProduct: (state) => (state.products.length > 0 && state.activeProductName) ? state.products.find((product: Product) => product.name === state.activeProductName)! : null
   },
   mutations: {
     clearSizeIndex: (state) => state.selectedSizeIndex = 0,
