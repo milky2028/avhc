@@ -29,7 +29,7 @@ export default class App extends Vue {
   private async beforeMount() {
     await this.$store.dispatch('firebase/getApp');
     await this.$store.dispatch('firebase/getFirestore');
-    await this.$store.dispatch('products/getProducts');
+    this.$store.dispatch('products/getProducts');
     await this.$store.dispatch('firebase/getAuth');
     this.$store.dispatch('user/setAuthState');
     const localStorage = window.localStorage;

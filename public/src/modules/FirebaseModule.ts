@@ -50,9 +50,7 @@ const FirebaseModule: FirebaseModule = {
         getFirestore: async ({ commit, state }) => {
             // @ts-ignore;
             await import(/* webpackChunkName: "firestore" */'firebase/firestore');
-            const settings = { timestampsInSnapshots: true };
             const db = state.app.firestore();
-            db.settings(settings);
             db.enablePersistence({ experimentalTabSynchronization: true })
                 .catch((e: any) => {
                     if (e.code === 'failed-precondition') {
