@@ -1,9 +1,9 @@
 <template>
     <div id="shop-buttons-root">
-        <button id="add" class="bottom-button" v-if="showAddButton" :style="itemQuantity ? { justifyContent: 'space-between' } : { justifyContent: 'center' }">
-            <button @click="decrease()" :style="hideIfItemQuantityZero" class="mat-icon small-icon">remove_circle_outline</button>
-            <span @click="increase()">{{ addButtonField }}</span>
-            <button @click="increase()" :style="hideIfItemQuantityZero" class="mat-icon small-icon">add_circle</button>
+        <button id="add" class="bottom-button" v-if="showAddButton" :style="tempQuantity ? { justifyContent: 'space-between' } : { justifyContent: 'center' }">
+            <button @click="decreaseQuantity()" :style="hideIfItemQuantityZero" class="mat-icon small-icon">remove_circle_outline</button>
+            <span @click="increaseQuantity()">{{ addButtonField }}</span>
+            <button @click="increaseQuantity()" :style="hideIfItemQuantityZero" class="mat-icon small-icon">add_circle</button>
         </button>
         <button id="buy" class="bottom-button" :class="(singleButtonStyles) ? 'no-add' : ''" :style="borderStyles" @click="buyOrAddToCart()">
             <span><span :style="hideIfItemQuantityZero" class="mat-icon small-icon arrow-icon">keyboard_arrow_up</span></span>
@@ -81,59 +81,63 @@
 <script lang="ts">
 import { Vue, Component, Watch, Prop } from 'vue-property-decorator';
 import EventBus from '@/exports/EventBus';
+import { mapMutations, mapState } from 'vuex';
 
 declare const window: Window;
 
-@Component
+@Component({
+  computed: {
+    ...mapState('cart', [
+      'tempQuantity'
+    ])
+  },
+  methods: {
+    ...mapMutations('cart', [
+      'increaseQuantity',
+      'decreaseQuantity'
+    ])
+  }
+})
 export default class ShopButtons extends Vue {
-    @Prop(Boolean) private showAddButton!: boolean;
-    @Prop(String) private buyButtonText!: string;
+  @Prop(Boolean) private showAddButton!: boolean;
+  @Prop(String) private buyButtonText!: string;
+  private increaseQuantity!: () => void;
+  private decreaseQuantity!: () => void;
+  public tempQuantity!: number;
 
-    public get itemQuantity() {
-        return this.$store.state.cart.tempQuantity;
-    }
+  private get addButtonField(): string | number {
+    return (this.tempQuantity < 1) ? 'Add' : this.tempQuantity;
+  }
 
-    public increase() {
-        this.$store.commit('cart/increaseQuantity');
-    }
+  private get buyButtonField(): string  {
+    return (this.buyButtonText) ? this.buyButtonText : (this.tempQuantity) ? 'Cart' : 'Buy';
+  }
 
-    public decrease() {
-        this.$store.commit('cart/decreaseQuantity');
-    }
+  private get hideIfItemQuantityZero(): { display: string } {
+    return this.tempQuantity ? { display: 'block' } : { display: 'none' };
+  }
 
-    private get addButtonField(): string | number {
-        return (this.itemQuantity < 1) ? 'Add' : this.itemQuantity;
-    }
+  // TODO: Make child component more generic by using EventBus.$emit(buttonAction), passing buttonAction as a prop (just the event name), then picking up on those event emitters in the appropriate files.
+  private buyOrAddToCart(): void {
+    (this.buyButtonField === 'Buy') ?
+      EventBus.$emit('buyFlow') :
+    (this.buyButtonField === 'Checkout') ?
+      this.$router.push('/checkout') :
+      EventBus.$emit('addToCart');
+  }
 
-    private get buyButtonField(): string  {
-        return (this.buyButtonText) ? this.buyButtonText : (this.itemQuantity) ? 'Cart' : 'Buy';
-    }
+  private get singleButtonStyles() {
+      return (!this.showAddButton) ? true : false;
+  }
 
-    private get hideIfItemQuantityZero(): { display: string } {
-        return this.itemQuantity ? { display: 'block' } : { display: 'none' };
-    }
-
-    // TODO: Make child component more generic by using EventBus.$emit(buttonAction), passing buttonAction as a prop (just the event name), then picking up on those event emitters in the appropriate files.
-    private buyOrAddToCart(): void {
-        (this.buyButtonField === 'Buy') ?
-            EventBus.$emit('buyFlow') :
-        (this.buyButtonField === 'Checkout') ?
-            this.$router.push('/checkout') :
-                EventBus.$emit('addToCart');
-    }
-
-    private get singleButtonStyles() {
-        return (!this.showAddButton) ? true : false;
-    }
-
-    private get borderStyles() {
-        return (window.innerWidth < 1024) ? '' :
-        (this.singleButtonStyles) ? {
-            borderWidth: '3px'
-        } : {
-            borderWidth: '3px 3px 3px 1.5px'
-        };
-    }
+  private get borderStyles() {
+    return (window.innerWidth < 1024) ? '' :
+    (this.singleButtonStyles) ? {
+      borderWidth: '3px'
+    } : {
+      borderWidth: '3px 3px 3px 1.5px'
+    };
+  }
 }
 </script>
 
