@@ -149,15 +149,15 @@ import ExposeText from '@/components/ExposeText.vue';
 declare const window: Window;
 
 @Component({
-    components: {
-        ProductExpose,
-        ExposeText
-    }
+  components: {
+    ProductExpose,
+    ExposeText
+  }
 })
 export default class Flower extends Vue {
-    private get windowInnerWidth() {
-        return window.innerWidth;
-    }
+  private get windowInnerWidth() {
+    return window.innerWidth;
+  }
 }
 </script>
 
