@@ -1,8 +1,10 @@
 import CartItem from '@/types/CartItem';
 import CouponCode from '@/types/CouponCode';
 import Module from '@/types/Module';
+import * as Sentry from '@sentry/browser';
 
-interface CartState {
+
+export interface CartState {
     cart: CartItem[];
     shippingOptions: any[];
     tempQuantity: number;
@@ -12,9 +14,9 @@ interface CartState {
 
 interface CartModule extends Module {
     state: CartState;
-    getters?: any;
-    mutations?: any;
-    actions?: any;
+    actions: {
+        getShippingOptions: (context: { commit: any, rootState: any }) => Promise<void>
+    };
 }
 
 interface QuantityPayload {
@@ -51,27 +53,17 @@ const CartModule: CartModule = {
         },
     },
     mutations: {
-        increaseQuantity(state: CartState) {
-            state.tempQuantity++;
-        },
-        decreaseQuantity(state: CartState) {
-            state.tempQuantity--;
-        },
-        clearQuantity(state: CartState) {
-            state.tempQuantity = 0;
-        },
+        increaseQuantity: (state: CartState) => state.tempQuantity++,
+        decreaseQuantity: (state: CartState) => state.tempQuantity--,
+        clearQuantity: (state: CartState) => state.tempQuantity = 0,
         setQuantity(state: CartState, payload: QuantityPayload) {
             const cartItem = state.cart.find((item: CartItem) => {
                 return item.product === payload.productName && item.size === payload.size && item.strain === payload.strain;
             })!;
             cartItem.quantity = payload.quantity;
         },
-        setCoupons(state: CartState, payload: CouponCode[]) {
-            state.coupons = payload;
-        },
-        setShippingOptions(state: CartState, payload: PaymentShippingOption[]) {
-            state.shippingOptions = payload;
-        },
+        setCoupons: (state: CartState, payload: CouponCode[]) => state.coupons = payload,
+        setShippingOptions: (state: CartState, payload: PaymentShippingOption[]) => state.shippingOptions = payload,
         addItemToCart(state: CartState, item: CartItem) {
             const productsInCart = state.cart.map((productInCart) => productInCart.product);
             const productSizesInCart = state.cart.map((productInCart) => productInCart.size);
@@ -86,8 +78,18 @@ const CartModule: CartModule = {
             localStorage.clear();
             localStorage.setItem('cart', JSON.stringify(state.cart));
         },
-        removeItemFromCart(state: CartState, id: string) {
-            state.cart = state.cart.filter((item) => item.id !== id);
+        removeItemFromCart: (state: CartState, id: string) => state.cart = state.cart.filter((item) => item.id !== id)
+    },
+    actions: {
+        getShippingOptions: async ({ commit, rootState }) => {
+            try {
+                const db = rootState.firebase.firestore;
+                const snapshot = await db.collection('shipping-options').get();
+                commit('setShippingOptions', snapshot.docs.map((doc: any) => doc.data()));
+            } catch (e) {
+                Sentry.captureException(e);
+                throw e;
+            }
         }
     }
 };

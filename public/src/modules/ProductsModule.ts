@@ -2,7 +2,7 @@ import Product from '@/types/Product';
 import Module from '@/types/Module';
 import * as Sentry from '@sentry/browser';
 
-interface ProductState {
+export interface ProductState {
   activeProductName: string;
   products: Product[];
   selectedSizeIndex: number;

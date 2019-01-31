@@ -57,17 +57,20 @@ h2 {
 import { Vue, Component, Mixins } from 'vue-property-decorator';
 import CartItemComponent from '@/components/CartItemComponent.vue';
 import ColorShift from '@/mixins/ColorShift.vue';
+import { mapState } from 'vuex';
+import { CartState } from '@/modules/CartModule';
 
 @Component({
     components: {
         CartItemComponent
+    },
+    computed: {
+        ...mapState('cart', {
+            cart: (state: CartState) => state.cart
+        })
     }
 })
 export default class CartDisplay extends Mixins(ColorShift) {
-    private get cart() {
-        return this.$store.state.cart.cart;
-    }
-
     private get subtotal() {
         return (this.$store.getters['cart/subtotal']).toFixed(2);
     }

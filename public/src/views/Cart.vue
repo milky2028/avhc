@@ -76,7 +76,7 @@ import Coupons from '@/exports/Coupons';
 })
 export default class Cart extends Vue {
   private async beforeMount() {
-    this.$store.commit('cart/setShippingOptions', await ShippingOptions());
+    await this.$store.dispatch('cart/getShippingOptions');
     this.$store.commit('cart/setCoupons', await Coupons());
   }
 }

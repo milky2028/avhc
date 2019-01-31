@@ -192,8 +192,15 @@ import ShippingOptions from '@/exports/ShippingOptions';
 import StateTaxes from '@/exports/StateTaxes';
 import CouponCode from '@/types/CouponCode';
 import { StringToDate } from '@/exports/DateFunctions';
+import { mapState } from 'vuex';
+import { CartState } from '@/modules/CartModule';
 
 @Component({
+  computed: {
+    ...mapState('cart', {
+      shippingOptions: (state: CartState) => state.shippingOptions
+    })
+  },
   components: {
     ShippingForm,
     AvTextfield,
