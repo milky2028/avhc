@@ -19,16 +19,20 @@ import Size from '@/types/Size';
         activeProduct: 'activeProduct'
     }),
     ...mapState('products', {
-        selectedSize: 'selectedSizeIndex'
+        selectedSizeIndex: 'selectedSizeIndex'
     })
   }
 })
 export default class PriceDisplay extends Vue {
 private activeProduct!: Product;
-private selectedSize!: Size;
+private selectedSizeIndex!: number;
+
+private get selectedSize() {
+  return this.activeProduct.sizes[this.selectedSizeIndex];
+}
 
 private get displayedPrice() {
-    return (this.selectedSize) ? this.selectedSize.price : this.activeProduct.price;
+  return (this.selectedSize) ? this.selectedSize.price : this.activeProduct.price;
 }
 }
 </script>

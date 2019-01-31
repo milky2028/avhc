@@ -190,7 +190,7 @@ export default class ProductSelector extends Vue {
   }
 
   private setProductSize(event: InputEventTarget) {
-    this.$store.commit('products/setSelectedProductSize', event.value);
+    this.$store.commit('products/setSelectedProductSize', +event.value);
   }
 
   private get sizeDynamicStyle() {
