@@ -14,19 +14,19 @@
         <div id='left-select' class='select-wrapper half-width' :style="sizeDynamicStyle">
             <label for="size-select">Size</label>
             <div class='select-container'>
-                <select id="size-select" class='lower-selector' v-model='selectedProductSize' @input="setProductSize($event.target)">
+                <select id="size-select" class='lower-selector' v-model='selectedProductSize' @input="setSelectedProductSize(+$event.target.value)">
                 <option value='' disabled selected>Size</option>
-                <option v-for='size of sizes' :key='size.index' :value='size.index'>{{ size.sizeValue }}{{ size.measurement }}</option>
+                <option v-for='size of activeProduct.sizes' :key='size.index' :value='size.index'>{{ size.sizeValue }}{{ size.measurement }}</option>
             </select>
             <div class='mat-icon small-icon arrow-icon'>keyboard_arrow_right</div>
             </div>
         </div>
-        <div id='right-select' v-if="strains.length > 0" class='select-wrapper half-width'>
+        <div id='right-select' v-if="activeProduct.strains.length > 0" class='select-wrapper half-width'>
             <label for="strain-select">Strain</label>
             <div class='select-container strain'>
                 <select id="strain-select" class='lower-selector' v-model='selectedProductStrain'>
                 <option value='' disabled selected>Strain</option>
-                <option v-for='strain of strains' :key='strain.name' :value='strain.name'>{{ strain.title }}</option>
+                <option v-for='strain of activeProduct.strains' :key='strain.name' :value='strain.name'>{{ strain.title }}</option>
             </select>
             <div class='mat-icon small-icon arrow-icon'>keyboard_arrow_right</div>
             </div>
@@ -136,43 +136,71 @@ select {
 import { Vue, Component, Watch } from 'vue-property-decorator';
 import EventBus from '@/exports/EventBus';
 import CartItem from '@/types/CartItem';
+import { mapMutations, mapState, mapGetters } from 'vuex';
+import Product from '@/types/Product';
 
 interface InputEventTarget extends EventTarget {
   value: string;
 }
 
-@Component
+@Component({
+  computed: {
+    ...mapState('products', [
+      'products'
+    ]),
+    ...mapGetters('products', [
+      'activeProduct',
+    ])
+  },
+  methods: {
+    ...mapMutations('products', [
+      'setActiveProductName',
+      'clearSizeIndex',
+      'setSelectedProductSize'
+    ]),
+    ...mapMutations('cart', [
+      'addItemToCart',
+      'clearQuantity'
+    ])
+  }
+})
 export default class ProductSelector extends Vue {
   public selectedProductSize = '';
   public selectedProductStrain = '';
   public selectedProductName = '';
+  public activeProduct!: Product;
+  public products!: Product[];
+  private setActiveProductName!: (payload: string) => void;
+  private clearSizeIndex!: () => void;
+  private setSelectedProductSize!: (payload: number) => void;
+  private addItemToCart!: (item: CartItem) => void;
+  private clearQuantity!: () => void;
 
   @Watch('$route') private onRouteChange() {
     this.selectedProductName = (this.$route.params.productName) ? this.$route.params.productName : '';
-    this.$store.commit('products/setActiveProductName', this.selectedProductName);
     this.selectedProductSize = '';
     this.selectedProductStrain = '';
   }
 
   private beforeMount() {
-    this.$store.commit('products/clearSizeIndex');
+    this.clearSizeIndex();
     this.selectedProductName = (this.$route.params.productName) ? this.$route.params.productName : '';
-    this.$store.commit('products/setActiveProductName', this.selectedProductName);
+    this.setActiveProductName(this.selectedProductName);
 
     EventBus.$on('addToCart', () => {
-      const item: CartItem = {
+      const item = {
         id: this.createRandomId(12),
         price: (this.selectedProductSize) ?
           this.activeProduct.sizes[this.$store.state.products.selectedSizeIndex].price : this.activeProduct.price,
         quantity: this.$store.state.cart.tempQuantity,
         product: this.activeProduct.name,
         size: (this.selectedProductSize) ?
-          `${this.sizes[this.selectedProductSize].sizeValue}${this.sizes[0].measurement}` :
-          `${this.sizes[0].sizeValue}${this.sizes[0].measurement}`,
-        strain: (this.selectedProductStrain) ? this.selectedProductStrain : (this.strains.length > 0) ? this.strains[0].name : ''
+          `${this.activeProduct.sizes[+this.selectedProductSize].sizeValue}${this.activeProduct.sizes[0].measurement}` :
+          `${this.activeProduct.sizes[0].sizeValue}${this.activeProduct.sizes[0].measurement}`,
+        strain: (this.selectedProductStrain) ? this.selectedProductStrain : (this.activeProduct.strains.length > 0) ? this.activeProduct.strains[0].name : ''
       };
-      this.$store.commit('cart/addItemToCart', item);
-      this.$store.commit('cart/clearQuantity');
+      this.addItemToCart(item);
+      this.clearQuantity();
     });
   }
 
@@ -182,35 +210,15 @@ export default class ProductSelector extends Vue {
 
   private setProduct(event: InputEventTarget) {
     const clickValue: string = event.value;
-    this.$store.commit('products/setActiveProductName', clickValue);
+    this.setActiveProductName(clickValue);
     this.$router.push(`/shop/${clickValue}`);
     this.selectedProductSize = '';
     this.selectedProductStrain = '';
     return this.selectedProductName;
   }
 
-  private setProductSize(event: InputEventTarget) {
-    this.$store.commit('products/setSelectedProductSize', +event.value);
-  }
-
   private get sizeDynamicStyle() {
-    return (this.strains.length > 0) ? {} : { width: '100%' };
-  }
-
-  private get activeProduct() {
-    return this.$store.getters['products/activeProduct'];
-  }
-
-  private get products() {
-    return this.$store.state.products.products;
-  }
-
-  private get strains() {
-    return this.activeProduct.strains;
-  }
-
-  private get sizes() {
-    return this.activeProduct.sizes;
+    return (this.activeProduct.strains.length > 0) ? {} : { width: '100%' };
   }
 
   private createRandomId(length: number) {

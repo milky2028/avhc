@@ -19,17 +19,29 @@ import { Component, Vue } from 'vue-property-decorator';
 import AppToolbar from '@/components/AppToolbar.vue';
 import CartItem from '@/types/CartItem';
 import { Auth } from '@/exports/Firebase';
+import { mapActions } from 'vuex';
+import UserModule from '@/modules/UserModule';
 
 @Component({
   components: {
     AppToolbar
+  },
+  methods: {
+    ...mapActions('user', {
+      setAuthState: 'setAuthState'
+    }),
+    ...mapActions('products', {
+      getProducts: 'getProducts'
+    })
   }
 })
 
 export default class App extends Vue {
+  private getProducts!: () => void;
+  private setAuthState!: () => void;
   private async mounted() {
-    this.$store.dispatch('products/getProducts');
-    this.$store.dispatch('user/setAuthState');
+    this.getProducts();
+    this.setAuthState();
     const localStorage = window.localStorage;
     if (localStorage.cart) {
       const cart = JSON.parse(localStorage.getItem('cart')!);
