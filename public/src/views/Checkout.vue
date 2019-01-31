@@ -188,7 +188,6 @@ import AvSwitch from '@/components/AvSwitch.vue';
 import ShopButtons from '@/components/ShopButtons.vue';
 import GenericSelector from '@/components/GenericSelector.vue';
 import ShippingMethod from '@/types/ShippingMethod';
-import ShippingOptions from '@/exports/ShippingOptions';
 import StateTaxes from '@/exports/StateTaxes';
 import CouponCode from '@/types/CouponCode';
 import { StringToDate } from '@/exports/DateFunctions';
@@ -213,6 +212,7 @@ import { CartState } from '@/modules/CartModule';
 export default class Checkout extends Vue {
   public createAccount: boolean = false;
   public differentBilling: boolean = false;
+  public shippingOptions!: ShippingMethod[];
   public months = [
     { month: 'January', abbr: 'Jan' },
     { month: 'February', abbr: 'Feb' },
@@ -246,10 +246,6 @@ export default class Checkout extends Vue {
     2032
   ];
 
-  private get shippingOptions() {
-    return this.$store.state.cart.shippingOptions;
-  }
-
   private get subtotal() {
     return this.$store.getters['cart/subtotal'];
   }
@@ -271,9 +267,8 @@ export default class Checkout extends Vue {
 
   private get shippingCost() {
     const shippingMethodName: string = this.$store.state.order.shippingMethod;
-    const shippingMethod = (shippingMethodName) ?
-      this.shippingOptions.find((method: ShippingMethod) => method.id === shippingMethodName) : this.shippingOptions[0];
-    return shippingMethod.price;
+    const shippingMethod = (shippingMethodName) ? this.shippingOptions.find((method: ShippingMethod) => method.id === shippingMethodName) : this.shippingOptions[0];
+    return shippingMethod!.price;
   }
 
   private get grandTotal() {

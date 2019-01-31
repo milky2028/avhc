@@ -30,7 +30,7 @@
             label="State/Province/Region"
             autocomplete="address-level1"
             :required="true"
-            :datalist="stateTaxes"
+            :datalist="StateTaxes"
             itemKey="state"
             itemTitle="abbr"></av-textfield>
         <av-textfield
@@ -103,24 +103,22 @@ h2 {
 import { Component, Vue, Prop } from 'vue-property-decorator';
 import AvTextfield from '@/components/AvTextfield.vue';
 import GenericSelector from '@/components/GenericSelector.vue';
-import ShippingOptions from '@/exports/ShippingOptions';
 import StateTaxes from '@/exports/StateTaxes';
+import { mapState } from 'vuex';
+import { CartState } from '@/modules/CartModule';
 
 @Component({
-  components: {
-    AvTextfield,
-    GenericSelector
-  }
+components: {
+  AvTextfield,
+  GenericSelector
+},
+computed: {
+  ...mapState('cart', {
+    shippingOptions: (state: CartState) => state.shippingOptions
+  })
+}
 })
 export default class ShippingForm extends Vue {
-  @Prop(String) private formHeader!: string;
-
-  private get stateTaxes() {
-      return StateTaxes;
-  }
-
-  private get shippingOptions() {
-      return this.$store.state.cart.shippingOptions;
-  }
+@Prop(String) private formHeader!: string;
 }
 </script>
