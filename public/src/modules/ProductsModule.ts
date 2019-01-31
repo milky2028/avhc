@@ -1,6 +1,8 @@
 import Product from '@/types/Product';
 import Module from '@/types/Module';
 import * as Sentry from '@sentry/browser';
+import { Commit } from 'vuex';
+import { Firestore } from '@/exports/Firebase';
 
 export interface ProductState {
   activeProductName: string;
@@ -20,7 +22,7 @@ interface ProductsModule extends Module {
     setSelectedProductSize: (state: ProductState, payload: number) => void;
   };
   actions: {
-    getProducts: (context: { commit: any, rootState: any }) => Promise<void>;
+    getProducts: (context: { commit: Commit }) => Promise<void>;
   };
 }
 
@@ -38,23 +40,15 @@ const ProductsModule: ProductsModule = {
     }
   },
   mutations: {
-    clearSizeIndex: (state) => {
-      state.selectedSizeIndex = 0;
-    },
-    setProducts: (state, payload) => {
-      state.products = payload;
-    },
-    setActiveProductName: (state, payload) => {
-      state.activeProductName = payload;
-    },
-    setSelectedProductSize: (state, payload) => {
-      state.selectedSizeIndex = payload;
-    }
+    clearSizeIndex: (state) => state.selectedSizeIndex = 0,
+    setProducts: (state, payload) => state.products = payload,
+    setActiveProductName: (state, payload) => state.activeProductName = payload,
+    setSelectedProductSize: (state, payload) => state.selectedSizeIndex = payload
   },
   actions: {
-    getProducts: async ({ commit, rootState }): Promise<void> => {
+    getProducts: async ({ commit }) => {
       try {
-        const db = rootState.firebase.firestore;
+        const db = await Firestore();
         const snapshot = await db.collection('products').get();
         const products = snapshot.docs.map((doc: any) => doc.data());
         commit('setProducts', products);

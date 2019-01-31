@@ -1,5 +1,6 @@
 import Module from '@/types/Module';
 import { Auth } from '@/exports/Firebase';
+import { Commit } from 'vuex';
 
 export interface UserState {
   user: firebase.User | null;
@@ -11,8 +12,8 @@ interface UserModule extends Module {
     setUser: (state: UserState, payload: firebase.User) => void;
   };
   actions: {
-    logInUserWithEmailAndPassword: (context: { commit: any }, payload: { email: string, password: string }) => void;
-    setAuthState: (context: { commit: any }) => void;
+    logInUserWithEmailAndPassword: (context: { commit: Commit }, payload: { email: string, password: string }) => void;
+    setAuthState: (context: { commit: Commit }) => void;
   };
 }
 
@@ -22,9 +23,7 @@ const UserModule: UserModule = {
     user: null
   },
   mutations: {
-    setUser(state: UserState, payload: firebase.User) {
-      state.user = payload;
-    }
+    setUser: (state, payload) => state.user = payload
   },
   actions: {
     async logInUserWithEmailAndPassword({ commit }, payload) {
