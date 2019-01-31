@@ -1,5 +1,4 @@
 import Store from '@/store';
-import ShippingOptions from './ShippingOptions';
 import * as Sentry from '@sentry/browser';
 import router from '@/router';
 import EncryptData from './EncryptData';
@@ -16,7 +15,7 @@ const SubmitPayment = async () => {
           };
         const creditCard: PaymentMethodData = { supportedMethods: 'basic-card' };
         const supportedPaymentMethods: PaymentMethodData[] = [creditCard];
-        store.commit('cart/setShippingOptions', await ShippingOptions());
+        await store.dispatch('cart/getShippingOptions');
         const paymentDetails = {
                 total: {
                     label: 'Total',

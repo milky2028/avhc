@@ -259,6 +259,6 @@ const StateTaxes = [
     state: 'Not Found',
     taxRate: 5.11
   }
- ];
+];
 
 export default StateTaxes;

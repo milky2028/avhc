@@ -65,20 +65,18 @@ cart-display {
 import { Vue, Component } from 'vue-property-decorator';
 import ShopButtons from '@/components/ShopButtons.vue';
 import CartDisplay from '@/components/CartDisplay.vue';
-import ShippingOptions from '@/exports/ShippingOptions';
-import Coupons from '@/exports/Coupons';
 
 @Component({
-    components: {
-        ShopButtons,
-        CartDisplay
-    }
+  components: {
+    ShopButtons,
+    CartDisplay
+  }
 })
 export default class Cart extends Vue {
-  private async beforeMount() {
-    await this.$store.dispatch('cart/getShippingOptions');
-    this.$store.commit('cart/setCoupons', await Coupons());
-  }
+private async beforeMount() {
+  this.$store.dispatch('cart/getShippingOptions');
+  this.$store.dispatch('cart/getCoupons');
+}
 }
 </script>
 
