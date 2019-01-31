@@ -18,6 +18,7 @@
 import { Component, Vue } from 'vue-property-decorator';
 import AppToolbar from '@/components/AppToolbar.vue';
 import CartItem from '@/types/CartItem';
+import { Auth } from '@/exports/Firebase';
 
 @Component({
   components: {
@@ -26,9 +27,8 @@ import CartItem from '@/types/CartItem';
 })
 
 export default class App extends Vue {
-  private async beforeMount() {
-    await this.$store.dispatch('firebase/getApp');
-    await this.$store.dispatch('firebase/getFirestore');
+  private async mounted() {
+    this.$store.dispatch('user/setAuthState');
     this.$store.dispatch('products/getProducts');
     await this.$store.dispatch('firebase/getAuth');
     this.$store.dispatch('user/setAuthState');
