@@ -29,9 +29,10 @@ import { Auth } from '@/exports/Firebase';
 export default class App extends Vue {
   private async mounted() {
     this.$store.dispatch('user/setAuthState');
+
+
     this.$store.dispatch('products/getProducts');
-    await this.$store.dispatch('firebase/getAuth');
-    this.$store.dispatch('user/setAuthState');
+
     const localStorage = window.localStorage;
     if (localStorage.cart) {
       const cart = JSON.parse(localStorage.getItem('cart')!);

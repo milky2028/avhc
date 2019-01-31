@@ -1,14 +1,14 @@
 import Module from '@/types/Module';
 import { Auth } from '@/exports/Firebase';
 
-export interface State {
+export interface UserState {
   user: firebase.User | null;
 }
 
 interface UserModule extends Module {
-  state: State;
+  state: UserState;
   mutations: {
-    setUser: (state: State, payload: firebase.User) => void;
+    setUser: (state: UserState, payload: firebase.User) => void;
   };
   actions: {
     logInUserWithEmailAndPassword: (context: { commit: any }, payload: { email: string, password: string }) => void;
@@ -22,7 +22,7 @@ const UserModule: UserModule = {
     user: null
   },
   mutations: {
-    setUser(state: State, payload: firebase.User) {
+    setUser(state: UserState, payload: firebase.User) {
       state.user = payload;
     }
   },
