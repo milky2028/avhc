@@ -1,5 +1,5 @@
 <template>
-    <div id="descriptions-root" v-html="activeProduct.description"></div>
+  <div id="descriptions-root" v-html="activeProduct.description"></div>
 </template>
 
 <style lang="scss">
@@ -56,12 +56,18 @@ h2 {
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator';
+import { mapGetters } from 'vuex';
+import Product from '@/types/Product';
 
-@Component
+@Component({
+  computed: {
+    ...mapGetters('products', [
+      'activeProduct'
+    ])
+  }
+})
 export default class ProductDescription extends Vue {
-    private get activeProduct() {
-      return this.$store.getters['products/activeProduct'];
-    }
+  public activeProduct!: Product;
 }
 </script>
 
