@@ -1,6 +1,11 @@
 #!/bin/bash
 
-cd ~/Documents/GitHub/avp
+if [ "$1" == "mac" ]; then
+    cd ~/Documents/GitHub/avp
+else
+    cd ~/avhc
+fi
+
 npm i -g firebase-tools @vue/cli @vue/cli-service-global
 rm -rf public/node_modules functions/node_modules
 cd functions
