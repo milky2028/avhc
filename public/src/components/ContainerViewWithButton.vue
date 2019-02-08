@@ -1,6 +1,8 @@
 <template>
-    <div>
-      <slot class="slot"></slot>
+    <div class="grid-container">
+      <div class="slot">
+        <slot></slot>
+      </div>
       <generic-button :style="(stickyBtn) ? stickyBtnStyles: {}" class="btn" :buttonText="buttonText" :buttonAction="buttonAction"></generic-button>
     </div>
 </template>
@@ -8,7 +10,7 @@
 <style lang="scss" scoped>
 @import '@/styles/vars.scss';
 
-div {
+.grid-container {
   display: grid;
   height: $full-window;
   box-sizing: border-box;
@@ -20,6 +22,7 @@ div {
 
 .slot {
   grid-area: slot;
+  padding: 26px 0 26px 26px;
 }
 
 .btn {
