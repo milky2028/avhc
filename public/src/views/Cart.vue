@@ -5,6 +5,7 @@
       <shop-buttons class="buy-button" :showAddButton="false" buyButtonText="Checkout"></shop-buttons>
     </div>
   </div>
+  <!-- <container-view-with-button buttonText="Pizza!"></container-view-with-button> -->
 </template>
 
 <style lang="scss" scoped>
@@ -66,6 +67,7 @@ import { Vue, Component } from 'vue-property-decorator';
 import ShopButtons from '@/components/ShopButtons.vue';
 import CartDisplay from '@/components/CartDisplay.vue';
 import { mapActions } from 'vuex';
+import ContainerViewWithButton from '@/components/ContainerViewWithButton.vue';
 
 @Component({
   methods: {
@@ -76,7 +78,8 @@ import { mapActions } from 'vuex';
   },
   components: {
     ShopButtons,
-    CartDisplay
+    CartDisplay,
+    ContainerViewWithButton
   }
 })
 export default class Cart extends Vue {

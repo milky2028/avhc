@@ -1,0 +1,21 @@
+$standard-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+$primary: #004D40;
+$primary-light: #39796b;
+$edge-padding: 0px 30px;
+$h1: 28px;
+$primary-font: 'Elianto', Arial;
+$secondary-font: 'Mukta Malar', sans-serif;
+$mat-icons: 'Material Icons';
+$full-window: calc(100vh - 65.5px);
+
+@import url('https://fonts.googleapis.com/css?family=Mukta+Malar:300,400,500,600,800');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+
+@font-face {
+  font-family: 'Elianto';
+  src: url('../assets/fonts/elianto.woff2') format('woff2'),
+       url('../assets/fonts/elianto.woff') format('woff'),
+       url('../assets/fonts/elianto.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
