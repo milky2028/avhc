@@ -52,7 +52,14 @@ export default new Router({
     {
       path: '/checkout',
       name: 'checkout',
-      component: Checkout
+      component: Checkout,
+      beforeEnter(to, from, next) {
+        if (store.state.cart.cart.length === 0) {
+          next('/cart');
+        } else {
+          next();
+        }
+      }
     },
     {
       path: '/thank-you',
