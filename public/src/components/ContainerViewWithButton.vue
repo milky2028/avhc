@@ -3,7 +3,11 @@
       <div class="slot">
         <slot></slot>
       </div>
-      <generic-button :style="(stickyBtn) ? stickyBtnStyles: {}" class="btn" :buttonText="buttonText" :buttonAction="buttonAction"></generic-button>
+      <generic-button
+        class="btn"
+        :style="(stickyBtn) ? stickyBtnStyles: {}"
+        :btnText="btnText"
+        :btnAction="btnAction"></generic-button>
     </div>
 </template>
 
@@ -40,8 +44,8 @@ import GenericButton from '@/components/GenericButton.vue';
   }
 })
 export default class ContainerViewWithButton extends Vue {
-  @Prop(Function) public buttonAction!: (params?: any) => any;
-  @Prop(String) public buttonText!: string;
+  @Prop(Function) public btnAction!: (params?: any) => any;
+  @Prop(String) public btnText!: string;
   @Prop(Boolean) public stickyBtn!: boolean;
 
   get stickyBtnStyles() {

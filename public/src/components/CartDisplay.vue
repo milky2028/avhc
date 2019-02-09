@@ -1,5 +1,5 @@
 <template>
-  <div id="cart-display-root">
+  <div>
   <h2 v-if="cart.length < 1" id="empty-cart" :class="(isWhite) ? 'white-text' : ''">Your cart is empty.</h2>
   <div v-if="cart.length >= 1">
       <h2 :class="(isWhite) ? 'white-text' : ''">Cart</h2>
@@ -20,10 +20,6 @@
 <style lang="scss" scoped>
 @import '../styles/theme.scss';
 @import '../styles/color-shift.scss';
-
-#cart-display-root {
-    padding: 26px 0 26px 26px;
-}
 
 #empty-cart {
     text-align: center;
