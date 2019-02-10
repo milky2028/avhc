@@ -5,7 +5,12 @@
     <div>
       <header-with-divider class="header">Orders</header-with-divider>
       <div class="order-container">
-        <order-item></order-item>
+        <order-item
+          orderNumber="sdfgwert45t"
+          :orderDate="new Date()"
+          :orderTotal="6969696.99"
+          orderStatus="Shipped"
+          :hasShipped="true"></order-item>
       </div>
     </div>
   </container-view-with-button>
