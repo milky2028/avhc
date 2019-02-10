@@ -12,7 +12,7 @@
         <h2 :class="(isWhite) ? 'white-text' : ''">Subtotal</h2>
         <h2 :class="(isWhite) ? 'white-text' : ''">${{ subtotal.toFixed(2) }}</h2>
       </div>
-      <div id="clear-button-container"><button @click="clearCart()">Clear Cart</button></div>
+      <div id="clear-button-container"><button class="small-green-button" @click="clearCart()">Clear Cart</button></div>
     </div>
   </div>
 </template>
@@ -20,6 +20,7 @@
 <style lang="scss" scoped>
 @import '../styles/theme.scss';
 @import '../styles/color-shift.scss';
+@import '@/styles/small-green-button.scss';
 
 #empty-cart {
     text-align: center;
@@ -53,17 +54,6 @@ h2 {
   display: flex;
   width: 100%;
   justify-content: center;
-}
-
-button {
-  margin-top: 26px;
-  margin-right: 26px;
-  color: white;
-  background-color: $primary;
-  font-family: $secondary-font;
-  padding: 6px 14px;
-  border-radius: 5px;
-  box-shadow: $standard-shadow;
 }
 </style>
 
