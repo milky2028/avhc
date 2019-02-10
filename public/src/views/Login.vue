@@ -3,7 +3,7 @@
     :rightPadding="true"
     :btnText="btnText"
     :btnAction="() => logInUser()">
-      <div class="container">
+      <div>
         <form>
         <av-textfield
             type="email"
