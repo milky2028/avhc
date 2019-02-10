@@ -1,13 +1,15 @@
 <template>
     <div class="grid-container">
-      <div class="slot">
+      <div
+        class="slot"
+        :style="(rightPadding) ? { paddingRight: '26px' } : {}">
         <slot></slot>
       </div>
-      <generic-button
+      <bottom-button
         class="btn"
         :style="(stickyBtn) ? stickyBtnStyles: {}"
         :btnText="btnText"
-        :btnAction="btnAction"></generic-button>
+        :btnAction="btnAction"></bottom-button>
     </div>
 </template>
 
@@ -36,17 +38,18 @@
 
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator';
-import GenericButton from '@/components/GenericButton.vue';
+import BottomButton from '@/components/BottomButton.vue';
 
 @Component({
   components: {
-    GenericButton
+    BottomButton
   }
 })
 export default class ContainerViewWithButton extends Vue {
   @Prop(Function) public btnAction!: (params?: any) => any;
   @Prop(String) public btnText!: string;
   @Prop(Boolean) public stickyBtn!: boolean;
+  @Prop(Boolean) public rightPadding!: boolean;
 
   get stickyBtnStyles() {
     return {

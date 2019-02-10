@@ -1,16 +1,16 @@
 <template>
-    <button @click="buttonAction">{{ buttonText }}</button>
+  <button @click="btnAction">{{ btnText }}</button>
 </template>
 
 <style lang="scss" scoped>
 button {
-    font-family: 'Elianto';
-    width: 100%;
-    background-color: white;
-    text-transform: uppercase;
-    border-top: 3px solid black;
-    font-size: 28px;
-    padding: 26px;
+  width: 100%;
+  background-color: white;
+  border-top: 3px black solid;
+  padding: 26px;
+  text-transform: uppercase;
+  font-family: 'Elianto';
+  font-size: 28px;
 }
 </style>
 
@@ -19,7 +19,7 @@ import { Vue, Component, Prop } from 'vue-property-decorator';
 
 @Component
 export default class BottomButton extends Vue {
-    @Prop(String) public buttonText!: string;
-    @Prop(Function) public buttonAction!: (params?: any) => any;
+  @Prop(Function) public btnAction!: (params?: any) => any;
+  @Prop(String) public btnText!: string;
 }
 </script>
