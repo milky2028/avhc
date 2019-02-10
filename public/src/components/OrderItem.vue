@@ -1,14 +1,14 @@
 <template>
   <div class="order-root">
     <div class="field">Order:</div>
-    <router-link class="field align-right link" to="/">#776756867</router-link>
+    <router-link class="field align-right link" to="/">{{ orderNumber }}</router-link>
     <div class="field">Date:</div>
-    <div class="field align-right">10/10/2019</div>
+    <div class="field align-right">{{ orderDate }}</div>
     <div class="field">Status:</div>
-    <div class="field align-right">Never</div>
+    <div class="field align-right">{{ orderStatus }}</div>
     <div class="field">Total:</div>
-    <div class="field align-right">$6999.99</div>
-    <button>Track Shipment</button>
+    <div class="field align-right">${{ orderTotal.toFixed(2) }}</div>
+    <button v-if="hasShipped"><a href="">Track Shipment</a></button>
   </div>
 </template>
 
@@ -58,7 +58,13 @@ button {
 </style>
 
 <script lang="ts">
-import { Vue } from 'vue-property-decorator';
+import { Vue, Prop } from 'vue-property-decorator';
 
-export default class OrderItem extends Vue {}
+export default class OrderItem extends Vue {
+  @Prop(String) public orderNumber!: string;
+  @Prop(Date) public orderDate!: Date;
+  @Prop(String) public orderStatus!: string;
+  @Prop(Number) public orderTotal!: number;
+  @Prop(Boolean) public hasShipped!: boolean;
+}
 </script>
