@@ -1,6 +1,7 @@
 import CartItem from './CartItem';
 
 export default interface Order {
+    orderId: string;
     email: string;
     shippingName: string;
     shippingAddress: string;
@@ -26,5 +27,6 @@ export default interface Order {
     password?: string;
     items: CartItem[];
     orderTotal: number;
+    userId: string;
     [key: string]: any;
 }

@@ -138,6 +138,7 @@ import EventBus from '@/exports/EventBus';
 import CartItem from '@/types/CartItem';
 import { mapMutations, mapState, mapGetters } from 'vuex';
 import Product from '@/types/Product';
+import CreateRandomId from '@/exports/CreateRandomId';
 
 interface InputEventTarget extends EventTarget {
   value: string;
@@ -175,6 +176,7 @@ export default class ProductSelector extends Vue {
   private setSelectedProductSize!: (payload: number) => void;
   private addItemToCart!: (item: CartItem) => void;
   private clearQuantity!: () => void;
+  private createRandomId = CreateRandomId;
 
   @Watch('$route') private onRouteChange() {
     this.selectedProductName = (this.$route.params.productName) ? this.$route.params.productName : '';
@@ -189,7 +191,7 @@ export default class ProductSelector extends Vue {
 
     EventBus.$on('addToCart', () => {
       const item = {
-        id: this.createRandomId(12),
+        id: this.createRandomId(15),
         price: (this.selectedProductSize) ?
           this.activeProduct.sizes[this.$store.state.products.selectedSizeIndex].price : this.activeProduct.price,
         quantity: this.$store.state.cart.tempQuantity,
@@ -219,16 +221,6 @@ export default class ProductSelector extends Vue {
 
   private get sizeDynamicStyle() {
     return (this.activeProduct.strains.length > 0) ? {} : { width: '100%' };
-  }
-
-  private createRandomId(length: number) {
-    let text = '';
-    const possible = 'ABCDEFGHJKMNPQRSTUVWXYZabcdefghjkmnpqrstuvwxyz123456789';
-    for (let i = 0; i < length; i++) {
-      text += possible.charAt(Math.floor(Math.random() * possible.length));
-    }
-
-    return text;
   }
 }
 </script>
