@@ -17,11 +17,12 @@
             label="Password"
             :required="true"
             :onEnter="logInUser"
-            autocomplete="password"></av-textfield>
+            autocomplete="current-password"></av-textfield>
         <div class="switch-container padding-right">
             <p>Create an account?</p>
             <av-switch fieldId="createAccount" v-model="createAccount"></av-switch>
         </div>
+        <button></button>
         </form>
     </div>
   </container-view-with-button>
@@ -29,6 +30,19 @@
 
 <style lang="scss" scoped>
 @import '@/styles/switch.scss';
+@import '@/styles/vars.scss';
+
+button {
+    padding: 0;
+    background-image: url('../assets/googleBtn.png');
+    background-color: transparent;
+    width: 100%;
+    height: 65px;
+    background-position: 50% 50%;
+    background-size: contain;
+    border-radius: 5px;
+    background-repeat: no-repeat;
+}
 </style>
 
 <script lang="ts">
