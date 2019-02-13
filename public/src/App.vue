@@ -39,6 +39,7 @@ import UserModule from '@/modules/UserModule';
 export default class App extends Vue {
   private getProducts!: () => void;
   private setAuthState!: () => void;
+
   private async mounted() {
     this.getProducts();
     this.setAuthState();

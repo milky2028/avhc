@@ -1,6 +1,7 @@
 <template>
   <container-view-with-button
     btnText="Sign Out"
+    :btnAction="signOut"
     :stickyBtn="true">
     <div>
       <header-with-divider class="header">Orders</header-with-divider>
@@ -31,14 +32,22 @@ import { Vue, Component } from 'vue-property-decorator';
 import ContainerViewWithButton from '@/components/ContainerViewWithButton.vue';
 import HeaderWithDivider from '@/components/HeaderWithDivider.vue';
 import OrderItem from '@/components/OrderItem.vue';
+import { mapActions } from 'vuex';
 
 @Component({
   components: {
     ContainerViewWithButton,
     HeaderWithDivider,
     OrderItem
+  },
+  methods: {
+    ...mapActions('user', [
+      'signOut'
+    ])
   }
 })
-export default class Orders extends Vue { }
+export default class Orders extends Vue {
+  private signOut!: () => void;
+}
 </script>
 

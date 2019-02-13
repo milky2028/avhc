@@ -99,11 +99,11 @@ declare const window: Window;
   }
 })
 export default class ShopButtons extends Vue {
+  public tempQuantity!: number;
   @Prop(Boolean) private showAddButton!: boolean;
   @Prop(String) private buyButtonText!: string;
   private increaseQuantity!: () => void;
   private decreaseQuantity!: () => void;
-  public tempQuantity!: number;
 
   private get addButtonField(): string | number {
     return (this.tempQuantity < 1) ? 'Add' : this.tempQuantity;
