@@ -46,9 +46,7 @@ export default class App extends Vue {
     const localStorage = window.localStorage;
     if (localStorage.cart) {
       const cart = JSON.parse(localStorage.getItem('cart')!);
-      cart.forEach((item: CartItem) => {
-        this.$store.commit('cart/addItemToCart', item);
-      });
+      cart.forEach((item: CartItem) => this.$store.commit('cart/addItemToCart', item));
     }
   }
 }
