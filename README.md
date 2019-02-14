@@ -3,7 +3,7 @@ Aspen Valley Hemp Company
 
 This project uses yarn (instead of npm) for package mangagement, currently version 1.14.0 (as of February 2019).
 
-Install yarn with [yvm (Yarn Version Manager)](https://yvm.js.org/docs/overview). YVM requires node > v8 and zip and unzip. Zip and unzip are included by default on Ubuntu and OSX, but needs to be installed on Debian, but do so with:
+Install yarn with [yvm (Yarn Version Manager)](https://yvm.js.org/docs/overview). YVM requires node > v8, zip, and unzip. Zip and unzip are included by default on Ubuntu and OSX, but need to be installed on Debian, do so with:
 
 ```
 sudo apt install zip unzip
@@ -75,7 +75,7 @@ This project uses:
 
 * Vue Class Component Syntax
 
-   Vue's Class Component syntax is more similar to Angular and React, in that it uses classes. Vue's object-based syntax is still simple and easy to learn, but it differs from most of what the JS world is doing at this time, so I decided to go with the class-based syntax. When the core Vue project hits version 3.0.0, class-based syntax will become the default, which is cool because I didn't know that when I started this project. Having said that, as of now (Feb 2019) class component syntax help can be somewhat harder to find online. Definitely suggest reading up on these two pages to become familiar [Vue TypesScript Example](https://github.com/vuejs/vue-class-component/blob/master/example/src/App.vue) and [Vue Class Component Main Page](https://github.com/vuejs/vue-class-component).
+   Vue's Class Component syntax is more similar to Angular and React, in that it uses classes. Vue's object-based syntax is simple and easy to learn, but it differs from most of what the JS world is doing at this time, so I decided to go with the class-based syntax. When the core Vue project hits version 3.0.0, class-based syntax will become the default, which is cool because I didn't know that when I started this project. Having said that, as of now (Feb 2019) help for the class-based syntax can be somewhat harder to find online. Definitely suggest reading up on these two pages to become familiar [Vue TypesScript Example](https://github.com/vuejs/vue-class-component/blob/master/example/src/App.vue) and [Vue Class Component Main Page](https://github.com/vuejs/vue-class-component).
 
 * [Vuex](https://vuex.vuejs.org/)
 
@@ -87,7 +87,7 @@ This project uses:
   
 * TypeScript
   
-  TypeScript support is made easier using the class-based syntax. Vue does not have great TypeScript support at this time, something that said to change with the release of Vue 3.0.0. Angular-like decorators are used. I would describe the extent to which I'm using TypeScript as moderate? TypeScript is running in strict mode, which means noImplicitAny and strictNullChecks are both in use. "No implicit any" is helpful, but "strict null checks" are mostly just semi-annoying at this time. It's still sort of helpful.
+  TypeScript support is made easier using the class-based syntax. Vue does not have great TypeScript support at this time, something that's said to change with the release of Vue 3.0.0. Angular-like decorators are used. I would describe the extent to which I'm using TypeScript as moderate? TypeScript is running in strict mode, which means noImplicitAny and strictNullChecks are both in use. "No implicit any" is helpful, but "strict null checks" are mostly just semi-annoying at this time. It's still sort of helpful. I'm not typing out every single thing, but I am manually writing types for a decent amount of stuff. TypeScript support is lacking significantly in Vuex.
   Sometimes Intellisense doesn't work great in VS Code (specifically on OSX) with type-checking code in Vue components. If this is the case, disable the Vetur, TSLint for Vue, and TSLint extensions, then restart VS Code, then renable all the extensions, then restart again.
   
 * Firebase
@@ -96,9 +96,10 @@ This project uses:
   
 * Firebase Cloud Functions
   
-  Code for Firebase Functions is under the functions folder, front-end code is under the public folder. Both folders have their own package.json and node_modules, which should probably be unified at some point.
+  Code for Firebase Functions is under the functions folder, front-end code is under the public folder. Both folders have their own package.json and node_modules, which should probably be unified at some point. Cloud Functions also use TypeScript.
 
 * Sentry Error Reporting
+* SASS
 
 # TODOs and Caveats
 
@@ -124,6 +125,7 @@ This project uses:
 * "Order it again" functionality
 * Animations!
 * CMS (probably Butter) integration to allow other people to create orders and such
+* Migrate theme.scss files to vars.scss
 * Payment Request API
   
   Rethinking this one since Google changed how this works with Google Pay. Support just might not be there yet.
