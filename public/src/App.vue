@@ -27,12 +27,12 @@ import UserModule from '@/modules/UserModule';
     AppToolbar
   },
   methods: {
-    ...mapActions('user', {
-      setAuthState: 'setAuthState'
-    }),
-    ...mapActions('products', {
-      getProducts: 'getProducts'
-    })
+    ...mapActions('user', [
+      'setAuthState'
+    ]),
+    ...mapActions('products', [
+      'getProducts'
+    ])
   }
 })
 
