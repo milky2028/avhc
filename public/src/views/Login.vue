@@ -2,28 +2,31 @@
   <container-view-with-button
     :rightPadding="true"
     :btnText="btnText"
-    :btnAction="() => logInUser()">
-      <div>
-        <form>
+    :btnAction="() => logInUser()"
+  >
+    <div>
+      <form>
         <av-textfield
-            type="email"
-            label="Email"
-            :required="true"
-            autocomplete="email"
-            fieldId="email"></av-textfield>
+          type="email"
+          label="Email"
+          :required="true"
+          autocomplete="email"
+          fieldId="email"
+        ></av-textfield>
         <av-textfield
-            fieldId="password"
-            type="password"
-            label="Password"
-            :required="true"
-            :onEnter="logInUser"
-            autocomplete="current-password"></av-textfield>
+          fieldId="password"
+          type="password"
+          label="Password"
+          :required="true"
+          :onEnter="logInUser"
+          autocomplete="current-password"
+        ></av-textfield>
         <div class="switch-container padding-right">
-            <p>Create an account?</p>
-            <av-switch fieldId="createAccount" v-model="createAccount"></av-switch>
+          <p>Create an account?</p>
+          <av-switch fieldId="createAccount" v-model="createAccount"></av-switch>
         </div>
         <button></button>
-        </form>
+      </form>
     </div>
   </container-view-with-button>
 </template>
@@ -33,15 +36,15 @@
 @import '@/styles/vars.scss';
 
 button {
-    padding: 0;
-    background-image: url('../assets/googleBtn.png');
-    background-color: transparent;
-    width: 100%;
-    height: 65px;
-    background-position: 50% 50%;
-    background-size: contain;
-    border-radius: 5px;
-    background-repeat: no-repeat;
+  padding: 0;
+  background-image: url('../assets/googleBtn.png');
+  background-color: transparent;
+  width: 100%;
+  height: 65px;
+  background-position: 50% 50%;
+  background-size: contain;
+  border-radius: 5px;
+  background-repeat: no-repeat;
 }
 </style>
 
@@ -50,24 +53,37 @@ import { Vue, Component } from 'vue-property-decorator';
 import AvTextfield from '@/components/AvTextfield.vue';
 import AvSwitch from '@/components/AvSwitch.vue';
 import ContainerViewWithButton from '@/components/ContainerViewWithButton.vue';
+import { mapState } from 'vuex';
 
 @Component({
-    components: {
-        AvTextfield,
-        AvSwitch,
-        ContainerViewWithButton
-    }
+  components: {
+    AvTextfield,
+    AvSwitch,
+    ContainerViewWithButton
+  },
+  computed: {
+    ...mapState('order' , [
+      'email',
+      'password'
+    ])
+  }
 })
 export default class Login extends Vue {
-    private createAccount: boolean = false;
-    get btnText() {
-        return (this.createAccount) ? 'Sign Up' : 'Login';
-    }
+  private createAccount: boolean = false;
+  private email!: string;
+  private password!: string;
 
-    private async logInUser() {
-        await this.$store.dispatch('user/logInUserWithEmailAndPassword', { email: this.$store.state.order.email, password: this.$store.state.order.password });
-        this.$router.push('/orders');
-    }
+  get btnText() {
+    return this.createAccount ? 'Sign Up' : 'Login';
+  }
+
+  private async logInUser() {
+    await this.$store.dispatch('user/logInUserWithEmailAndPassword', {
+      email: this.email,
+      password: this.password
+    });
+    this.$router.push('/orders');
+  }
 }
 </script>
 

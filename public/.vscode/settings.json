@@ -1,0 +1,23 @@
+{
+    "prettier.jsxBracketSameLine": true,
+    "prettier.singleQuote": true,
+    "prettier.tslintIntegration": true,
+    "prettier.arrowParens": "always",
+    "vetur.format.defaultFormatterOptions": {
+        "prettier": {
+            "jsxBracketSameLine": true,
+            "singleQuote": true,
+            "tslintIntegration": true,
+            "arrowParens": "always"
+        },  
+        "js-beautify-html": {
+            "wrap_attributes": "force-expand-multiline"
+        },
+        "prettyhtml": {
+            "printWidth": 100,
+            "singleQuote": false,
+            "wrapAttributes": false,
+            "sortAttributes": false
+        }
+    }
+}
