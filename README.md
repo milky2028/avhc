@@ -108,6 +108,7 @@ This project uses:
   After the Rolling Stone article, 80% of traffic was mobile. Simulate responsive sizes with Chrome devtools.
   
 * Cloud functions for post-order processing and post-order email.
+* PWA install prompt on orders page
 * Add orders to database.
 * Orders page displays actual orders (is dummy order now).
 * Fix checkout page since Vuex reintegration.
