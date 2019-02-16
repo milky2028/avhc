@@ -1,6 +1,5 @@
 export const StringToDate = (input: string): Date => {
     const dateReg = /(\d{2})\/(\d{2})\/(\d{4})/;
-    const result = dateReg.exec(input);
     const [, month, day, year] = dateReg.exec(input)!;
     return new Date(+year, +month - 1, +day);
 };
@@ -19,7 +18,7 @@ export const FormatJsTimestamp = (date: Date): string => {
       hour: 'numeric',
       minute: 'numeric',
       second: 'numeric',
-      timeZone: 'America/Indianapolis',
+      timeZone: 'America/Denver',
       timeZoneName: 'short'
     });
     return dtf.format(date);

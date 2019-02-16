@@ -4,6 +4,8 @@ import { Firestore } from '@/exports/Firebase';
 import CreateRandomId from '@/exports/CreateRandomId';
 import { Commit } from 'vuex';
 import CartItem from '@/types/CartItem';
+import router from '@/router';
+import { FormatJsDate, FormatJsTimestamp } from '@/exports/DateFunctions';
 
 export interface SetOrderFieldPayload {
   key: string;
@@ -13,6 +15,8 @@ export interface SetOrderFieldPayload {
 const OrderModule: Module = {
   namespaced: true,
   state: {
+    orderDay: null,
+    orderTime: null,
     orderId: CreateRandomId(22),
     email: '',
     shippingName: '',
@@ -46,9 +50,14 @@ const OrderModule: Module = {
   },
   actions: {
     createOrder: async ({ state, commit, rootState }: { state: Order, commit: Commit, rootState: any }) => {
-      commit('setUserId', rootState.user.user);
+      commit('setOrderField', { key: 'orderDay', value: FormatJsDate(new Date())});
+      commit('setOrderField', { key: 'orderTime', value: FormatJsTimestamp(new Date())});
+      if (rootState.user.user) {
+        commit('setUserId', rootState.user.user.uid);
+      }
       const db = await Firestore();
       db.collection('orders').add(state);
+      router.push('/orders');
     }
   }
 };

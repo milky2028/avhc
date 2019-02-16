@@ -1,7 +1,7 @@
 <template>
   <container-view-with-button
     btnText="Purchase"
-    :btnAction="() => this.$router.push('/checkout')"
+    :btnAction="() => createOrder()"
     :stickyBtn="true">
     <form>
       <av-textfield
@@ -159,7 +159,7 @@ import ShippingMethod from '@/types/ShippingMethod';
 import StateTaxes from '@/exports/StateTaxes';
 import CouponCode from '@/types/CouponCode';
 import { StringToDate } from '@/exports/DateFunctions';
-import { mapState, mapGetters, mapMutations } from 'vuex';
+import { mapState, mapGetters, mapMutations, mapActions } from 'vuex';
 import { CartState } from '@/modules/CartModule';
 import ContainerViewWithButton from '@/components/ContainerViewWithButton.vue';
 import HeaderWithDivider from '@/components/HeaderWithDivider.vue';
@@ -177,7 +177,8 @@ interface IndexUser extends User {
     ...mapGetters('cart', ['subtotal'])
   },
   methods: {
-    ...mapMutations('order', ['setOrderField'])
+    ...mapMutations('order', ['setOrderField']),
+    ...mapActions('order', ['createOrder'])
   },
   components: {
     ShippingForm,
@@ -228,6 +229,7 @@ export default class Checkout extends Vue {
 
   private user!: IndexUser;
   private setOrderField!: (payload: SetOrderFieldPayload) => void;
+  private createOrder!: () => void;
 
   private beforeMount() {
     this.setFieldFromUser('email');
