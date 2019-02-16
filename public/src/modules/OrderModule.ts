@@ -2,6 +2,7 @@ import Order from '@/types/Order';
 import Module from '@/types/Module';
 import { Firestore } from '@/exports/Firebase';
 import CreateRandomId from '@/exports/CreateRandomId';
+import { Commit } from 'vuex';
 
 interface SetOrderPayload {
   key: string;
@@ -36,15 +37,15 @@ const OrderModule: Module = {
     password: '',
     items: [],
     orderTotal: 0,
-    userId: null
+    userId: ''
   },
   mutations: {
-    setOrderItem(state: Order, payload: SetOrderPayload) {
-      state[payload.key] = payload.value;
-    },
+    setOrderItem: (state: Order, payload: SetOrderPayload) => state[payload.key] = payload.value,
+    setUserId: (state: Order, payload: string) => state.userId = payload
   },
   actions: {
-    createOrder: async ({ state, rootState }: { state: Order, rootState: any }) => {
+    createOrder: async ({ state, commit, rootState }: { state: Order, commit: Commit, rootState: any }) => {
+      commit('setUserId', rootState.user.user);
       const db = await Firestore();
       db.collection('orders').add(state);
     }

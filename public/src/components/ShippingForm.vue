@@ -1,7 +1,6 @@
 <template>
   <div>
-    <h2>{{ formHeader }} Address</h2>
-    <div class="divider"></div>
+    <header-with-divider>{{ formHeader }} Address</header-with-divider>
     <form autocomplete="on">
       <av-textfield
         :fieldId="`${formHeader.toLowerCase()}Name`"
@@ -82,20 +81,6 @@ form {
   margin-bottom: 26px;
 }
 
-h2 {
-  text-align: left;
-  text-transform: none;
-  letter-spacing: normal;
-  font-size: 28px;
-}
-
-.divider {
-  background-color: black;
-  margin: 10px 0;
-  height: 2px;
-  margin-bottom: 26px;
-}
-
 .padding-right {
   margin-right: 26px;
 }
@@ -115,11 +100,13 @@ import GenericSelector from '@/components/GenericSelector.vue';
 import StateTaxes from '@/exports/StateTaxes';
 import { mapState } from 'vuex';
 import { CartState } from '@/modules/CartModule';
+import HeaderWithDivider from '@/components/HeaderWithDivider.vue';
 
 @Component({
   components: {
     AvTextfield,
-    GenericSelector
+    GenericSelector,
+    HeaderWithDivider
   },
   computed: {
     ...mapState('cart', {
