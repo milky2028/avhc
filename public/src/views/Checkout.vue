@@ -234,6 +234,7 @@ export default class Checkout extends Vue {
     this.setFieldFromUser('phoneNumber');
     this.setFieldFromUser('displayName', 'billingName');
     this.setFieldFromUser('displayName', 'shippingName');
+    this.setFieldFromUser('displayName', 'nameOnCard');
   }
 
   private get tax() {
