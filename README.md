@@ -110,9 +110,11 @@ This project uses:
 * Cloud functions for post-order processing and post-order email.
 * Page to edit default user account info
 * PWA install prompt on orders page
-* Add orders to database.
+* ~Add orders to database.~
+* Validate order fields on order placement
+* Field Error handler
 * Orders page displays actual orders (is dummy order now).
-* Fix checkout page since Vuex reintegration.
+* ~Fix checkout page since Vuex reintegration.~
 * User permission levels with Firebase Custom Claims.
 * Database security rules. VERY IMPORTANTTTTTTTTTTTTTT.
 * All desktop styles need to be redone and componentized. I don't like them as they are now, and they're not reusable
@@ -122,8 +124,6 @@ This project uses:
 * Notifications
 * Proper pre-production staging environment
 * As I get more components, the folder structure is bad. Better folder structure.
-* Install banners for orders page
-* Change default names, addresses, and whatnot
 * "Order it again" functionality
 * Animations!
 * CMS (probably Butter) integration to allow other people to create orders and such
