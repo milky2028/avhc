@@ -34,9 +34,7 @@
           fieldId="expirationYear"
           class="padding-right"
           label="Expiration Year"
-          :options="years"
-          titleKey="year"
-          valueKey="year"></generic-selector>
+          :options="years"></generic-selector>
         <av-textfield
           fieldId="cvv"
           class="positions"

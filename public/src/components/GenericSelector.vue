@@ -93,7 +93,7 @@ export default class GenerticSelector extends Vue {
   }
 
   private getOption(option: any, keyVal: string) {
-    return (keyVal) ? option : option[keyVal];
+    return (keyVal) ? option[keyVal] : option;
   }
 }
 </script>
