@@ -138,11 +138,6 @@ h3 {
   margin-right: 26px;
 }
 
-.button-container {
-  margin: 0;
-  padding: 0;
-}
-
 .less-margin {
   margin-bottom: 10px;
 }
