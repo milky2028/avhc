@@ -64,7 +64,7 @@
       ></av-textfield>
       <av-textfield fieldId="couponCode" class="positions" type="text" label="Coupon Code"></av-textfield>
     </form>
-    <div class="switch-container padding-right">
+    <div class="switch-container padding-right" v-if="!user">
       <p>Create an account?</p>
       <av-switch fieldId="createAccount" v-model="createAccount"></av-switch>
     </div>
@@ -159,16 +159,25 @@ import ShippingMethod from '@/types/ShippingMethod';
 import StateTaxes from '@/exports/StateTaxes';
 import CouponCode from '@/types/CouponCode';
 import { StringToDate } from '@/exports/DateFunctions';
-import { mapState } from 'vuex';
+import { mapState, mapGetters, mapMutations } from 'vuex';
 import { CartState } from '@/modules/CartModule';
 import ContainerViewWithButton from '@/components/ContainerViewWithButton.vue';
 import HeaderWithDivider from '@/components/HeaderWithDivider.vue';
+import { User } from 'firebase';
+import { SetOrderFieldPayload } from '@/modules/OrderModule';
+
+interface IndexUser extends User {
+  [key: string]: any;
+}
 
 @Component({
   computed: {
-    ...mapState('cart', {
-      shippingOptions: (state: CartState) => state.shippingOptions
-    })
+    ...mapState('cart', ['shippingOptions']),
+    ...mapState('user', ['user']),
+    ...mapGetters('cart', ['subtotal'])
+  },
+  methods: {
+    ...mapMutations('order', ['setOrderField'])
   },
   components: {
     ShippingForm,
@@ -183,6 +192,8 @@ export default class Checkout extends Vue {
   public createAccount: boolean = false;
   public differentBilling: boolean = false;
   public shippingOptions!: ShippingMethod[];
+  public subtotal!: number;
+
   public months = [
     { month: 'January', abbr: 'Jan' },
     { month: 'February', abbr: 'Feb' },
@@ -215,8 +226,14 @@ export default class Checkout extends Vue {
     2032
   ];
 
-  private get subtotal() {
-    return this.$store.getters['cart/subtotal'];
+  private user!: IndexUser;
+  private setOrderField!: (payload: SetOrderFieldPayload) => void;
+
+  private beforeMount() {
+    this.setFieldFromUser('email');
+    this.setFieldFromUser('phoneNumber');
+    this.setFieldFromUser('displayName', 'billingName');
+    this.setFieldFromUser('displayName', 'shippingName');
   }
 
   private get tax() {
@@ -261,6 +278,15 @@ export default class Checkout extends Vue {
           ((100 - this.discount.amount) / 100) *
           (this.tax / 100 + 1)
       : (this.subtotal + this.shippingCost) * (this.tax / 100 + 1);
+  }
+
+  private setFieldFromUser(field: string, vuexField?: string) {
+    if (this.user && this.user[field]) {
+      this.setOrderField({
+        key: field,
+        value: (vuexField) ? this.user[vuexField] : this.user[field]
+      });
+    }
   }
 }
 </script>

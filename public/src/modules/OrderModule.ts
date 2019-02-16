@@ -3,10 +3,11 @@ import Module from '@/types/Module';
 import { Firestore } from '@/exports/Firebase';
 import CreateRandomId from '@/exports/CreateRandomId';
 import { Commit } from 'vuex';
+import CartItem from '@/types/CartItem';
 
-interface SetOrderPayload {
+export interface SetOrderFieldPayload {
   key: string;
-  value: any;
+  value: string | number | CartItem[];
 }
 
 const OrderModule: Module = {
@@ -20,7 +21,7 @@ const OrderModule: Module = {
     shippingState: '',
     shippingZip: 0,
     shippingCountry: '',
-    phone: '',
+    phoneNumber: '',
     shippingMethod: '',
     billingName: '',
     billingAddress: '',
@@ -40,7 +41,7 @@ const OrderModule: Module = {
     userId: ''
   },
   mutations: {
-    setOrderItem: (state: Order, payload: SetOrderPayload) => state[payload.key] = payload.value,
+    setOrderField: (state: Order, payload: SetOrderFieldPayload) => state[payload.key] = payload.value,
     setUserId: (state: Order, payload: string) => state.userId = payload
   },
   actions: {

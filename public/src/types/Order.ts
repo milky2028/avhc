@@ -9,7 +9,7 @@ export default interface Order {
     shippingState: string;
     shippingZip: number;
     shippingCountry: string;
-    phone?: string;
+    phoneNumber?: string;
     shippingMethod: string;
     sameBillingAddress?: boolean;
     billingName: string;

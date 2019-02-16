@@ -56,7 +56,7 @@
       ></av-textfield>
       <av-textfield
         v-if="formHeader === 'Shipping'"
-        fieldId="phone"
+        fieldId="phoneNumber"
         class="padding-right"
         type="number"
         label="Phone Number"
