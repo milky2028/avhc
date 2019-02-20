@@ -20,6 +20,7 @@
 .order-root {
   font-family: $secondary-font; 
   padding: 26px 16px 10px 26px;
+  margin-bottom: 26px;
   border: 2px solid black;
   border-radius: 15px;
   display: grid;
