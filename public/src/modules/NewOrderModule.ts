@@ -43,7 +43,8 @@ const NewOrderModule: Module = {
     items: [],
     orderTotal: 0,
     userId: '',
-    orderStatus: ''
+    orderStatus: 'Processing',
+    trackingNumber: ''
   },
   mutations: {
     setOrderField: (state: Order, payload: SetOrderFieldPayload) => state[payload.key] = payload.value,

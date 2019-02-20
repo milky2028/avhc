@@ -13,7 +13,7 @@
         :orderDate="order.orderDay"
         :orderTotal="order.orderTotal"
         :orderStatus="order.orderStatus"
-        :hasShipped="true"></order-item>
+        :hasShipped="order.orderStatus === 'Shipped'"></order-item>
       </div>
     </div>
   </container-view-with-button>
