@@ -3,7 +3,7 @@
     <div class="field">Order:</div>
     <router-link class="field align-right link" to="/">#{{ orderNumber }}</router-link>
     <div class="field">Date:</div>
-    <div class="field align-right">{{ formatDate(orderDate) }}</div>
+    <div class="field align-right">{{ orderDate }}</div>
     <div class="field">Status:</div>
     <div class="field align-right">{{ orderStatus }}</div>
     <div class="field">Total:</div>
@@ -70,7 +70,7 @@ import { FormatJsDate } from '@/exports/DateFunctions';
 @Component
 export default class OrderItem extends Vue {
   @Prop(String) public orderNumber!: string;
-  @Prop(Date) public orderDate!: Date;
+  @Prop(String) public orderDate!: string;
   @Prop(String) public orderStatus!: string;
   @Prop(Number) public orderTotal!: number;
   @Prop(Boolean) public hasShipped!: boolean;

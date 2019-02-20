@@ -28,5 +28,9 @@ export default interface Order {
     items: CartItem[];
     orderTotal: number;
     userId: string;
+    orderDay: null | Date;
+    orderTime: null | Date;
+    orderStatus?: 'Processing' | 'Shipped';
+    trackingNumber?: string;
     [key: string]: any;
 }
