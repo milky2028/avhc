@@ -17,7 +17,7 @@ const NewOrderModule: Module = {
   state: {
     orderDay: null,
     orderTime: null,
-    orderId: CreateRandomId(22),
+    orderId: CreateRandomId(8),
     email: '',
     shippingName: '',
     shippingAddress: '',

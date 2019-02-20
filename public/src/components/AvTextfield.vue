@@ -19,6 +19,7 @@
         <datalist v-if="datalist" id="list">
             <option v-for="item of datalist" :key="item[itemKey]">{{ item[itemTitle] }}</option>
         </datalist>
+        <p v-if="hasError">Fill in this field to complete your order.</p>
     </div>
 </template>
 
@@ -47,6 +48,11 @@ input {
 
 input.dirty:not(:focus):invalid {
     border-color: #fc5316;
+}
+
+p {
+    margin: 10px;
+    color: #fc5316
 }
 
 @media (min-width: 1025px) {
@@ -83,6 +89,7 @@ export default class AvTextfield extends Vue {
     @Prop(String) public itemKey!: string;
     @Prop(String) public itemTitle!: string;
     @Prop(Function) public onEnter!: (params?: any) => any;
+    @Prop(Boolean) public hasError!: boolean;
     private dirty: boolean = false;
     private setOrderField!: (payload: SetOrderFieldPayload) => void;
 
