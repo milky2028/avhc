@@ -19,7 +19,7 @@
         <datalist v-if="datalist" id="list">
             <option v-for="item of datalist" :key="item[itemKey]">{{ item[itemTitle] }}</option>
         </datalist>
-        <p v-if="hasError">Fill in this field to complete your order.</p>
+        <p v-if="error">{{ error }}</p>
     </div>
 </template>
 
@@ -89,7 +89,7 @@ export default class AvTextfield extends Vue {
     @Prop(String) public itemKey!: string;
     @Prop(String) public itemTitle!: string;
     @Prop(Function) public onEnter!: (params?: any) => any;
-    @Prop(Boolean) public hasError!: boolean;
+    @Prop(String) public error!: string;
     private dirty: boolean = false;
     private setOrderField!: (payload: SetOrderFieldPayload) => void;
 
