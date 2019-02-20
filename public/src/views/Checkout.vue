@@ -164,7 +164,7 @@ import { CartState } from '@/modules/CartModule';
 import ContainerViewWithButton from '@/components/ContainerViewWithButton.vue';
 import HeaderWithDivider from '@/components/HeaderWithDivider.vue';
 import { User } from 'firebase';
-import { SetOrderFieldPayload } from '@/modules/OrderModule';
+import { SetOrderFieldPayload } from '@/modules/NewOrderModule';
 
 interface IndexUser extends User {
   [key: string]: any;
@@ -174,11 +174,12 @@ interface IndexUser extends User {
   computed: {
     ...mapState('cart', ['shippingOptions']),
     ...mapState('user', ['user']),
-    ...mapGetters('cart', ['subtotal'])
+    ...mapGetters('cart', ['subtotal']),
+    ...mapState('newOrder', ['shippingMethod', 'couponCode', 'billingState', 'shippingState'])
   },
   methods: {
-    ...mapMutations('order', ['setOrderField']),
-    ...mapActions('order', ['createOrder'])
+    ...mapMutations('newOrder', ['setOrderField']),
+    ...mapActions('newOrder', ['createOrder'])
   },
   components: {
     ShippingForm,
@@ -228,6 +229,10 @@ export default class Checkout extends Vue {
   ];
 
   private user!: IndexUser;
+  private shippingMethod!: string;
+  private couponCode!: string;
+  private billingState!: string;
+  private shippingState!: string;
   private setOrderField!: (payload: SetOrderFieldPayload) => void;
   private createOrder!: () => void;
 
@@ -240,9 +245,7 @@ export default class Checkout extends Vue {
   }
 
   private get tax() {
-    const billingState = this.$store.state.order.billingState
-      ? this.$store.state.order.billingState
-      : this.$store.state.order.shippingState;
+    const billingState = this.billingState ? this.billingState : this.shippingState;
     const stateTax = StateTaxes.find((state) => state.abbr === billingState)
       ? StateTaxes.find((state) => state.abbr === billingState)!
       : StateTaxes[51];
@@ -250,9 +253,7 @@ export default class Checkout extends Vue {
   }
 
   private get discount(): CouponCode {
-    const code = this.$store.state.order.couponCode
-      .toLowerCase()
-      .replace(/\s/gi, '');
+    const code = this.couponCode.toLowerCase().replace(/\s/gi, '');
     const coop = this.$store.state.cart.coupons.find(
       (coupon: CouponCode) => coupon.code === code
     );
@@ -263,11 +264,8 @@ export default class Checkout extends Vue {
   }
 
   private get shippingCost() {
-    const shippingMethodName: string = this.$store.state.order.shippingMethod;
-    const shippingMethod = shippingMethodName
-      ? this.shippingOptions.find(
-          (method: ShippingMethod) => method.id === shippingMethodName
-        )
+    const shippingMethod = this.shippingMethod
+      ? this.shippingOptions.find((method: ShippingMethod) => method.id === this.shippingMethod)
       : this.shippingOptions[0];
     return shippingMethod!.price;
   }

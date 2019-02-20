@@ -12,7 +12,7 @@ export interface SetOrderFieldPayload {
   value: string | number | CartItem[];
 }
 
-const OrderModule: Module = {
+const NewOrderModule: Module = {
   namespaced: true,
   state: {
     orderDay: null,
@@ -42,7 +42,7 @@ const OrderModule: Module = {
     password: '',
     items: [],
     orderTotal: 0,
-    userId: ''
+    userId: '',
   },
   mutations: {
     setOrderField: (state: Order, payload: SetOrderFieldPayload) => state[payload.key] = payload.value,
@@ -62,4 +62,4 @@ const OrderModule: Module = {
   }
 };
 
-export default OrderModule;
+export default NewOrderModule;

@@ -62,7 +62,7 @@ import { mapState } from 'vuex';
     ContainerViewWithButton
   },
   computed: {
-    ...mapState('order' , [
+    ...mapState('newOrder' , [
       'email',
       'password'
     ])

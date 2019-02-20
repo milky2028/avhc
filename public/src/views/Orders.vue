@@ -43,11 +43,19 @@ import { mapActions } from 'vuex';
   methods: {
     ...mapActions('user', [
       'signOut'
+    ]),
+    ...mapActions('pastOrders', [
+      'getOrders'
     ])
   }
 })
 export default class Orders extends Vue {
   private signOut!: () => void;
+  private getOrders!: () => void;
+
+  private mounted() {
+    this.getOrders();
+  }
 }
 </script>
 

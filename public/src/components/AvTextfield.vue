@@ -58,12 +58,18 @@ input.dirty:not(:focus):invalid {
 
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator';
+import { SetOrderFieldPayload } from '@/modules/NewOrderModule';
+import { mapMutations } from 'vuex';
 
 interface InputEventTarget extends EventTarget {
     value: any;
 }
 
-@Component
+@Component({
+    methods: {
+        ...mapMutations('newOrder', ['setOrderField'])
+    }
+})
 export default class AvTextfield extends Vue {
     @Prop(String) public fieldId!: string;
     @Prop(String) public label!: string;
@@ -78,9 +84,10 @@ export default class AvTextfield extends Vue {
     @Prop(String) public itemTitle!: string;
     @Prop(Function) public onEnter!: (params?: any) => any;
     private dirty: boolean = false;
+    private setOrderField!: (payload: SetOrderFieldPayload) => void;
 
     public get value() {
-        const storeVal = this.$store.state.order[this.fieldId];
+        const storeVal = this.$store.state.newOrder[this.fieldId];
         return storeVal ? storeVal : '';
     }
 
@@ -95,7 +102,7 @@ export default class AvTextfield extends Vue {
             key: this.fieldId,
             value: event.value
         };
-        this.$store.commit('order/setOrderField', payload);
+        this.setOrderField(payload);
     }
 }
 </script>
