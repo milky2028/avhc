@@ -31,7 +31,7 @@ const UserModule: UserModule = {
     logInUserWithEmailAndPassword: async ({ commit }, payload) => {
       const auth = await Auth();
       const user = await auth.signInWithEmailAndPassword(payload.email, payload.password);
-      commit('setUser', user);
+      commit('setUser', user.user);
     },
     signOut: async ({ commit }) => {
       const auth = await Auth();

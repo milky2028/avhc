@@ -60,7 +60,7 @@ export default class Orders extends Vue {
   private signOut!: () => void;
   private getOrders!: () => void;
 
-  private mounted() {
+  private beforeMount() {
     this.getOrders();
   }
 }
