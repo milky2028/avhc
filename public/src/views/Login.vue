@@ -1,9 +1,5 @@
 <template>
-  <container-view-with-button
-    :rightPadding="true"
-    :btnText="btnText"
-    :btnAction="() => logInUser()"
-  >
+  <container-view-with-button :rightPadding="true" :btnText="btnText" :btnAction="logInUser">
     <div>
       <form>
         <av-textfield
@@ -53,7 +49,7 @@ import { Vue, Component } from 'vue-property-decorator';
 import AvTextfield from '@/components/AvTextfield.vue';
 import AvSwitch from '@/components/AvSwitch.vue';
 import ContainerViewWithButton from '@/components/ContainerViewWithButton.vue';
-import { mapState } from 'vuex';
+import { mapState, mapActions } from 'vuex';
 
 @Component({
   components: {
@@ -62,23 +58,25 @@ import { mapState } from 'vuex';
     ContainerViewWithButton
   },
   computed: {
-    ...mapState('newOrder' , [
-      'email',
-      'password'
-    ])
+    ...mapState('newOrder', ['email', 'password'])
+  },
+  methods: {
+    ...mapActions('user', ['logInUserWithEmailAndPassword'])
   }
 })
 export default class Login extends Vue {
   private createAccount: boolean = false;
   private email!: string;
   private password!: string;
+  private logInUserWithEmailAndPassword!: (payload: { email: string, password: string }) => void;
 
   get btnText() {
     return this.createAccount ? 'Sign Up' : 'Login';
   }
 
   private async logInUser() {
-    await this.$store.dispatch('user/logInUserWithEmailAndPassword', {
+    console.log('pressed');
+    await this.logInUserWithEmailAndPassword({
       email: this.email,
       password: this.password
     });
