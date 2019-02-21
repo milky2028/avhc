@@ -1,5 +1,5 @@
 <template>
-  <button @click="btnAction">{{ btnText }}</button>
+  <button @click="$emit('btnAction')">{{ btnText }}</button>
 </template>
 
 <style lang="scss" scoped>
@@ -19,7 +19,6 @@ import { Vue, Component, Prop } from 'vue-property-decorator';
 
 @Component
 export default class BottomButton extends Vue {
-  @Prop(Function) public btnAction!: (params?: any) => any;
   @Prop(String) public btnText!: string;
 }
 </script>

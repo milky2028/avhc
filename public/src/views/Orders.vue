@@ -1,7 +1,7 @@
 <template>
   <container-view-with-button
     btnText="Sign Out"
-    :btnAction="signOut"
+    @btnAction="signOut"
     :stickyBtn="true">
     <div>
       <header-with-divider class="header">Orders</header-with-divider>

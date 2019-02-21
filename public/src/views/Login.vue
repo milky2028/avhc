@@ -1,5 +1,5 @@
 <template>
-  <container-view-with-button :rightPadding="true" :btnText="btnText" :btnAction="logInUser">
+  <container-view-with-button :rightPadding="true" :btnText="btnText" @btnAction="logInUser">
     <div>
       <form>
         <av-textfield
@@ -14,7 +14,7 @@
           type="password"
           label="Password"
           :required="true"
-          :onEnter="logInUser"
+          @enter="logInUser"
           autocomplete="current-password"
         ></av-textfield>
         <div class="switch-container padding-right">
@@ -68,14 +68,15 @@ export default class Login extends Vue {
   private createAccount: boolean = false;
   private email!: string;
   private password!: string;
-  private logInUserWithEmailAndPassword!: (payload: { email: string, password: string }) => void;
+  private logInUserWithEmailAndPassword!: (
+    payload: { email: string; password: string }
+  ) => void;
 
   get btnText() {
     return this.createAccount ? 'Sign Up' : 'Login';
   }
 
   private async logInUser() {
-    console.log('pressed');
     await this.logInUserWithEmailAndPassword({
       email: this.email,
       password: this.password

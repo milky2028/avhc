@@ -1,16 +1,15 @@
 <template>
-    <div class="grid-container">
-      <div
-        class="slot"
-        :style="(rightPadding) ? { paddingRight: '26px' } : {}">
-        <slot></slot>
-      </div>
-      <bottom-button
-        class="btn"
-        :style="(stickyBtn) ? stickyBtnStyles: {}"
-        :btnText="btnText"
-        :btnAction="btnAction"></bottom-button>
+  <div class="grid-container">
+    <div class="slot" :style="(rightPadding) ? { paddingRight: '26px' } : {}">
+      <slot></slot>
     </div>
+    <bottom-button
+      class="btn"
+      :style="(stickyBtn) ? stickyBtnStyles: {}"
+      :btnText="btnText"
+      @btnAction="$emit('btnAction')"
+    ></bottom-button>
+  </div>
 </template>
 
 <style lang="scss" scoped>
@@ -22,8 +21,8 @@
   box-sizing: border-box;
   grid-template-rows: 1fr 83px;
   grid-template-areas:
-    "slot"
-    "button"
+    'slot'
+    'button';
 }
 
 .slot {
@@ -46,7 +45,6 @@ import BottomButton from '@/components/BottomButton.vue';
   }
 })
 export default class ContainerViewWithButton extends Vue {
-  @Prop(Function) public btnAction!: (params?: any) => any;
   @Prop(String) public btnText!: string;
   @Prop(Boolean) public stickyBtn!: boolean;
   @Prop(Boolean) public rightPadding!: boolean;
