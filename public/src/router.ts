@@ -3,6 +3,7 @@ import Router from 'vue-router';
 import Store from '@/store';
 const Intro = () => import(/* webpackChunkName: "intro" */'./views/Intro.vue');
 const Orders = () => import(/* webpackChunkName: "orders" */'./views/Orders.vue');
+const Account = () => import(/* webpackChunkName: "account" */'./views/Account.vue');
 const Checkout = () => import(/* webpackChunkName: "checkout" */'./views/Checkout.vue');
 const Shop = () => import(/* webpackChunkName: "shop" */'./views/Shop.vue');
 const ThankYou = () => import(/* webpackChunkName: "thankYou" */'./views/ThankYou.vue');
@@ -75,6 +76,18 @@ export default new Router({
       path: '/orders',
       name: 'orders',
       component: Orders,
+      beforeEnter(to, from, next) {
+        if (!store.state.user.user) {
+          next('/login');
+        } else {
+          next();
+        }
+      }
+    },
+    {
+      path: '/account',
+      name: 'account',
+      component: Account,
       beforeEnter(to, from, next) {
         if (!store.state.user.user) {
           next('/login');
