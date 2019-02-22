@@ -7,7 +7,7 @@
       <header-with-divider class="header">Orders</header-with-divider>
       <div class="order-container">
         <order-item
-        v-for="order of orders"
+        v-for="order of sortedOrders"
         :key="order.orderId"
         :orderNumber="order.orderId"
         :orderDate="order.orderDay"
@@ -62,6 +62,14 @@ export default class Orders extends Vue {
 
   private beforeMount() {
     this.getOrders();
+  }
+
+  private sortByDate(a: Order, b: Order) {
+    return (a.orderDay > b.orderDay) ? 1 : (a.orderDay < b.orderDay) ? -1 : 0;
+  }
+
+  get sortedOrders() {
+    return this.orders.sort(this.sortByDate).reverse();
   }
 }
 </script>
