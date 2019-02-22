@@ -6,6 +6,9 @@
     <div>
       <header-with-divider class="header">Orders</header-with-divider>
       <div class="order-container">
+      <green-button id="green-btn">
+        <router-link to="/account">Edit Account Details</router-link>
+      </green-button>
         <order-item
         v-for="order of sortedOrders"
         :key="order.orderId"
@@ -22,9 +25,15 @@
 <style lang="scss" scoped>
 .order-container {
   padding-right: 26px;
+  display: flex;
+  flex-direction: column;
 }
 
 .header {
+  margin-bottom: 6px;
+}
+
+#green-btn {
   margin-bottom: 26px;
 }
 </style>
@@ -36,12 +45,14 @@ import HeaderWithDivider from '@/components/HeaderWithDivider.vue';
 import OrderItem from '@/components/OrderItem.vue';
 import { mapActions, mapState } from 'vuex';
 import Order from '@/types/Order';
+import GreenButton from '@/components/GreenButton.vue';
 
 @Component({
   components: {
     ContainerViewWithButton,
     HeaderWithDivider,
-    OrderItem
+    OrderItem,
+    GreenButton
   },
   computed: {
     ...mapState('pastOrders', ['orders'])

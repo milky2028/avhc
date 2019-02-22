@@ -8,9 +8,9 @@
     <div class="field align-right">{{ orderStatus }}</div>
     <div class="field">Total:</div>
     <div class="field align-right">${{ orderTotal.toFixed(2) }}</div>
-    <button v-if="hasShipped">
-      <a href="">Track Shipment</a>
-    </button>
+    <green-button v-if="hasShipped">
+      <a href="/">Track Shipment</a>
+    </green-button>
   </div>
 </template>
 
@@ -46,29 +46,18 @@
 .align-right {
   justify-self: end;
 }
-
-button {
-  color: white;
-  margin: 10px;
-  padding: 12px 50px;
-  grid-area: track;
-  justify-self: center;
-  background-color: $primary;
-  font-size: 20px;
-  border-radius: 5px;
-  box-shadow: $standard-shadow;
-}
-
-button > a {
-  text-decoration: none;
-}
 </style>
 
 <script lang="ts">
 import { Vue, Prop, Component } from 'vue-property-decorator';
 import { FormatJsDate } from '@/exports/DateFunctions';
+import GreenButton from '@/components/GreenButton.vue';
 
-@Component
+@Component({
+  components: {
+    GreenButton
+  }
+})
 export default class OrderItem extends Vue {
   @Prop(String) public orderNumber!: string;
   @Prop(String) public orderDate!: string;
