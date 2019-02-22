@@ -68,9 +68,7 @@ export default class Login extends Vue {
   private createAccount: boolean = false;
   private email!: string;
   private password!: string;
-  private logInUserWithEmailAndPassword!: (
-    payload: { email: string; password: string }
-  ) => void;
+  private logInUserWithEmailAndPassword!: (payload: { email: string; password: string }) => Promise<void>;
 
   get btnText() {
     return this.createAccount ? 'Sign Up' : 'Login';

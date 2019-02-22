@@ -13,9 +13,9 @@ interface UserModule extends Module {
     setUser: (state: UserState, payload: firebase.User) => void;
   };
   actions: {
-    logInUserWithEmailAndPassword: (context: { commit: Commit }, payload: { email: string, password: string }) => void;
-    setAuthState: (context: { commit: Commit }) => void;
-    signOut: (context: { commit: Commit }) => void;
+    logInUserWithEmailAndPassword: (context: { commit: Commit }, payload: { email: string, password: string }) => Promise<firebase.auth.UserCredential>;
+    setAuthState: (context: { commit: Commit }) => Promise<void>;
+    signOut: (context: { commit: Commit }) => Promise<void>;
   };
 }
 
@@ -30,7 +30,7 @@ const UserModule: UserModule = {
   actions: {
     logInUserWithEmailAndPassword: async ({ commit }, payload) => {
       const auth = await Auth();
-      auth.signInWithEmailAndPassword(payload.email, payload.password);
+      return auth.signInWithEmailAndPassword(payload.email, payload.password);
     },
     signOut: async ({ commit }) => {
       const auth = await Auth();

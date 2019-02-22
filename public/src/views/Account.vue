@@ -23,7 +23,7 @@ import { mapActions } from 'vuex';
   }
 })
 export default class Orders extends Vue {
-  private signOut!: () => void;
+  private signOut!: () => Promise<void>;
 }
 </script>
 

@@ -68,8 +68,8 @@ import GreenButton from '@/components/GreenButton.vue';
 })
 export default class Orders extends Vue {
   public orders!: Order[];
-  private signOut!: () => void;
-  private getOrders!: () => void;
+  private signOut!: () => Promise<void>;
+  private getOrders!: () => Promise<void>;
 
   private beforeMount() {
     this.getOrders();
