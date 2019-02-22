@@ -112,8 +112,8 @@ This project uses:
 * PWA install prompt on orders page
 * ~Add orders to database.~
 * Validate order fields on order placement
-* Field Error handler
-* Orders page displays actual orders (is dummy order now).
+* ~Field Error handler~
+* ~Orders page displays actual orders (is dummy order now)~
 * ~Fix checkout page since Vuex reintegration.~
 * User permission levels with Firebase Custom Claims.
 * Database security rules. VERY IMPORTANTTTTTTTTTTTTTT.
