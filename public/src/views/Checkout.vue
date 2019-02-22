@@ -1,7 +1,7 @@
 <template>
   <container-view-with-button
     btnText="Purchase"
-    @btnAction="() => createOrder()"
+    @btnAction="createOrder"
     :stickyBtn="true">
     <form>
       <av-textfield

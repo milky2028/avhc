@@ -1,7 +1,7 @@
 <template>
   <container-view-with-button
     btnText="Checkout"
-    @btnAction="() => this.$router.push('/checkout')"
+    @btnAction="this.$router.push('/checkout')"
     :stickyBtn="true">
     <cart-display></cart-display>
   </container-view-with-button>
