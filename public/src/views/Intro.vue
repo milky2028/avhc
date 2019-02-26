@@ -13,77 +13,112 @@
 </template>
 
 <style scoped lang="scss">
-  @import '../styles/theme.scss';
+@import '../styles/vars.scss';
 
+#root {
+  background-image: url('../assets/intro.svg');
+  background-position: 10% 50%;
+  background-size: cover;
+  height: $full-window;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#title-container {
+  margin-top: 14vh;
+  margin-bottom: 3vh;
+}
+
+h1 {
+  text-align: center;
+  font-size: 38px;
+  align-self: center;
+  font-family: $primary-font;
+  text-transform: uppercase;
+  padding-bottom: 5px;
+}
+
+h2 {
+  font-size: 22px;
+  letter-spacing: 4px;
+  font-family: $secondary-font;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+#message {
+  margin-right: 10vh;
+  margin-bottom: 10vh;
+  height: 280px;
+  width: 500px;
+  background-color: white;
+  padding: 0 55px;
+  align-self: flex-end;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-shadow: $standard-shadow;
+}
+
+h3 {
+  font-weight: bold;
+  font-family: $secondary-font;
+  margin-bottom: 5px;
+}
+
+#enter {
+  margin: 36px 0 0 32px;
+  padding: 12px 26px 8px 26px;
+  font-family: $primary-font;
+  text-transform: uppercase;
+  font-size: 2em;
+  align-self: flex-end;
+  justify-self: flex-end;
+  border-radius: 5px;
+}
+
+#enter:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+a {
+  text-decoration: none;
+}
+
+a:visited {
+  text-decoration: none;
+}
+
+p {
+  font-size: 16px;
+  font-family: $secondary-font;
+  line-height: 130%;
+}
+
+@media (max-width: 823px) {
   #root {
-    background-image: url('../assets/intro.svg');
-    background-position: 10% 50%;
-    background-size: cover;
-    height: $full-window;
-    display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  #title-container {
-    margin-top: 14vh;
-    margin-bottom: 3vh;
-  }
-
-  h1 {
-    padding-bottom: 5px;
   }
 
   #message {
-    margin-right: 10vh;
-    margin-bottom: 10vh;
-    height: 280px;
-    width: 500px;
-    background-color: white;
-    padding: 0 55px;
-    align-self: flex-end;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    box-shadow: $standard-shadow;
+    margin: 0;
+    height: 320px;
+    width: 100%;
+    padding: 0;
   }
 
-  h3 {
-    font-weight: bold;
-    font-family: $secondary-font;
-    margin-bottom: 5px;
+  h3,
+  p {
+    padding: 0 10vw;
   }
 
-  #enter {    
-    padding: 36px 0 0 32px;
-    font-family: $primary-font;
-    text-transform: uppercase;
-    font-size: 2em;
-    align-self: flex-end;
-    justify-self: flex-end;
+  #enter {
+    margin: 36px 4vw 0 32px;
   }
-
-  @media (max-width: 823px) {
-    #root {
-      flex-direction: column;
-    }
-
-    #message {
-      margin: 0;
-      height: 320px;
-      width: 100%;
-      padding: 0;
-    }
-
-    h3, p {
-      padding: 0 10vw;
-    }
-
-    #enter {
-      padding: 36px 10vw 0 32px;
-    }
-  }
+}
 </style>
 
 
@@ -91,5 +126,5 @@
 import { Vue, Component } from 'vue-property-decorator';
 
 @Component
-export default class Home extends Vue { }
+export default class Home extends Vue {}
 </script>
