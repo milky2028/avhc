@@ -94,7 +94,7 @@ h1 {
   margin: 4px;
 }
 
-.small-icon:hover {
+.small-icon:hover, .small-icon:focus {
   background-color: rgba(0, 0, 0, 0.1);
   border-radius: 50%;
 }

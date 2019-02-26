@@ -80,7 +80,7 @@ h3 {
   border-radius: 5px;
 }
 
-#enter:hover {
+#enter:hover, #enter:focus {
   background-color: rgba(0, 0, 0, 0.1);
 }
 
