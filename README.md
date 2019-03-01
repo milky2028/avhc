@@ -108,6 +108,7 @@ This project uses:
   After the Rolling Stone article, 80% of traffic was mobile. Simulate responsive sizes with Chrome devtools.
   
 * Cloud functions for post-order processing and post-order email.
+* Performance timing with the Performance Timings API
 * Page to edit default user account info
 * PWA install prompt on orders page
 * ~Add orders to database.~
