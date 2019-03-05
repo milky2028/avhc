@@ -108,9 +108,11 @@ This project uses:
   After the Rolling Stone article, 80% of traffic was mobile. Simulate responsive sizes with Chrome devtools.
   
 * Cloud functions for post-order processing
-   Add order to Shopify
-   Send confirmation email (rely on Shopify for this?)
-   Get payment for order via Fortress
+
+   * Add order to Shopify
+   * Send confirmation email (rely on Shopify for this?)
+   * Get payment for order via Fortress
+   
 * Performance timing with the Performance Timings API
 * Page to edit default user account info
 * PWA install prompt on orders page
@@ -123,8 +125,10 @@ This project uses:
 * Database security rules. VERY IMPORTANTTTTTTTTTTTTTT.
 * All desktop styles need to be redone and componentized. I don't like them as they are now, and they're not reusable
 * Better user cues and interactions for most things, loaders, etc.
-   Tap states for buttons (partially done)
-   Animations for arrows in selectors
+
+   * Tap states for buttons (partially done)
+   * Animations for arrows in selectors
+   
 * Full article for about page.
 * Slide to delete from cart on cart page
 * Notifications
@@ -136,4 +140,4 @@ This project uses:
 * Migrate theme.scss files to vars.scss
 * Payment Request API
   
-  Rethinking this one since Google changed how this works with Google Pay. Support just might not be there yet.
+  *Rethinking this one since Google changed how this works with Google Pay. Support just might not be there yet.
