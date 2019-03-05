@@ -123,6 +123,8 @@ This project uses:
 * Database security rules. VERY IMPORTANTTTTTTTTTTTTTT.
 * All desktop styles need to be redone and componentized. I don't like them as they are now, and they're not reusable
 * Better user cues and interactions for most things, loaders, etc.
+   Tap states for buttons (partially done)
+   Animations for arrows in selectors
 * Full article for about page.
 * Slide to delete from cart on cart page
 * Notifications
