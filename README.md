@@ -92,11 +92,11 @@ This project uses:
   
 * Firebase
   
-  Currently using Firestore and Firebase Auth. The firestore package is way too big.
+  * Currently using Firestore and Firebase Auth. The firestore package is way too big, but it's what we're using anyways. The auth package is considerably smaller.
   
 * Firebase Cloud Functions
   
-  Code for Firebase Functions is under the functions folder, front-end code is under the public folder. Both folders have their own package.json and node_modules, which should probably be unified at some point. Cloud Functions also use TypeScript.
+  * Code for Firebase Functions is under the functions folder, front-end code is under the public folder. Both folders have their own package.json and node_modules, which should probably be unified at some point. Cloud Functions also use TypeScript. Firebase Cloud Fucntions include Express by default.
 
 * Sentry Error Reporting
 * SASS
@@ -115,6 +115,9 @@ This project uses:
    
 * Performance timing with the Performance Timings API
 * Page to edit default user account info
+
+   * Use container view template
+   
 * PWA install prompt on orders page
 * ~Add orders to database.~
 * Validate order fields on order placement
@@ -122,6 +125,9 @@ This project uses:
 * ~Orders page displays actual orders (is dummy order now)~
 * ~Fix checkout page since Vuex reintegration.~
 * User permission levels with Firebase Custom Claims.
+
+   * Wholesale users that can place wholesale orders using wholesale orders if their custom claim specifies as such.
+   
 * Database security rules. VERY IMPORTANTTTTTTTTTTTTTT.
 * All desktop styles need to be redone and componentized. I don't like them as they are now, and they're not reusable
 * Better user cues and interactions for most things, loaders, etc.
@@ -129,15 +135,15 @@ This project uses:
    * Tap states for buttons (partially done)
    * Animations for arrows in selectors
    
-* Full article for about page.
+* Full article for about page. Currently has dummy content.
 * Slide to delete from cart on cart page
 * Notifications
 * Proper pre-production staging environment
 * As I get more components, the folder structure is bad. Better folder structure.
-* "Order it again" functionality
+* "Order it again" functionality for repeating past orders, sort of like Domino's Pizza.
 * Animations!
-* CMS (probably Butter) integration to allow other people to create orders and such
+* CMS (probably Butter) integration to allow other people to create orders and such (further off).
 * Migrate theme.scss files to vars.scss
 * Payment Request API
   
-  *Rethinking this one since Google changed how this works with Google Pay. Support just might not be there yet.
+  * Rethinking this one since Google changed how this works with Google Pay. Support just might not be there yet.
