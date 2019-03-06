@@ -114,6 +114,7 @@ This project uses:
    * Get payment for order via Fortress
    
 * Performance timing with the Performance Timings API
+* Page to view single orders
 * Page to edit default user account info
 
    * Use container view template
