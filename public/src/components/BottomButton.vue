@@ -12,6 +12,11 @@ button {
   font-family: 'Elianto';
   font-size: 28px;
 }
+
+button:hover, button:focus {
+  background-color: black;
+  color: white;
+}
 </style>
 
 <script lang="ts">
