@@ -172,10 +172,10 @@ interface IndexUser extends User {
 
 @Component({
   computed: {
-    ...mapState('cart', ['shippingOptions']),
+    ...mapState('cart', ['shippingOptions', 'coupons']),
     ...mapState('user', ['user']),
     ...mapGetters('cart', ['subtotal']),
-    ...mapState('newOrder', ['shippingMethod', 'couponCode', 'billingState', 'shippingState'])
+    ...mapState('newOrder', ['shippingMethod', 'couponCode', 'billingState', 'shippingState']),
   },
   methods: {
     ...mapMutations('newOrder', ['setOrderField']),
@@ -235,6 +235,7 @@ export default class Checkout extends Vue {
   private shippingState!: string;
   private setOrderField!: (payload: SetOrderFieldPayload) => void;
   private createOrder!: () => void;
+  private coupons!: CouponCode[];
 
   private beforeMount() {
     this.setFieldFromUser('email');
@@ -252,15 +253,13 @@ export default class Checkout extends Vue {
     return stateTax.taxRate;
   }
 
-  private get discount(): CouponCode {
+  private get discount(): CouponCode | null {
     const code = this.couponCode.toLowerCase().replace(/\s/gi, '');
-    const coop = this.$store.state.cart.coupons.find(
-      (coupon: CouponCode) => coupon.code === code
-    );
+    const coop = this.coupons.find((coupon: CouponCode) => coupon.code === code);
     const notExpired = coop
       ? new Date() < StringToDate(coop.expirationDate)
       : false;
-    return coop && coop.active && notExpired ? coop : false;
+    return coop && coop.active && notExpired ? coop : null;
   }
 
   private get shippingCost() {

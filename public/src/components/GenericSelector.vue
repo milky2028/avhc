@@ -89,7 +89,7 @@ export default class GenerticSelector extends Vue {
         key: this.fieldId,
         value: event.value
     };
-    this.$store.commit('order/setOrderField', payload);
+    this.$store.commit('newOrder/setOrderField', payload);
   }
 
   private getOption(option: any, keyVal: string) {
