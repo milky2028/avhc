@@ -133,7 +133,7 @@ This project uses:
 * All desktop styles need to be redone and componentized. I don't like them as they are now, and they're not reusable
 * Better user cues and interactions for most things, loaders, etc.
 
-   * Tap states for buttons (partially done)
+   * ~Tap states for buttons~
    * Animations for arrows in selectors
    
 * Full article for about page. Currently has dummy content.
