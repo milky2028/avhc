@@ -51,7 +51,6 @@ input {
 input:focus, input:active {
   background-color: black;
   color: white;
-  // border-color: 
 }
 
 input.dirty:not(:focus):invalid {

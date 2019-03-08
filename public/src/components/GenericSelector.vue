@@ -38,6 +38,12 @@ select {
   outline: transparent;
   font-size: 18px;
   z-index: 10;
+  transition: 100ms ease-in;
+}
+
+select:focus, select:active {
+  background-color: black;
+  color: white;
 }
 
 .select-container {
