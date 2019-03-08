@@ -54,6 +54,7 @@ h2 {
 }
 
 #buy > h2 {
+  transition: 100ms ease-in;
   border-radius: 5px;
   padding: 12px 26px;
   width: 150px;

@@ -26,6 +26,7 @@ button {
 }
 
 #badge-root {
+  transition: 100ms ease-in;
   font-family: $secondary-font;
   margin: 0 0 8px 8px;
   grid-area: all;
@@ -52,7 +53,7 @@ button {
   justify-content: space-between;
   flex-direction: row;
   align-items: stretch;
-  padding: 10px 18px 10px 26px;
+  padding: 10px 18px;
   z-index: 100;
 }
 
@@ -71,6 +72,13 @@ h1 {
   font-family: 'Elianto';
   font-size: $h1;
   text-transform: uppercase;
+  border-radius: 5px;
+  padding: 4px 8px 2px 8px;
+  transition: 100ms ease-in;
+}
+
+h1:hover, h1:focus {
+  background-color: rgba(0, 0, 0, 0.1);
 }
 
 #button-container {
@@ -92,6 +100,7 @@ h1 {
 .small-icon {
   padding: 6px;
   margin: 4px;
+  transition: 100ms ease-in;
 }
 
 .small-icon:hover, .small-icon:focus {

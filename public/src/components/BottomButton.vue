@@ -11,6 +11,7 @@ button {
   text-transform: uppercase;
   font-family: 'Elianto';
   font-size: 28px;
+  transition: 100ms ease-in;
 }
 
 button:hover, button:focus {

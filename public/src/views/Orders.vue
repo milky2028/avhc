@@ -1,22 +1,20 @@
 <template>
-  <container-view-with-button
-    btnText="Sign Out"
-    @btnAction="signOut"
-    :stickyBtn="true">
+  <container-view-with-button btnText="Sign Out" @btnAction="signOut" :stickyBtn="true">
     <div>
       <header-with-divider class="header">Orders</header-with-divider>
       <div class="order-container">
-      <green-button id="green-btn">
-        <router-link to="/account">Edit Account Details</router-link>
-      </green-button>
+        <green-button id="green-btn">
+          <router-link to="/account">Edit Account Details</router-link>
+        </green-button>
         <order-item
-        v-for="order of sortedOrders"
-        :key="order.orderId"
-        :orderNumber="order.orderId"
-        :orderDate="order.orderDay"
-        :orderTotal="order.orderTotal"
-        :orderStatus="order.orderStatus"
-        :hasShipped="order.orderStatus === 'Shipped'"></order-item>
+          v-for="order of sortedOrders"
+          :key="order.orderId"
+          :orderNumber="order.orderId"
+          :orderDate="order.orderDay"
+          :orderTotal="order.orderTotal"
+          :orderStatus="order.orderStatus"
+          :hasShipped="order.orderStatus === 'Shipped'"
+        ></order-item>
       </div>
     </div>
   </container-view-with-button>
@@ -35,6 +33,11 @@
 
 #green-btn {
   margin-bottom: 26px;
+  transition: 100ms ease-in;
+}
+
+#green-btn:hover, #green-btn:focus {
+  box-shadow: none;
 }
 </style>
 
@@ -58,12 +61,8 @@ import GreenButton from '@/components/GreenButton.vue';
     ...mapState('pastOrders', ['orders'])
   },
   methods: {
-    ...mapActions('user', [
-      'signOut'
-    ]),
-    ...mapActions('pastOrders', [
-      'getOrders'
-    ])
+    ...mapActions('user', ['signOut']),
+    ...mapActions('pastOrders', ['getOrders'])
   }
 })
 export default class Orders extends Vue {
@@ -76,7 +75,7 @@ export default class Orders extends Vue {
   }
 
   private sortByDate(a: Order, b: Order) {
-    return (a.orderDay > b.orderDay) ? 1 : (a.orderDay < b.orderDay) ? -1 : 0;
+    return a.orderDay > b.orderDay ? 1 : a.orderDay < b.orderDay ? -1 : 0;
   }
 
   get sortedOrders() {

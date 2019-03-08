@@ -24,7 +24,7 @@
   border: 2px solid black;
   border-radius: 15px;
   display: grid;
-  grid-row-gap: 16px;
+  grid-row-gap: 12px;
   grid-template-areas:
     "orderLabel orderNumber"
     "dateLabel date"
@@ -38,9 +38,16 @@
 }
 
 .link {
+  border-radius: 5px;
   color: $primary;
   font-weight: bold;
   text-decoration: none;
+  padding: 4px 8px;
+  transition: 100ms ease-in;
+}
+
+.link:hover, .link:focus {
+  background-color: rgba(0, 0, 0, 0.1);
 }
 
 .align-right {
