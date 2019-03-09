@@ -148,3 +148,7 @@ This project uses:
 * Payment Request API
   
   * Rethinking this one since Google changed how this works with Google Pay. Support just might not be there yet.
+  
+# Bugs
+
+* Add button does not work on Firefox
