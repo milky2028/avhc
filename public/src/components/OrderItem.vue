@@ -1,7 +1,7 @@
 <template>
   <div class="order-root">
     <div class="field">Order:</div>
-    <router-link class="field align-right link" to="/">#{{ orderNumber }}</router-link>
+    <router-link class="field align-right link" :to="`orders/${orderNumber}`">#{{ orderNumber }}</router-link>
     <div class="field">Date:</div>
     <div class="field align-right">{{ orderDate }}</div>
     <div class="field">Status:</div>

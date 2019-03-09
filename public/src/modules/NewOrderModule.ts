@@ -54,6 +54,8 @@ const NewOrderModule: Module = {
     createOrder: async ({ state, commit, rootState }: { state: Order, commit: Commit, rootState: any }) => {
       commit('setOrderField', { key: 'orderDay', value: FormatJsDate(new Date())});
       commit('setOrderField', { key: 'orderTime', value: FormatJsTimestamp(new Date())});
+      commit('setOrderField', { key: 'items', value: rootState.cart.cart });
+      commit('cart/clearCart', null, { root: true });
       if (rootState.user.user) {
         commit('setUserId', rootState.user.user.uid);
       }

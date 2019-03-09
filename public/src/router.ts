@@ -12,6 +12,7 @@ const TestResults = () => import(/* webpackChunkName: "testResults" */'./views/T
 const Flower = () => import(/* webpackChunkName: "flower" */'./views/Flower.vue');
 const Cart = () => import(/* webpackChunkName: "cart" */'./views/Cart.vue');
 const Login = () => import(/* webpackChunkName: "login" */'./views/Login.vue');
+const OrderView = () => import(/* webpackChunkName: "orderView" */'./views/OrderView.vue');
 const PrivacyPolicy = () => import(/* webpackChunkName: "privacyPolicy" */'./views/PrivacyPolicy.vue');
 const TermsAndConditions = () => import(/* webpackChunkName: "termsAndConditions" */'./views/TermsAndConditions.vue');
 const store: any = Store;
@@ -88,6 +89,18 @@ export default new Router({
       path: '/account',
       name: 'account',
       component: Account,
+      beforeEnter(to, from, next) {
+        if (!store.state.user.user) {
+          next('/login');
+        } else {
+          next();
+        }
+      }
+    },
+    {
+      path: '/orders/:orderId',
+      name: 'singleOrder',
+      component: OrderView,
       beforeEnter(to, from, next) {
         if (!store.state.user.user) {
           next('/login');
