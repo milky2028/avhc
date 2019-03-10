@@ -57,10 +57,11 @@ const NewOrderModule: Module = {
     clearErrors: (state: Order) => state.errors = []
   },
   getters: {
-    fullCoupon: (state: Order, getters: any, rootState: any) =>
-      rootState.cart.coupons.find(
-        (coop: CouponCode) => coop.code === state.couponCode
-      )
+    fullCoupon: (state: Order, getters: any, rootState: any) => (
+      state.couponCode
+      ? rootState.cart.coupons.find((coop: CouponCode) => coop.code === state.couponCode)
+      : null
+    )
   },
   actions: {
     createOrder: async ({ state, commit, getters, rootState }: { state: Order; commit: Commit; getters: any; rootState: any; }) => {
