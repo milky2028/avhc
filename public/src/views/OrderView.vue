@@ -6,6 +6,7 @@
         <green-button id="green-btn">
           <router-link to="/account">Track Shipment</router-link>
         </green-button>
+        <!-- <cart-item-component v-for="item in currentOrder.items" :key="item.id" :cartItem="item"></cart-item-component> -->
       </div>
     </div>
   </container-view-with-button>
@@ -40,13 +41,14 @@ import OrderItem from '@/components/OrderItem.vue';
 import { mapActions, mapState } from 'vuex';
 import Order from '@/types/Order';
 import GreenButton from '@/components/GreenButton.vue';
+import CartItemComponent from '@/components/CartItemComponent.vue';
 
 @Component({
   components: {
     ContainerViewWithButton,
     HeaderWithDivider,
-    OrderItem,
-    GreenButton
+    GreenButton,
+    CartItemComponent
   },
   computed: {
     ...mapState('pastOrders', ['orders'])

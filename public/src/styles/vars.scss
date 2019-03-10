@@ -1,5 +1,5 @@
-$standard-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
-$primary: #004D40;
+$standard-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+$primary: #004d40;
 $primary-light: #39796b;
 $edge-padding: 0px 30px;
 $h1: 28px;
@@ -14,8 +14,8 @@ $full-window: calc(100vh - 65px);
 @font-face {
   font-family: 'Elianto';
   src: url('../assets/fonts/elianto.woff2') format('woff2'),
-       url('../assets/fonts/elianto.woff') format('woff'),
-       url('../assets/fonts/elianto.ttf') format('truetype');
+    url('../assets/fonts/elianto.woff') format('woff'),
+    url('../assets/fonts/elianto.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }

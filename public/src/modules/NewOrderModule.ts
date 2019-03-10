@@ -6,6 +6,7 @@ import { Commit } from 'vuex';
 import CartItem from '@/types/CartItem';
 import router from '@/router';
 import { FormatJsDate, FormatJsTimestamp } from '@/exports/DateFunctions';
+import CouponCode from '@/types/CouponCode';
 
 export interface SetOrderFieldPayload {
   key: string;
@@ -39,6 +40,7 @@ const NewOrderModule: Module = {
     expirationYear: 0,
     cvv: 0,
     couponCode: '',
+    fullCoupon: null,
     password: '',
     items: [],
     orderTotal: 0,
@@ -50,11 +52,15 @@ const NewOrderModule: Module = {
     setOrderField: (state: Order, payload: SetOrderFieldPayload) => state[payload.key] = payload.value,
     setUserId: (state: Order, payload: string) => state.userId = payload
   },
+  getters: {
+    fullCoupon: (state: Order, getters: any, rootState: any) => rootState.cart.coupons.find((coop: CouponCode) => coop.code === state.couponCode)
+  },
   actions: {
-    createOrder: async ({ state, commit, rootState }: { state: Order, commit: Commit, rootState: any }) => {
+    createOrder: async ({ state, commit, getters, rootState }: { state: Order, commit: Commit, getters: any, rootState: any }) => {
       commit('setOrderField', { key: 'orderDay', value: FormatJsDate(new Date())});
       commit('setOrderField', { key: 'orderTime', value: FormatJsTimestamp(new Date())});
       commit('setOrderField', { key: 'items', value: rootState.cart.cart });
+      commit('setOrderField', { key: 'fullCoupon', value: getters.fullCoupon});
       commit('cart/clearCart', null, { root: true });
       if (rootState.user.user) {
         commit('setUserId', rootState.user.user.uid);

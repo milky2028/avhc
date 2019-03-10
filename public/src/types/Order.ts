@@ -1,4 +1,5 @@
 import CartItem from './CartItem';
+import CouponCode from './CouponCode';
 
 export default interface Order {
     orderId: string;
@@ -23,6 +24,7 @@ export default interface Order {
     expirationMonth: number;
     expirationYear: number;
     cvv: number;
+    fullCoupon: CouponCode;
     couponCode?: string;
     password?: string;
     items: CartItem[];

@@ -75,7 +75,9 @@ export default class Orders extends Vue {
   }
 
   private sortByDate(a: Order, b: Order) {
-    return a.orderDay > b.orderDay ? 1 : a.orderDay < b.orderDay ? -1 : 0;
+    const aa = new Date(`${a.orderDay} ${a.orderTime}`);
+    const bb = new Date(`${b.orderDay} ${b.orderTime}`);
+    return aa > bb ? 1 : aa < bb ? -1 : 0;
   }
 
   get sortedOrders() {

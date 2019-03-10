@@ -79,31 +79,11 @@
         autocomplete="new-password"
       ></av-textfield>
     </form>
-    <div>
-      <div id="subtotal-container">
-        <h3>Subtotal</h3>
-        <h3 class="padding-right">${{ subtotal.toFixed(2) }}</h3>
-      </div>
-      <div id="subtotal-container">
-        <h3>Shipping</h3>
-        <h3 class="padding-right">${{ shippingCost.toFixed(2) }}</h3>
-      </div>
-      <div id="subtotal-container" v-if="discount">
-        <h3>Discount</h3>
-        <h3
-          class="padding-right"
-        >{{ `-${discount.type === 'fixed' ? '$' : ''}${discount.amount.toFixed(2)}${discount.type === 'percent' ? '%' : ''}` }}</h3>
-      </div>
-      <div id="subtotal-container">
-        <h3>Tax</h3>
-        <h3 class="padding-right">{{ tax.toFixed(2) }}%</h3>
-      </div>
-      <div class="divider less-margin"></div>
-      <div id="subtotal-container">
-        <h2>Total</h2>
-        <h2 class="padding-right">${{ grandTotal.toFixed(2) }}</h2>
-      </div>
-    </div>
+    <total-component
+    :subtotal="subtotal"
+    :shippingCost="shippingCost"
+    :tax="tax"
+    :discount="discount"></total-component>
   </container-view-with-button>
 </template>
 
@@ -111,40 +91,12 @@
 @import '@/styles/theme.scss';
 @import '@/styles/switch.scss';
 
-h2 {
-  text-align: left;
-  text-transform: none;
-  letter-spacing: normal;
-  font-size: 28px;
-}
-
-h3 {
-  font-size: 18px;
-  font-family: $secondary-font;
-}
-
-.divider {
-  background-color: black;
-  margin: 10px 0;
-  height: 2px;
-  margin-bottom: 26px;
-}
-
 .positions {
   margin: 0 26px 26px 0;
 }
 
 .padding-right {
   margin-right: 26px;
-}
-
-.less-margin {
-  margin-bottom: 10px;
-}
-
-#subtotal-container {
-  display: flex;
-  justify-content: space-between;
 }
 </style>
 
@@ -165,6 +117,7 @@ import ContainerViewWithButton from '@/components/ContainerViewWithButton.vue';
 import HeaderWithDivider from '@/components/HeaderWithDivider.vue';
 import { User } from 'firebase';
 import { SetOrderFieldPayload } from '@/modules/NewOrderModule';
+import TotalComponent from '@/components/Total.vue';
 
 interface IndexUser extends User {
   [key: string]: any;
@@ -187,7 +140,8 @@ interface IndexUser extends User {
     AvSwitch,
     GenericSelector,
     ContainerViewWithButton,
-    HeaderWithDivider
+    HeaderWithDivider,
+    TotalComponent
   }
 })
 export default class Checkout extends Vue {
@@ -267,17 +221,6 @@ export default class Checkout extends Vue {
       ? this.shippingOptions.find((method: ShippingMethod) => method.id === this.shippingMethod)
       : this.shippingOptions[0];
     return shippingMethod!.price;
-  }
-
-  private get grandTotal() {
-    return this.discount
-      ? this.discount.type === 'fixed'
-        ? (this.subtotal + this.shippingCost - this.discount.amount) *
-          (this.tax / 100 + 1)
-        : (this.subtotal + this.shippingCost) *
-          ((100 - this.discount.amount) / 100) *
-          (this.tax / 100 + 1)
-      : (this.subtotal + this.shippingCost) * (this.tax / 100 + 1);
   }
 
   private setFieldFromUser(field: string, vuexField?: string) {
