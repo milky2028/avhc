@@ -13,7 +13,6 @@
 h2 {
   font-size: $h1;
   font-family: $secondary-font;
-  font-weight: 500;
 }
 
 h2 + div {

@@ -20,7 +20,7 @@
     <datalist v-if="datalist" id="list">
       <option v-for="item of datalist" :key="item[itemKey]">{{ item[itemTitle] }}</option>
     </datalist>
-    <p v-if="error">{{ error }}</p>
+    <p v-if="error">*Required</p>
   </div>
 </template>
 
@@ -58,7 +58,7 @@ input.dirty:not(:focus):invalid {
 }
 
 p {
-  margin: 10px;
+  margin: 2px;
   color: #fc5316;
 }
 
@@ -72,7 +72,8 @@ p {
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator';
 import { SetOrderFieldPayload } from '@/modules/NewOrderModule';
-import { mapMutations } from 'vuex';
+import { mapMutations, mapState } from 'vuex';
+import Order from '@/types/Order';
 
 interface InputEventTarget extends EventTarget {
   value: any;
@@ -80,7 +81,10 @@ interface InputEventTarget extends EventTarget {
 
 @Component({
   methods: {
-    ...mapMutations('newOrder', ['setOrderField'])
+    ...mapMutations('newOrder', ['setOrderField']),
+  },
+  computed: {
+    ...mapState('newOrder', ['errors'])
   }
 })
 export default class AvTextfield extends Vue {
@@ -95,13 +99,17 @@ export default class AvTextfield extends Vue {
   @Prop(Array) public datalist!: any[];
   @Prop(String) public itemKey!: string;
   @Prop(String) public itemTitle!: string;
-  @Prop(String) public error!: string;
   private dirty: boolean = false;
+  private errors!: string[];
   private setOrderField!: (payload: SetOrderFieldPayload) => void;
 
   public get value() {
     const storeVal = this.$store.state.newOrder[this.fieldId];
     return storeVal ? storeVal : '';
+  }
+
+  public get error(): boolean {
+    return this.errors.includes(this.fieldId);
   }
 
   private beforeCreate() {

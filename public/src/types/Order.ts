@@ -2,6 +2,7 @@ import CartItem from './CartItem';
 import CouponCode from './CouponCode';
 
 export default interface Order {
+    errors: string[];
     orderId: string;
     email: string;
     shippingName: string;

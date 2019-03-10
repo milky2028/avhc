@@ -81,7 +81,10 @@ const CartModule: CartModule = {
     },
     setCoupons: (state, payload) => state.coupons = payload,
     setShippingOptions: (state, payload) => state.shippingOptions = payload,
-    clearCart: (state) => state.cart = [],
+    clearCart: (state) => {
+      state.cart = [];
+      window.localStorage.clear();
+    },
     addItemToCart(state, item) {
       const productsInCart = state.cart.map((productInCart) => productInCart.product);
       const productSizesInCart = state.cart.map((productInCart) => productInCart.size);

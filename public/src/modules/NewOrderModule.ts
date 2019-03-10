@@ -16,13 +16,14 @@ export interface SetOrderFieldPayload {
 const NewOrderModule: Module = {
   namespaced: true,
   state: {
+    errors: [],
     orderDay: null,
     orderTime: null,
     orderId: CreateRandomId(8),
     email: '',
     shippingName: '',
     shippingAddress: '',
-    shipingCity: '',
+    shippingCity: '',
     shippingState: '',
     shippingZip: 0,
     shippingCountry: '',
@@ -49,25 +50,61 @@ const NewOrderModule: Module = {
     trackingNumber: ''
   },
   mutations: {
-    setOrderField: (state: Order, payload: SetOrderFieldPayload) => state[payload.key] = payload.value,
-    setUserId: (state: Order, payload: string) => state.userId = payload
+    setOrderField: (state: Order, payload: SetOrderFieldPayload) =>
+      (state[payload.key] = payload.value),
+    setUserId: (state: Order, payload: string) => state.userId = payload,
+    pushError: (state: Order, payload: string) => state.errors.push(payload),
+    clearErrors: (state: Order) => state.errors = []
   },
   getters: {
-    fullCoupon: (state: Order, getters: any, rootState: any) => rootState.cart.coupons.find((coop: CouponCode) => coop.code === state.couponCode)
+    fullCoupon: (state: Order, getters: any, rootState: any) =>
+      rootState.cart.coupons.find(
+        (coop: CouponCode) => coop.code === state.couponCode
+      )
   },
   actions: {
-    createOrder: async ({ state, commit, getters, rootState }: { state: Order, commit: Commit, getters: any, rootState: any }) => {
-      commit('setOrderField', { key: 'orderDay', value: FormatJsDate(new Date())});
-      commit('setOrderField', { key: 'orderTime', value: FormatJsTimestamp(new Date())});
+    createOrder: async ({ state, commit, getters, rootState }: { state: Order; commit: Commit; getters: any; rootState: any; }) => {
+      commit('setOrderField', { key: 'orderDay', value: FormatJsDate(new Date()) });
+      commit('setOrderField', { key: 'orderTime', value: FormatJsTimestamp(new Date()) });
       commit('setOrderField', { key: 'items', value: rootState.cart.cart });
-      commit('setOrderField', { key: 'fullCoupon', value: getters.fullCoupon});
-      commit('cart/clearCart', null, { root: true });
+      commit('setOrderField', { key: 'fullCoupon', value: getters.fullCoupon });
+
+      const requiredFields = [
+        'email',
+        'shippingName',
+        'shippingAddress',
+        'shippingCity',
+        'shippingState',
+        'shippingZip',
+        'shippingCountry',
+        'phoneNumber',
+        'shippingMethod',
+        'nameOnCard',
+        'cardNumber',
+        'expirationMonth',
+        'expirationYear',
+        'cvv',
+        'items'
+      ];
+      commit('clearErrors');
+      Object.keys(state).forEach((key: string) => {
+        if (requiredFields.includes(key) && !state[key]) {
+          commit('pushError', key);
+        }
+      });
+
       if (rootState.user.user) {
         commit('setUserId', rootState.user.user.uid);
       }
-      const db = await Firestore();
-      db.collection('orders').add(state);
-      router.push('/orders');
+
+      if (state.errors.length > 0) {
+        window.scrollTo(0, 0);
+      } else {
+        const db = await Firestore();
+        db.collection('orders').add(state);
+        commit('cart/clearCart', null, { root: true });
+        router.push('/orders');
+      }
     }
   }
 };
