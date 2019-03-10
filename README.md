@@ -152,3 +152,4 @@ This project uses:
 # Bugs
 
 * Add button does not work on Firefox
+* City not correctly autofilling in Chrome
