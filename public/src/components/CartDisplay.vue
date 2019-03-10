@@ -6,8 +6,7 @@
       :class="(isWhite) ? 'white-text' : ''"
     >Your cart is empty.</h2>
     <div v-if="cart.length >= 1">
-      <h2 :class="(isWhite) ? 'white-text' : ''">Cart</h2>
-      <div :class="(isWhite) ? 'white-background' : 'black-background'" class="divider"></div>
+      <header-with-divider>Cart</header-with-divider>
       <div>
         <cart-item-component v-for="item in cart" :key="item.id" :cartItem="item"></cart-item-component>
       </div>
@@ -66,7 +65,8 @@ h2 {
   justify-content: center;
 }
 
-button:hover, button:focus {
+button:hover,
+button:focus {
   transition: 100ms ease-in;
   box-shadow: none;
 }
@@ -78,10 +78,13 @@ import CartItemComponent from '@/components/CartItemComponent.vue';
 import ColorShift from '@/mixins/ColorShift.vue';
 import { mapState, mapGetters, mapMutations } from 'vuex';
 import { CartState } from '@/modules/CartModule';
+import HeaderWithDivider from '@/components/HeaderWithDivider.vue';
+
 
 @Component({
   components: {
-    CartItemComponent
+    CartItemComponent,
+    HeaderWithDivider
   },
   computed: {
     ...mapState('cart', ['cart']),
