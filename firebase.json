@@ -42,15 +42,6 @@
         "key" : "Cache-Control",
         "value" : "max-age=0"
       } ]
-    },
-    {
-      "source": "/",
-      "headers": [
-        {
-          "key": "Link",
-          "value": "</js/chunk-vendors.*.js>;rel=preload;as=script,</js/firestore.*.js>;rel=preload;as=script,</js/firebase.*.js>;rel=preload;as=script,</js/app.*.js>;rel=preload;as=script,</css/intro.*.css>;rel=preload;as=style,</css/app.*.css>;rel=preload;as=style"
-        }
-      ]
     }]
   }
 }
