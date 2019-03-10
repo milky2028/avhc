@@ -118,13 +118,24 @@ This project uses:
 * Page to edit default user account info
 
    * Use container view template
+   
 * h2 server push
+   
+   * Need custom build steps for this
+   * Edit firebase.json at build time? Is this a bad idea?
+   
 * PWA install prompt on orders page
 * ~Add orders to database.~
-* Validate order fields on order placement
+* ~Validate order fields on order placement~
 * ~Field Error handler~
 * ~Orders page displays actual orders (is dummy order now)~
 * ~Fix checkout page since Vuex reintegration.~
+* Finish policy pages
+
+   * Terms and Conditions
+   * Privacy Policy
+   
+* Order tracking with Google Tag Manager and Google Analytics
 * User permission levels with Firebase Custom Claims.
 
    * Wholesale users that can place wholesale orders using wholesale orders if their custom claim specifies as such.
