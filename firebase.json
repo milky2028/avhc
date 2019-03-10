@@ -30,17 +30,10 @@
         "value" : "*"
       } ]
     }, {
-      "source" : "**/*.@(jpg|jpeg|gif|png|svg|`)",
+      "source" : "**/*.@(jpg|jpeg|gif|png|svg|js|css|woff2`)",
       "headers" : [ {
         "key" : "Cache-Control",
         "value" : "max-age=31536000"
-      } ]
-    }, 
-    {
-      "source" : "**/*.@(css|js|`)",
-      "headers" : [ {
-        "key" : "Cache-Control",
-        "value" : "max-age=1209600"
       } ]
     },
     {
