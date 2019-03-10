@@ -118,7 +118,7 @@ This project uses:
 * Page to edit default user account info
 
    * Use container view template
-   
+* h2 server push
 * PWA install prompt on orders page
 * ~Add orders to database.~
 * Validate order fields on order placement
