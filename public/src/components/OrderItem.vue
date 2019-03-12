@@ -16,6 +16,7 @@
 
 <style lang="scss" scoped>
 @import '@/styles/vars.scss';
+@import '../styles/link.scss';
 
 .order-root {
   font-family: $secondary-font; 
@@ -38,16 +39,11 @@
 }
 
 .link {
-  border-radius: 5px;
-  color: $primary;
-  font-weight: bold;
-  text-decoration: none;
-  padding: 4px 8px;
-  transition: 100ms ease-in;
+  @include link(true);
 }
 
-.link:hover, .link:focus {
-  background-color: rgba(0, 0, 0, 0.1);
+.link:hover, .link:focus  {
+  @include hover(false);
 }
 
 .align-right {

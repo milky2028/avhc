@@ -1,0 +1,23 @@
+@import './vars.scss';
+
+@mixin link($bold: false) {
+  cursor: pointer;
+  @if $bold {
+    font-weight: bold;
+  }
+  border-radius: 5px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  color: $primary;
+  transition: 100ms ease-in;
+  text-decoration: none;
+}
+
+@mixin hover($grey: true) {
+  @if $grey {
+    background-color: rgba(0, 0, 0, 0.1);
+  } @else {
+    text-decoration: underline;
+  }
+}

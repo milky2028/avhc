@@ -6,7 +6,7 @@
     </div>
     <div id="message">
       <h3>Disclaimer:</h3>
-      <p>Statements on this website have not been evaluated by the FDA. Products distributed by Aspen Valley Group, LLC are not intended to diagnose, treat, cure, or prevent any disease. Consult your physician before using any hemp supplement. Not intended for use by any person under 18 years of age.</p>
+      <p>Statements on this website have not been evaluated by the FDA. Products distributed by Aspen Valley Group, LLC are not intended to diagnose, treat, cure, or prevent any disease. Consult your physician before using any hemp supplement. Not intended for use by any person under 18 years of age. By entering, you agree to comply with our <router-link class="link" to="privacy-policy">Privacy Policy</router-link> and <router-link class="link" to="terms-and-conditions">Terms and Conditions</router-link>.</p>
       <router-link id="enter" to="flower">Enter</router-link>
     </div>
   </div>
@@ -14,6 +14,7 @@
 
 <style scoped lang="scss">
 @import '../styles/vars.scss';
+@import '../styles/link.scss';
 
 #root {
   background-image: url('../assets/intro.svg');
@@ -52,7 +53,7 @@ h2 {
 #message {
   margin-right: 10vh;
   margin-bottom: 10vh;
-  height: 280px;
+  height: 290px;
   width: 500px;
   background-color: white;
   padding: 0 55px;
@@ -70,7 +71,7 @@ h3 {
 }
 
 #enter {
-  margin: 36px 0 0 32px;
+  margin: 2vh 0 0 2vh;
   padding: 12px 26px 8px 26px;
   font-family: $primary-font;
   text-transform: uppercase;
@@ -98,6 +99,14 @@ p {
   line-height: 130%;
 }
 
+.link {
+  @include link(true);
+}
+
+.link:hover, .link:focus {
+  @include hover(false);
+}
+
 @media (max-width: 823px) {
   #root {
     flex-direction: column;
@@ -107,7 +116,7 @@ p {
     margin: 0;
     height: 320px;
     width: 100%;
-    padding: 0;
+    padding: 2vh 0 0 0;
   }
 
   h3,
@@ -116,7 +125,7 @@ p {
   }
 
   #enter {
-    margin: 36px 4vw 0 32px;
+    margin: 2vh 4vw 0 2vh;
   }
 }
 </style>

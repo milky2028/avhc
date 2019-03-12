@@ -18,6 +18,7 @@
 <style lang="scss" scoped>
 @import '../styles/theme.scss';
 @import '../styles/color-shift.scss';
+@import '../styles/link.scss';
 
 #cart-item-root {
   font-family: $secondary-font;
@@ -46,16 +47,11 @@
 }
 
 .link {
-  border-radius: 5px;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
-  color: $primary;
-  transition: 100ms ease-in;
+  @include link;
 }
 
-.link:hover {
-  background-color: rgba(0, 0, 0, 0.1);
+.link:hover, .link:focus  {
+  @include hover(false);
 }
 
 h3 {
