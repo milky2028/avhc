@@ -4,6 +4,7 @@
       <slot></slot>
     </div>
     <bottom-button
+      v-if="!hideBtn"
       class="btn"
       :style="(stickyBtn) ? stickyBtnStyles: {}"
       :btnText="btnText"
@@ -14,6 +15,10 @@
 
 <style lang="scss" scoped>
 @import '@/styles/vars.scss';
+
+div {
+  font-family: $secondary-font;
+}
 
 .grid-container {
   display: grid;
@@ -48,6 +53,7 @@ export default class ContainerViewWithButton extends Vue {
   @Prop(String) public btnText!: string;
   @Prop(Boolean) public stickyBtn!: boolean;
   @Prop(Boolean) public rightPadding!: boolean;
+  @Prop(Boolean) public hideBtn!: boolean;
 
   get stickyBtnStyles() {
     return {
