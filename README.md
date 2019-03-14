@@ -133,7 +133,7 @@ This project uses:
 * Finish policy pages
 
    * Terms and Conditions
-   * Privacy Policy
+   * ~Privacy Policy~
    
 * Order tracking with Google Tag Manager and Google Analytics
 * User permission levels with Firebase Custom Claims.
