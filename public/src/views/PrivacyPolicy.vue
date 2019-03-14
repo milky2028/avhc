@@ -115,50 +115,7 @@
 </template>
 
 <style lang="scss" scoped>
-@import '../styles/link.scss';
-@import '../styles/bold.scss';
-
-.title {
-  margin-bottom: 16px;
-}
-
-h2 {
-  font-size: 17px;
-  margin-bottom: 4px;
-  @include bold(600);
-}
-
-ol, ul {
-  margin-left: 26px;
-  margin-bottom: 12px;
-}
-
-li {
-  margin-bottom: 8px;
-  line-height: 1.1em;
-}
-
-.bold {
-  @include bold(600);
-}
-
-p {
-  margin-bottom: 12px;
-  line-height: 1.2em;
-}
-
-.content {
-  padding-right: 26px;
-}
-
-.link {
-  @include link(true);
-}
-
-.link:hover,
-.link:focus {
-  @include hover(false);
-}
+@import '../styles/article.scss';
 </style>
 
 <script lang="ts">
