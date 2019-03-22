@@ -15,6 +15,7 @@ const Login = () => import(/* webpackChunkName: "login" */'./views/Login.vue');
 const OrderView = () => import(/* webpackChunkName: "orderView" */'./views/OrderView.vue');
 const PrivacyPolicy = () => import(/* webpackChunkName: "privacyPolicy" */'./views/PrivacyPolicy.vue');
 const TermsAndConditions = () => import(/* webpackChunkName: "termsAndConditions" */'./views/TermsAndConditions.vue');
+const ReturnPolicy = () => import(/* webpackChunkName: "returnPolicy" */'./views/ReturnPolicy.vue');
 const store: any = Store;
 
 Vue.use(Router);
@@ -123,6 +124,11 @@ export default new Router({
       path: '/terms-and-conditions',
       name: 'terms-and-conditions',
       component: TermsAndConditions
+    },
+    {
+      path: '/return-policy',
+      name: 'return-policy',
+      component: ReturnPolicy
     }
   ]
 });

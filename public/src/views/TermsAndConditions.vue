@@ -2,6 +2,12 @@
   <container-view-with-button :hideBtn="true">
     <header-with-divider>Terms and Conditions</header-with-divider>
     <div class="content">
+      <h2>Other Policies</h2>
+      <p>
+        In addition to this Privacy Policy, please review our
+        <a class="link" href="/return-policy">Return Policy</a> and
+        <a class="link" href="/privacy-policy">Privacy Policy</a>.
+      </p>
       <h2>Overview</h2>
 
       <p>This website is operated and run by Aspen Valley Group LLC. Throughout the site, the terms "we", "us" and "our" refer to Aspen Valley Group LLC. Aspen Valley Group LLC offers this website, including all information, tools and services available from this site to you, the user, conditioned upon your acceptance of all terms, conditions, policies and notices stated here.</p>
@@ -40,7 +46,7 @@
       <p>You agree to provide current, complete and accurate purchase and account information for all purchases made at our store. You agree to promptly update your account and other information, including your email address and credit card numbers and expiration dates, so that we can complete your transactions and contact you as needed.</p>
       <p>
         For more detail, please review our
-        <a href="/return-policy">Returns Policy</a>.
+        <a class="link" href="/return-policy">Returns Policy</a>.
       </p>
       <h2>Optional Tools</h2>
 
@@ -63,6 +69,7 @@
       <p>
         Your submission of personal information through the store is governed by our
         <a
+          class="link"
           href="/privacy-policy"
         >Privacy Policy</a>.
       </p>
@@ -104,14 +111,16 @@
       <p>We reserve the right, at our sole discretion, to update, change or replace any part of these Terms and Conditions of Service by posting updates and changes to our website. It is your responsibility to check our website periodically for changes. Your continued use of or access to our website or the Service following the posting of any changes to these Terms and Conditions of Service constitutes acceptance of those changes.</p>
       <h2>Contact Information</h2>
 
-      <p>Questions about the Terms and Conditions of Service can be addressed by emailing us at <a class="link">support@purecbdexchange.com</a>.</p>
+      <p>
+        Questions about the Terms and Conditions of Service can be addressed by emailing us at
+        <a class="link">support@purecbdexchange.com</a>.
+      </p>
     </div>
   </container-view-with-button>
 </template>
 
 <style lang="scss" scoped>
 @import '../styles/article.scss';
-
 </style>
 
 <script lang="ts">
