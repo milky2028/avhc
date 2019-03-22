@@ -132,8 +132,9 @@ This project uses:
 * ~Fix checkout page since Vuex reintegration.~
 * Finish policy pages
 
-   * Terms and Conditions
+   * ~Terms and Conditions~
    * ~Privacy Policy~
+   * ~Return Policy~
    
 * Order tracking with Google Tag Manager and Google Analytics
 * User permission levels with Firebase Custom Claims.
