@@ -4,6 +4,8 @@
       <a class="link" href="https://eugdpr.org/">GDPR</a> Privacy Policy
     </header-with-divider>
     <div class="content">
+      <h2>Other Policies</h2>
+      <p>In addition to this Privacy Policy, please review our <a class="link" href="/return-policy">Return Policy</a> and <a class="link" href="/terms-and-conditions">Terms and Conditions of Service</a>.</p>
       <h2>Why do we have a privacy policy?</h2>
       <p>Our privacy policy exists to inform our customers of:</p>
       <ol>

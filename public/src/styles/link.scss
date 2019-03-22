@@ -12,6 +12,7 @@
   color: $primary;
   transition: 100ms ease-in;
   text-decoration: none;
+  white-space: pre-wrap;
 }
 
 @mixin hover($grey: true) {
