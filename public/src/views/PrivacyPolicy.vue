@@ -12,18 +12,18 @@
         <li>Services that we use on our website that enable us to deliver a website that provides a high quality, safe, and secure shopping experience.</li>
         <li>Ensure customers that we value their privacy and work towards creating an experience that does not compromise their information in any way possible.</li>
       </ol>
-      <p>Your online privacy is important to Aspen Valley Hemp Company and its partners, including Pure CBD Exchange, and we are your partner in ensuring that your information stays safe, secure, and private.</p>
+      <p>Your online privacy is important to Aspen Valley Group LLC and its partners, including Pure CBD Exchange, and we are your partner in ensuring that your information stays safe, secure, and private.</p>
       <p>
-        <strong class="bold">Aspen Valley Hemp Company </strong><em>('we' or 'us' or 'our')</em> is committed to ensuring the security and protection of the personal information that we process, and to provide a compliant and consistent approach to data protection. We have always had a robust and effective data protection program in place which complies with existing law and abides by the data protection principles. However, we recognise our obligations in updating and expanding this program to meet the demands of the GDPR.
+        <strong class="bold">Aspen Valley Group LLC </strong><em>('we' or 'us' or 'our')</em> is committed to ensuring the security and protection of the personal information that we process, and to provide a compliant and consistent approach to data protection. We have always had a robust and effective data protection program in place which complies with existing law and abides by the data protection principles. However, we recognise our obligations in updating and expanding this program to meet the demands of the GDPR.
       </p>
       <p></p>
       <p>
-        <strong class="bold">Aspen Valley Hemp Company</strong> is dedicated to safeguarding the personal information under our remit and in developing a data protection regime that is effective, fit for purpose and demonstrates an understanding of, and appreciation for the new Regulation. Our preparation and objectives for GDPR compliance have been summarised in this statement and include the development and implementation of new data protection roles, policies, procedures, controls and measures to ensure maximum and ongoing compliance.
+        <strong class="bold">Aspen Valley Group LLC</strong> is dedicated to safeguarding the personal information under our remit and in developing a data protection regime that is effective, fit for purpose and demonstrates an understanding of, and appreciation for the new Regulation. Our preparation and objectives for GDPR compliance have been summarised in this statement and include the development and implementation of new data protection roles, policies, procedures, controls and measures to ensure maximum and ongoing compliance.
       </p>
 
       <h2>GDPR Roles and Employees</h2>
       <p>
-        <strong class="bold">Aspen Valley Hemp Company</strong> has designated Tyler Gross as our
+        <strong class="bold">Aspen Valley Group LLC</strong> has designated Tyler Gross as our
         <strong class="bold">Data Protection Officer (DPO)</strong> and have appointed a data privacy team to develop and implement our roadmap for complying with the new data protection Regulation. The team are responsible for promoting awareness of the GDPR across the organization, assessing our GDPR readiness, identifying any gap areas and implementing the new policies, procedures and measures.
       </p>
       <p>
