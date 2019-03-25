@@ -115,6 +115,7 @@ This project uses:
    
 * Performance timing with the Performance Timings API
 * Page to view single orders
+* Test results page
 * Change app color scheme?
 * Page to edit default user account info
 
@@ -156,6 +157,14 @@ This project uses:
 * As I get more components, the folder structure is bad. Better folder structure.
 * "Order it again" functionality for repeating past orders, sort of like Domino's Pizza.
 * Animations!
+* Prerendering
+   
+   * About page
+   * Terms and conditions page
+   * Return policy
+   * Privacy Policy Page
+   * Test Results Page
+   
 * CMS (probably Butter) integration to allow other people to create orders and such (further off).
    
    * Butter does not let you use your own custom backend; need to find a different solution
