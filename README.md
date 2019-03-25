@@ -156,6 +156,9 @@ This project uses:
 * "Order it again" functionality for repeating past orders, sort of like Domino's Pizza.
 * Animations!
 * CMS (probably Butter) integration to allow other people to create orders and such (further off).
+   
+   * Butter does not let you use your own custom backend; need to find a different solution
+  
 * Migrate theme.scss files to vars.scss
 * Payment Request API
   
