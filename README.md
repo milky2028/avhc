@@ -159,11 +159,12 @@ This project uses:
 * Animations!
 * Prerendering
    
-   * About page
-   * Terms and conditions page
-   * Return policy
-   * Privacy Policy Page
-   * Test Results Page
+   * /about
+   * /terms-and-conditions
+   * /return-policy
+   * /privacy-policy
+   * /test-results
+   * / (intro page, maybe most important)
    
 * CMS (probably Butter) integration to allow other people to create orders and such (further off).
    
