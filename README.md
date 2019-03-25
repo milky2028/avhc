@@ -115,6 +115,7 @@ This project uses:
    
 * Performance timing with the Performance Timings API
 * Page to view single orders
+* Change app color scheme?
 * Page to edit default user account info
 
    * Use container view template
