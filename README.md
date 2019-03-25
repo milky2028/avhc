@@ -179,3 +179,4 @@ This project uses:
 
 * Add button does not work on Firefox
 * ~City not correctly autofilling in Chrome~
+* Buy button stays highlighted on mobile after pressing it in its previous state to add to cart
