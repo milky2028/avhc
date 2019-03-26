@@ -46,9 +46,10 @@ const ProductsModule: ProductsModule = {
     getProducts: async ({ commit }) => {
       try {
         const db = await Firestore();
-        const snapshot = await db.collection('products').get();
-        const products = snapshot.docs.map((doc: any) => doc.data());
-        commit('setProducts', products);
+        db.collection('products').onSnapshot((snapshot) => {
+          const products = snapshot.docs.map((doc: any) => doc.data());
+          commit('setProducts', products);
+        });
       } catch (e) {
         Sentry.captureException(e);
         throw e;

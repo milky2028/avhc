@@ -27,7 +27,7 @@ const Firestore = async () => {
   await FirestoreImport;
   const db = app.firestore();
   if (!app.firestore) {
-    db.enablePersistence({ experimentalTabSynchronization: true }).catch((e) => {
+    db.enablePersistence().catch((e) => {
       if (e.code === 'failed-precondition') {
         Sentry.captureException(e);
       } else if (e.code === 'unimplemented') {

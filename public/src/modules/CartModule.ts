@@ -105,9 +105,10 @@ const CartModule: CartModule = {
     getShippingOptions: async ({ commit }) => {
       try {
         const db = await Firestore();
-        const snapshot = await db.collection('shipping-options').get();
-        const shippingOptions = snapshot.docs.map((doc: any) => doc.data());
-        commit('setShippingOptions', shippingOptions);
+        db.collection('shipping-options').onSnapshot((snapshot) => {
+          const shippingOptions = snapshot.docs.map((doc: any) => doc.data());
+          commit('setShippingOptions', shippingOptions);
+        });
       } catch (e) {
         Sentry.captureException(e);
         throw e;
@@ -116,9 +117,10 @@ const CartModule: CartModule = {
     getCoupons: async ({ commit }) => {
       try {
         const db = await Firestore();
-        const snapshot = await db.collection('coupons').get();
-        const coupons = snapshot.docs.map((doc: any) => doc.data());
-        commit('setCoupons', coupons);
+        db.collection('coupons').onSnapshot((snapshot) => {
+          const coupons = snapshot.docs.map((doc: any) => doc.data());
+          commit('setCoupons', coupons);
+        });
       } catch (e) {
         Sentry.captureException(e);
         throw e;

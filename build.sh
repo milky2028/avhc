@@ -6,6 +6,8 @@ else
     cd ~/avhc
 fi
 
+git status
+git pull
 npm i -g firebase-tools @vue/cli @vue/cli-service-global
 rm -rf public/node_modules functions/node_modules
 cd functions
