@@ -21,7 +21,7 @@
             <div class='mat-icon small-icon arrow-icon'>keyboard_arrow_right</div>
             </div>
         </div>
-        <div id='right-select' v-if="activeProduct.strains.length > 0" class='select-wrapper half-width'>
+        <div id='right-select' v-if="activeProduct && activeProduct.strains.length > 0" class='select-wrapper half-width'>
             <label for="strain-select">Strain</label>
             <div class='select-container strain'>
                 <select id="strain-select" class='lower-selector' v-model='selectedProductStrain'>

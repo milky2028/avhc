@@ -1,5 +1,5 @@
 <template>
-  <div id="descriptions-root" v-html="activeProduct.description"></div>
+  <div id="descriptions-root" v-html="activeProduct && activeProduct.description"></div>
 </template>
 
 <style lang="scss">
