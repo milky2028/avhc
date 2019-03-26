@@ -1,5 +1,32 @@
-functions/node_modules
-functions/lib
-/public/node_modules
 .firebase/hosting.*.cache
 .firebase/
+
+# functions
+functions/node_modules
+functions/lib
+
+# build
+build/node-scripts/node_modules
+
+# vue
+.DS_Store
+public/.DS_Store
+public/node_modules
+public/dist
+
+# local env files
+public/.env.local
+public/.env.*.local
+
+# Log files
+public/npm-debug.log*
+public/yarn-debug.log*
+public/yarn-error.log*
+
+# Editor directories and files
+public/.idea
+public/*.suo
+public/*.ntvs*
+public/*.njsproj
+public/*.sln
+public/*.sw*
