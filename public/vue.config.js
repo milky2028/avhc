@@ -18,5 +18,5 @@ module.exports = {
     }
   },
   assetsDir: 'assets',
-  productionSourceMap: false,
+  productionSourceMap: true,
 }
