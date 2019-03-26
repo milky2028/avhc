@@ -8,12 +8,12 @@ fi
 
 git status
 git pull
-npm i -g firebase-tools @vue/cli @vue/cli-service-global
+yarn global add firebase-tools @vue/cli @vue/cli-service-global
 rm -rf public/node_modules functions/node_modules
 cd functions
-yarn
+yarn install
 cd ../public
-yarn
+yarn install
 yarn build
 cd ..
 firebase deploy
