@@ -3,7 +3,7 @@
 if [ "$1" == "mac" ]; then
     cd ~/Documents/GitHub/avp
 else
-    cd ~/avhc
+    cd ~/Documents/GitHub/avhc
 fi
 
 git status
