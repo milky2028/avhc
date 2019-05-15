@@ -9,7 +9,8 @@ const productionPlugins = [
       '/about',
       '/return-policy',
       '/terms-and-conditions',
-      '/privacy-policy'
+      '/privacy-policy',
+      '/test-results'
     ]
   })
 ];
