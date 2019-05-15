@@ -5,7 +5,7 @@
         <li
           v-for="result of results"
           :key="result.name">
-            <a :href="result.href">{{ result.name }}</a>
+            <a class="link" :href="result.href">{{ result.name }}</a>
           </li>
       </ul>
   </container-view-with-button>
@@ -15,7 +15,7 @@
 @import '@/styles/article.scss';
 
 ul {
-  margin-top: 26px;
+  margin-top: 16px;
 }
 </style>
 
@@ -41,7 +41,7 @@ export default class TestResults extends Vue {
     },
     {
       href: 'Man',
-      name: 'Tyler'
+      name: '5/14/2019 | CBD Flower Strain | Space Candy'
     }
   ]
 }
