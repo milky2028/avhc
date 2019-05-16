@@ -94,6 +94,7 @@ import CartItem from '@/types/CartItem';
 import ColorShift from '@/mixins/ColorShift.vue';
 import { mapState, mapMutations } from 'vuex';
 import { QuantityPayload } from '@/modules/CartModule';
+import { clear, set } from 'idb-keyval';
 
 @Component({
   computed: {
@@ -114,11 +115,10 @@ export default class CartItemComponent extends Mixins(ColorShift) {
   private options = [...Array(25).keys()];
 
   private setItemQuantity(target: HTMLSelectElement) {
-    const localStorage = window.localStorage;
-    localStorage.clear();
+    clear();
     if (target.selectedIndex === 0) {
       this.removeItemFromCart(this.cartItem.id);
-      localStorage.setItem('cart', JSON.stringify(this.cart));
+      set('cart', this.cart);
     } else {
       const payload: QuantityPayload = {
         productName: this.cartItem.product,
@@ -127,7 +127,7 @@ export default class CartItemComponent extends Mixins(ColorShift) {
         quantity: target.selectedIndex
       };
       this.setQuantity(payload);
-      localStorage.setItem('cart', JSON.stringify(this.cart));
+      set('cart', this.cart);
     }
   }
 

@@ -4,6 +4,7 @@ import Module from '@/types/Module';
 import * as Sentry from '@sentry/browser';
 import { Firestore } from '@/exports/Firebase';
 import { Commit } from 'vuex';
+import { clear, set } from 'idb-keyval';
 
 export interface CartState {
   cart: CartItem[];
@@ -83,7 +84,7 @@ const CartModule: CartModule = {
     setShippingOptions: (state, payload) => state.shippingOptions = payload,
     clearCart: (state) => {
       state.cart = [];
-      window.localStorage.clear();
+      clear();
     },
     addItemToCart(state, item) {
       const productsInCart = state.cart.map((productInCart) => productInCart.product);
@@ -95,9 +96,8 @@ const CartModule: CartModule = {
       } else {
         state.cart.push(item);
       }
-      const localStorage = window.localStorage;
-      localStorage.clear();
-      localStorage.setItem('cart', JSON.stringify(state.cart));
+      clear();
+      set('cart', state.cart);
     },
     removeItemFromCart: (state, id) => state.cart = state.cart.filter((item) => item.id !== id)
   },

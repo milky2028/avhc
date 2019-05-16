@@ -21,6 +21,7 @@ import CartItem from '@/types/CartItem';
 import { Auth } from '@/exports/Firebase';
 import { mapActions } from 'vuex';
 import UserModule from '@/modules/UserModule';
+import { get } from 'idb-keyval';
 
 @Component({
   components: {
@@ -43,10 +44,9 @@ export default class App extends Vue {
   private async mounted() {
     this.getProducts();
     this.setAuthState();
-    const localStorage = window.localStorage;
-    if (localStorage.cart) {
-      const cart = JSON.parse(localStorage.getItem('cart')!);
-      cart.forEach((item: CartItem) => this.$store.commit('cart/addItemToCart', item));
+    const cartItems: CartItem[] = await get('cart');
+    if (cartItems && cartItems.length < 0) {
+      cartItems.forEach((item: CartItem) => this.$store.commit('cart/addItemToCart', item));
     }
   }
 }
