@@ -122,13 +122,12 @@ export default class ShopButtons extends Vue {
     return this.tempQuantity ? { display: 'block' } : { display: 'none' };
   }
 
-  // TODO: Make child component more generic by using EventBus.$emit(buttonAction), passing buttonAction as a prop (just the event name), then picking up on those event emitters in the appropriate files.
   private buyOrAddToCart(): void {
-    (this.buyButtonField === 'Buy') ?
-      EventBus.$emit('buyFlow') :
-    (this.buyButtonField === 'Checkout') ?
-      this.$router.push('/checkout') :
+    if (this.buyButtonField === 'Buy') {
+      return;
+    } else {
       EventBus.$emit('addToCart');
+    }
   }
 
   private get singleButtonStyles() {
