@@ -3,6 +3,8 @@ Aspen Valley Hemp Company
 
 This project uses yarn (instead of npm) for package mangagement, currently version 1.14.0 (as of February 2019).
 
+I'm deprecating this section. Just do the regular install from the Yarn website, as I haven't seen a need yet to manage versions with YVM yet. Only use YVM is you don't have root access.
+
 Install yarn with [yvm (Yarn Version Manager)](https://yvm.js.org/docs/overview). YVM requires node > v8, zip, and unzip. Zip and unzip are included by default on Ubuntu and OSX, but need to be installed on Debian, do so with:
 
 ```
@@ -112,10 +114,12 @@ This project uses:
    * Add order to Shopify
    * Send confirmation email (rely on Shopify for this?)
    * Get payment for order via Fortress
-   
+
+* Swich from localStorage to IndexedDB via idb-keyval
+* Start using IMGIX as a image server?
 * Performance timing with the Performance Timings API
 * Page to view single orders
-* Test results page
+* ~Test results page~
 * Change app color scheme?
 * Page to edit default user account info
 
@@ -132,7 +136,7 @@ This project uses:
 * ~Field Error handler~
 * ~Orders page displays actual orders (is dummy order now)~
 * ~Fix checkout page since Vuex reintegration.~
-* Finish policy pages
+* ~Finish policy pages~
 
    * ~Terms and Conditions~
    * ~Privacy Policy~
@@ -157,18 +161,19 @@ This project uses:
 * As I get more components, the folder structure is bad. Better folder structure.
 * "Order it again" functionality for repeating past orders, sort of like Domino's Pizza.
 * Animations!
-* Prerendering
+* ~Prerendering~
    
-   * /about
-   * /terms-and-conditions
-   * /return-policy
-   * /privacy-policy
-   * /test-results
-   * / (intro page, maybe most important)
+   * ~/about~
+   * ~/terms-and-conditions~
+   * ~/return-policy~
+   * ~/privacy-policy~
+   * ~/test-results~
+   * ~/ I don't think it's possible to prerender the home page~
    
 * CMS (probably Butter) integration to allow other people to create orders and such (further off).
    
    * Butter does not let you use your own custom backend; need to find a different solution
+   * Might be able to use a headless CMS like Wordpress, then fire a cloud function from a webhook that updates data in cloud firestore
   
 * Migrate theme.scss files to vars.scss
 * Payment Request API
