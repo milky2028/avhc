@@ -45,7 +45,7 @@ export default class App extends Vue {
     this.getProducts();
     this.setAuthState();
     const cartItems: CartItem[] = await get('cart');
-    if (cartItems && cartItems.length < 0) {
+    if (cartItems && cartItems.length > 0) {
       cartItems.forEach((item: CartItem) => this.$store.commit('cart/addItemToCart', item));
     }
   }
