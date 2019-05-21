@@ -115,7 +115,7 @@ This project uses:
    * Send confirmation email (rely on Shopify for this?)
    * Get payment for order via Fortress
 
-* Swich from localStorage to IndexedDB via idb-keyval
+* ~Swich from localStorage to IndexedDB via idb-keyval~
 * Start using IMGIX as a image server?
 * Performance timing with the Performance Timings API
 * Page to view single orders
