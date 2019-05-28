@@ -1,11 +1,6 @@
 #!/bin/bash
 
-if [ "$1" == "mac" ]; then
-    cd ~/Documents/GitHub/avp
-else
-    cd ~/Documents/GitHub/avhc
-fi
-
+cd ~/Documents/GitHub/avhc
 git status
 git pull
 yarn global add firebase-tools @vue/cli @vue/cli-service-global typescript
