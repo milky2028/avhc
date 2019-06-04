@@ -16,11 +16,11 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import AppToolbar from '@/components/AppToolbar.vue';
-import CartItem from '@/types/CartItem';
-import { Auth } from '@/exports/Firebase';
+import AppToolbar from './components/AppToolbar.vue';
+import CartItem from './types/CartItem';
+import { Auth } from './exports/Firebase';
 import { mapActions } from 'vuex';
-import UserModule from '@/modules/UserModule';
+import UserModule from './modules/UserModule';
 import { get } from 'idb-keyval';
 
 @Component({
